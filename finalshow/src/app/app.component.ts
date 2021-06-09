@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   loader= new GLTFLoader();
@@ -39,9 +39,19 @@ export class AppComponent {
     const scene=this.scene;
     const loader=this.loader;
 
+    const texture=new THREE.TextureLoader().load('../assets/3D_models/north_american_x-15/textures/part_1_baseColor.jpeg');
+    const material = new THREE.MeshBasicMaterial( { map: texture } );
+
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
+      gltf.animations; 
+		  gltf.scene; 
+		  gltf.scenes; 
+		  gltf.cameras; 
+		  gltf.asset;
+
+      console.log(gltf.scene);
  
     }, undefined, function ( error ) {
     
@@ -52,8 +62,8 @@ export class AppComponent {
   }
 
 ngOnInit(): void {
-  this.render();
   this.loadModel();
+  this.render();
   this.box();
   this.animate();
 }
