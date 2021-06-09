@@ -20,6 +20,7 @@ export class AppComponent {
   render(){
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( this.renderer.domElement );
+    this.scene.background=new THREE.Color("rgb(255,0,0)");
   }
   
   box(){
@@ -35,19 +36,13 @@ export class AppComponent {
 }
 
   loadModel(){
-
     const scene=this.scene;
     const loader=this.loader;
 
-    console.log("1");
-
-
-    loader.load( './assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
+    loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
-
-      console.log("2");
-    
+ 
     }, undefined, function ( error ) {
     
       console.error( error );
@@ -57,10 +52,10 @@ export class AppComponent {
   }
 
 ngOnInit(): void {
-  this.loadModel();
   this.render();
-  /*this.box();
-  this.animate();*/
+  this.loadModel();
+  this.box();
+  this.animate();
 }
 
 }
