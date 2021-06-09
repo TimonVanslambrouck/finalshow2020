@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   loader= new GLTFLoader();
@@ -57,10 +57,10 @@ export class AppComponent {
   }
 
 ngOnInit(): void {
-  this.loadModel();
+  //this.loadModel();
   this.render();
-  /*this.box();
-  this.animate();*/
+  this.box();
+  this.animate();
 }
 
 }
