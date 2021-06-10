@@ -62,6 +62,7 @@ export class AppComponent {
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
+      gltf.scene.rotateX(90);
       console.log(gltf.scene);
       const modelFolder=gui.addFolder("X-15 scale");
       modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
@@ -78,12 +79,65 @@ export class AppComponent {
 
   }
 
+  loadTerrain(file: any, callback: any) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'arraybuffer';
+    xhr.open('GET', file, true);
+    xhr.onload = function(evt) {    
+      if (xhr.response) {
+        callback(new Uint16Array(xhr.response));
+      }
+    };  
+    xhr.send(null);
+  }
+
+  initTerrain() {
+    let resultData: any;
+    let scene = this.scene;
+    this.loadTerrain('../assets/Terrain/jotunheimen.bin', function(data: any) {
+    resultData = data;
+    console.log(resultData);
+
+    var geometry = new THREE.PlaneGeometry(60, 60, 199, 199);
+    console.log(geometry);
+   
+    const position = geometry.attributes.position;
+    const vector = new THREE.Vector3();
+    let positions: any = [];
+   
+    for ( let i = 0, l = position.count; i < l; i ++ ) {
+        vector.fromBufferAttribute( position, i );
+        vector.setZ(resultData[i] / 65535 * 10);
+        positions.push(vector.x);
+        positions.push(vector.y);
+        positions.push(vector.z);
+    }
+    console.log(positions);
+    const typedArray = Float32Array.from(positions);
+    console.log(typedArray);
+    geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
+
+    var material = new THREE.MeshPhongMaterial({
+      map: THREE.ImageUtils.loadTexture('../assets/Terrain/jotunheimen-texture.jpg')
+    });
+
+    var plane = new THREE.Mesh(geometry, material);
+    plane.position.setZ(-250);
+    scene.add(plane);
+    plane.scale.set(20,20,20);
+    scene.add(new THREE.AmbientLight(0xeeeeee));
+
+    });
+  }
+
+
 ngOnInit(): void {
   this.guiSettings();
   this.loadModel();
   this.render();
   this.box();
   this.animate();
+  this.initTerrain();
 }
 
 }
