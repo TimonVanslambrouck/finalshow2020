@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
+import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 
 
 @Component({
@@ -18,13 +20,23 @@ export class AppComponent {
   material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
   cube = new THREE.Mesh( this.geometry, this.material );
   rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
+  gui=new GUI();
+  controls=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
+
+  guiSettings(){
+    const cameraFolder=this.gui.addFolder("Camera");
+    cameraFolder.add(this.camera.position,"x",0,10,0.01);
+    cameraFolder.add(this.camera.position,"y",0,10,0.01);
+    cameraFolder.add(this.camera.position,"z",0,10,0.01);  
+    cameraFolder.open();
+  }
 
 
   render(){
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( this.renderer.domElement );
-    this.scene.background=new THREE.Color("rgb(255,0,0)");
+    this.scene.background=new THREE.Color();
     this.rectLight.position.set( 5, 5, 0 );
     this.rectLight.lookAt( 0, 0, 0 );
     this.scene.add( this.rectLight );
@@ -45,11 +57,19 @@ export class AppComponent {
   loadModel(){
     const scene=this.scene;
     const loader=this.loader;
+    const gui=this.gui;
 
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
       console.log(gltf.scene);
+      const modelFolder=gui.addFolder("X-15 scale");
+      modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
+      modelFolder.add(gltf.scene.scale,"y",0,10,0.1);
+      modelFolder.add(gltf.scene.scale,"z",0,10,0.1);
+      modelFolder.open();
+
+
     }, undefined, function ( error ) {
     
       console.error( error );
@@ -59,6 +79,7 @@ export class AppComponent {
   }
 
 ngOnInit(): void {
+  this.guiSettings();
   this.loadModel();
   this.render();
   this.box();
