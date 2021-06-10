@@ -18,8 +18,11 @@ export class AppComponent {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   renderer = new THREE.WebGLRenderer();
-  //rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
-  hemiLight=new THREE.HemisphereLight( 0xffffff, 0x444444, 10 );
+  //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
+  //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
+  //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
+  hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+
   gui=new dat.GUI();
   orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
   effectController = {
@@ -79,12 +82,12 @@ export class AppComponent {
   }
 
   sceneSettings(){
-    this.scene.background=new THREE.Color();
+    //this.scene.background=new THREE.Color();
   }
 
   light(){
-    // this.rectLight.position.set( 5, 5, 0 );
-    // this.rectLight.lookAt( 0, 0, 0 );
+    //this.rectLight.position.set( 5, 100, 0 );
+    //this.rectLight.lookAt( 0, 0, 0 );
     this.hemiLight.position.set(0,20,0);
     //this.scene.add( this.rectLight );
     this.scene.add(this.hemiLight);
@@ -113,6 +116,12 @@ export class AppComponent {
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
+      console.log(gltf.scene);
+      const modelFolder=gui.addFolder("X-15 scale");
+      modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
+      modelFolder.add(gltf.scene.scale,"y",0,10,0.1);
+      modelFolder.add(gltf.scene.scale,"z",0,10,0.1);
+      modelFolder.open();
 
       const scaleFolder=gui.addFolder("X-15 scale");
       scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
@@ -133,6 +142,58 @@ export class AppComponent {
     } );
   }
 
+  loadTerrain(file: any, callback: any) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'arraybuffer';
+    xhr.open('GET', file, true);
+    xhr.onload = function(evt) {    
+      if (xhr.response) {
+        callback(new Uint16Array(xhr.response));
+      }
+    };  
+    xhr.send(null);
+  }
+
+  initTerrain() {
+    let resultData: any;
+    let scene = this.scene;
+    this.loadTerrain('../assets/Terrain/jotunheimen.bin', function(data: any) {
+    resultData = data;
+    console.log(resultData);
+
+    var geometry = new THREE.PlaneGeometry(60, 60, 199, 199);
+    console.log(geometry);
+   
+    const position = geometry.attributes.position;
+    const vector = new THREE.Vector3();
+    let positions: any = [];
+   
+    for ( let i = 0, l = position.count; i < l; i ++ ) {
+        vector.fromBufferAttribute( position, i );
+        vector.setZ(resultData[i] / 65535 * 8);
+        positions.push(vector.x);
+        positions.push(vector.y);
+        positions.push(vector.z);
+    }
+    console.log(positions);
+    const typedArray = Float32Array.from(positions);
+    console.log(typedArray);
+    geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
+
+    var material = new THREE.MeshPhongMaterial({
+      map: new THREE.TextureLoader().load('../assets/Terrain/jotunheimen-texture-altered.jpg')
+    });
+
+    var plane = new THREE.Mesh(geometry, material);
+    plane.position.setY(-225);
+    scene.add(plane);
+    plane.scale.set(20,20,20);
+    plane.rotateX(Math.PI / 2);
+    plane.rotateY(Math.PI);
+    //scene.add(new THREE.DirectionalLight( 0xffffff, 1 ));
+    });
+  }
+  
 loadCloud(){
   const scene=this.scene;
   const loader=this.loader;
@@ -185,6 +246,7 @@ ngOnInit(): void {
   this.loadCloud();
   this.render();
   this.animate();
+  this.initTerrain();
 }
 
 }
