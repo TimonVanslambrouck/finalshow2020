@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as dat from 'dat.gui';
+import * as dat from 'three/examples/jsm/libs/dat.gui.module';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
 
@@ -31,13 +31,18 @@ export class AppComponent {
     azimuth: 180,
     exposure: this.renderer.toneMappingExposure
   };
-
+  
   guiSettings(){
     const cameraFolder=this.gui.addFolder("Camera");
     cameraFolder.add(this.camera.position,"x",0,10,0.01);
     cameraFolder.add(this.camera.position,"y",0,10,0.01);
     cameraFolder.add(this.camera.position,"z",0,10,0.01);  
     cameraFolder.open();
+  }
+
+  controls(){
+    console.log(this.orbit);
+    //this.orbit.enableZoom=false;
   }
 
   skySettings(){
@@ -90,8 +95,9 @@ export class AppComponent {
     this.renderer.toneMapping= THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 0.5;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z=10;
+    this.camera.position.z=25;
     document.body.appendChild( this.renderer.domElement );
+    console.log(this.scene);
   }
   
  animate() {
@@ -103,7 +109,7 @@ export class AppComponent {
     const scene=this.scene;
     const loader=this.loader;
     const gui=this.gui;
-
+ 
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
@@ -144,7 +150,6 @@ loadCloud(){
     
     gltf.scene.position.set(-10,-10,0);
 
-
     for (let i=0;i<=15;i++){
 
       let clone=gltf.scene.clone();
@@ -169,8 +174,8 @@ loadCloud(){
 
 }
 
-
 ngOnInit(): void {
+  this.controls();
   this.guiSettings();
   this.sceneSettings();
   this.skySettings();
