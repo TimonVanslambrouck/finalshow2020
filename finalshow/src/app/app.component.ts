@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
-
+import {Sky} from 'three/examples/jsm/objects/Sky.js';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +11,26 @@ import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  loader= new GLTFLoader();
   title = 'finalshow';
+  sky=new Sky();
+  sun=new THREE.Vector3();
+  loader= new GLTFLoader();
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   renderer = new THREE.WebGLRenderer();
-  geometry = new THREE.BoxGeometry();
-  material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-  cube = new THREE.Mesh( this.geometry, this.material );
-  rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
+  //rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
+  hemiLight=new THREE.HemisphereLight( 0xffffff, 0x444444, 10 );
   gui=new GUI();
-  controls=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
+  orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
+  effectController = {
+    turbidity: 10,
+    rayleigh: 3,
+    mieCoefficient: 0.005,
+    mieDirectionalG: 0.7,
+    elevation: 2,
+    azimuth: 180,
+    exposure: this.renderer.toneMappingExposure
+  };
 
   guiSettings(){
     const cameraFolder=this.gui.addFolder("Camera");
@@ -31,27 +40,63 @@ export class AppComponent {
     cameraFolder.open();
   }
 
+  skySettings(){
+    this.sky.scale.setScalar(450000);
+    this.scene.add(this.sky);
+  }
+
+  guiChanged(){
+      const uniforms = this.sky.material.uniforms;
+      uniforms[ 'turbidity' ].value = this.effectController.turbidity;
+      uniforms[ 'rayleigh' ].value = this.effectController.rayleigh;
+      uniforms[ 'mieCoefficient' ].value = this.effectController.mieCoefficient;
+      uniforms[ 'mieDirectionalG' ].value = this.effectController.mieDirectionalG;
+
+      const phi = THREE.MathUtils.degToRad( 90 - this.effectController.elevation );
+      const theta = THREE.MathUtils.degToRad( this.effectController.azimuth );
+
+      this.sun.setFromSphericalCoords( 1, phi, theta );
+      uniforms[ 'sunPosition' ].value.copy( this.sun );
+      this.renderer.toneMappingExposure = this.effectController.exposure;
+      this.renderer.render(this.scene,this.camera);
+  }
+
+  skyGui(){
+    const effectFolder=this.gui.addFolder("effects");
+    effectFolder.add( this.effectController, 'turbidity', 0.0, 20.0, 0.1 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'rayleigh', 0.0, 4, 0.001 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'mieCoefficient', 0.0, 0.1, 0.001 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'mieDirectionalG', 0.0, 1, 0.001 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'elevation', 0, 90, 0.1 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'azimuth', - 180, 180, 0.1 ).onChange( this.guiChanged );
+    effectFolder.add( this.effectController, 'exposure', 0, 1, 0.0001 ).onChange( this.guiChanged );
+    this.guiChanged();
+  }
+
+  sceneSettings(){
+    this.scene.background=new THREE.Color();
+  }
+
+  light(){
+    // this.rectLight.position.set( 5, 5, 0 );
+    // this.rectLight.lookAt( 0, 0, 0 );
+    this.hemiLight.position.set(0,20,0);
+    //this.scene.add( this.rectLight );
+    this.scene.add(this.hemiLight);
+  }
 
   render(){
     this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.toneMapping= THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 0.5;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
+    this.camera.position.z=10;
     document.body.appendChild( this.renderer.domElement );
-    this.scene.background=new THREE.Color();
-    this.rectLight.position.set( 5, 5, 0 );
-    this.rectLight.lookAt( 0, 0, 0 );
-    this.scene.add( this.rectLight );
   }
   
-  box(){
-    this.scene.add( this.cube );
-    this.camera.position.z = 5;
-  }
-
  animate() {
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
 }
 
   loadModel(){
@@ -62,27 +107,78 @@ export class AppComponent {
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
-      console.log(gltf.scene);
-      const modelFolder=gui.addFolder("X-15 scale");
-      modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      modelFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      modelFolder.add(gltf.scene.scale,"z",0,10,0.1);
-      modelFolder.open();
 
+      const scaleFolder=gui.addFolder("X-15 scale");
+      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
+      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
+      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
+      scaleFolder.open();
+
+      const translateFolder=gui.addFolder("X-15 translate");
+      translateFolder.add(gltf.scene.position,"x",-10,10,0.01);
+      translateFolder.add(gltf.scene.position,"y",-10,10,0.01);
+      translateFolder.add(gltf.scene.position,"z",-10,10,0.01);
+      translateFolder.open();
 
     }, undefined, function ( error ) {
     
       console.error( error );
     
     } );
-
   }
+
+loadCloud(){
+  const scene=this.scene;
+  const loader=this.loader;
+  const gui=this.gui;
+
+  loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
+
+    scene.add( gltf.scene );
+
+      const scaleFolder=gui.addFolder("clouds scale");
+      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
+      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
+      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
+      scaleFolder.open();
+    
+    gltf.scene.position.set(-10,-10,0);
+
+
+    for (let i=0;i<=15;i++){
+
+      let clone=gltf.scene.clone();
+
+      if(i%2==0){
+        clone.position.set(-10+(i*1),-10,2);
+      }
+      else{
+        clone.position.set(-10+(i*1),-10,-2);
+      }
+      scene.add(clone);
+
+    }
+    console.log(gltf.scene);
+
+  }, undefined, function ( error ) {
+  
+    console.error( error );
+  
+  } );
+
+
+}
+
 
 ngOnInit(): void {
   this.guiSettings();
+  this.sceneSettings();
+  this.skySettings();
+  this.skyGui();
+  this.light();
   this.loadModel();
+  this.loadCloud();
   this.render();
-  this.box();
   this.animate();
 }
 
