@@ -188,47 +188,42 @@ export class AppComponent {
     });
   }
   
-loadCloud(){
-  const scene=this.scene;
-  const loader=this.loader;
-  const gui=this.gui;
-
-  loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
-
-    scene.add( gltf.scene );
-
+  loadCloud(){
+    const scene=this.scene;
+    const loader=this.loader;
+    const gui=this.gui;
+  
+    loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
       const scaleFolder=gui.addFolder("clouds scale");
-      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
       scaleFolder.open();
+      
+      gltf.scene.position.set(-10,-10,0);
+  
+      let clouds = new THREE.Group
+  
+      for (let i=0;i<=15;i++){
+  
+        let clone=gltf.scene.clone();
+  
+        if(i%2==0){
+          clone.position.set(-10+(i*1),-10,2);
+        }
+        else{
+          clone.position.set(-10+(i*1),-10,-2);
+        }    
+      clouds.add(clone);
+      }
+      scaleFolder.add(clouds.scale,"x",0,10,0.1);
+      scaleFolder.add(clouds.scale,"y",0,10,0.1);
+      scaleFolder.add(clouds.scale,"z",0,10,0.1);
+      scene.add(clouds)    
+  
+    }, undefined, function ( error ) {
     
-    gltf.scene.position.set(-10,-10,0);
-
-
-    for (let i=0;i<=15;i++){
-
-      let clone=gltf.scene.clone();
-
-      if(i%2==0){
-        clone.position.set(-10+(i*1),-10,2);
-      }
-      else{
-        clone.position.set(-10+(i*1),-10,-2);
-      }
-      scene.add(clone);
-
-    }
-    console.log(gltf.scene);
-
-  }, undefined, function ( error ) {
-  
-    console.error( error );
-  
-  } );
-
-
-}
+      console.error( error );
+    
+    } );
+  }
 
 
 ngOnInit(): void {
