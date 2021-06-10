@@ -107,7 +107,6 @@ export class AppComponent {
     loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
 
       scene.add( gltf.scene );
-      gltf.scene.rotateX(90);
       console.log(gltf.scene);
       const modelFolder=gui.addFolder("X-15 scale");
       modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
@@ -177,13 +176,18 @@ export class AppComponent {
     });
 
     var plane = new THREE.Mesh(geometry, material);
-    plane.position.setZ(-250);
+    plane.position.setY(-250);
     scene.add(plane);
     plane.scale.set(20,20,20);
+    plane.rotateX(Math.PI / 2);
+    plane.rotateY(Math.PI);
     scene.add(new THREE.AmbientLight(0xeeeeee));
+    var axes = new THREE.AxesHelper(200);
+    scene.add(axes);
 
     });
   }
+  
 loadCloud(){
   const scene=this.scene;
   const loader=this.loader;
