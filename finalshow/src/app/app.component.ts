@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
+import * as dat from 'dat.gui';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
 
@@ -20,7 +20,7 @@ export class AppComponent {
   renderer = new THREE.WebGLRenderer();
   //rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
   hemiLight=new THREE.HemisphereLight( 0xffffff, 0x444444, 10 );
-  gui=new GUI();
+  gui=new dat.GUI();
   orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
   effectController = {
     turbidity: 10,
