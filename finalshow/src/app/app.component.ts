@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import {GUI} from 'three/examples/jsm/libs/dat.gui.module';
+import * as dat from 'dat.gui';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 
 
@@ -20,7 +20,7 @@ export class AppComponent {
   material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
   cube = new THREE.Mesh( this.geometry, this.material );
   rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
-  gui=new GUI();
+  gui= new dat.GUI();
   controls=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
   guiSettings(){
