@@ -18,8 +18,11 @@ export class AppComponent {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   renderer = new THREE.WebGLRenderer();
-  //rectLight=new THREE.RectAreaLight(0xffffff,50,15,15);
-  hemiLight=new THREE.HemisphereLight( 0xffffff, 0x444444, 10 );
+  //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
+  //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
+  //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
+  hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+
   gui=new dat.GUI();
   orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
   effectController = {
@@ -74,12 +77,12 @@ export class AppComponent {
   }
 
   sceneSettings(){
-    this.scene.background=new THREE.Color();
+    //this.scene.background=new THREE.Color();
   }
 
   light(){
-    // this.rectLight.position.set( 5, 5, 0 );
-    // this.rectLight.lookAt( 0, 0, 0 );
+    //this.rectLight.position.set( 5, 100, 0 );
+    //this.rectLight.lookAt( 0, 0, 0 );
     this.hemiLight.position.set(0,20,0);
     //this.scene.add( this.rectLight );
     this.scene.add(this.hemiLight);
@@ -161,7 +164,7 @@ export class AppComponent {
    
     for ( let i = 0, l = position.count; i < l; i ++ ) {
         vector.fromBufferAttribute( position, i );
-        vector.setZ(resultData[i] / 65535 * 10);
+        vector.setZ(resultData[i] / 65535 * 8);
         positions.push(vector.x);
         positions.push(vector.y);
         positions.push(vector.z);
@@ -172,19 +175,16 @@ export class AppComponent {
     geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
 
     var material = new THREE.MeshPhongMaterial({
-      map: THREE.ImageUtils.loadTexture('../assets/Terrain/jotunheimen-texture.jpg')
+      map: new THREE.TextureLoader().load('../assets/Terrain/jotunheimen-texture-altered.jpg')
     });
 
     var plane = new THREE.Mesh(geometry, material);
-    plane.position.setY(-250);
+    plane.position.setY(-225);
     scene.add(plane);
     plane.scale.set(20,20,20);
     plane.rotateX(Math.PI / 2);
     plane.rotateY(Math.PI);
-    scene.add(new THREE.AmbientLight(0xeeeeee));
-    var axes = new THREE.AxesHelper(200);
-    scene.add(axes);
-
+    //scene.add(new THREE.DirectionalLight( 0xffffff, 1 ));
     });
   }
   
