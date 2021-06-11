@@ -194,19 +194,13 @@ export class AppComponent {
     });
   }
   
-loadCloud(){
-  const scene=this.scene;
-  const loader=this.loader;
-  const gui=this.gui;
-
-  loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
-
-    scene.add( gltf.scene );
-
+  loadCloud(){
+    const scene=this.scene;
+    const loader=this.loader;
+    const gui=this.gui;
+  
+    loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
       const scaleFolder=gui.addFolder("clouds scale");
-      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
       scaleFolder.open();
     
     gltf.scene.position.set(-10,-10,0);
@@ -228,12 +222,10 @@ loadCloud(){
 
   }, undefined, function ( error ) {
   
-    console.error( error );
-  
-  } );
-
-
-}
+      console.error( error );
+    
+    } );
+  }
 
 ngOnInit(): void {
   this.controls();
