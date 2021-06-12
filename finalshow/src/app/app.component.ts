@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'three/examples/jsm/libs/dat.gui.module';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
+import { ModelLoaderService } from './model-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +14,10 @@ export class AppComponent {
   title = 'finalshow';
   sky=new Sky();
   sun=new THREE.Vector3();
-  loader= new GLTFLoader();
-  scene = new THREE.Scene();
+   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   renderer = new THREE.WebGLRenderer();
+  modelLoader=new ModelLoaderService();
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
   //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
   //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
@@ -108,40 +108,6 @@ export class AppComponent {
 	this.renderer.render( this.scene, this.camera );
 }
 
-  loadModel(){
-    const scene=this.scene;
-    const loader=this.loader;
-    const gui=this.gui;
- 
-    loader.load('../assets/3D_models/north_american_x-15/scene.gltf', function ( gltf ) {
-
-      scene.add( gltf.scene );
-      console.log(gltf.scene);
-      const modelFolder=gui.addFolder("X-15 scale");
-      modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      modelFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      modelFolder.add(gltf.scene.scale,"z",0,10,0.1);
-      modelFolder.open();
-
-      const scaleFolder=gui.addFolder("X-15 scale");
-      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
-      scaleFolder.open();
-
-      const translateFolder=gui.addFolder("X-15 translate");
-      translateFolder.add(gltf.scene.position,"x",-10,10,0.01);
-      translateFolder.add(gltf.scene.position,"y",-10,10,0.01);
-      translateFolder.add(gltf.scene.position,"z",-10,10,0.01);
-      translateFolder.open();
-
-    }, undefined, function ( error ) {
-    
-      console.error( error );
-    
-    } );
-  }
-
   loadTerrain(file: any, callback: any) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'arraybuffer';
@@ -194,56 +160,15 @@ export class AppComponent {
     });
   }
   
-loadCloud(){
-  const scene=this.scene;
-  const loader=this.loader;
-  const gui=this.gui;
-
-  loader.load('../assets/3D_models/cloud/scene.gltf', function ( gltf ) {
-
-    scene.add( gltf.scene );
-
-      const scaleFolder=gui.addFolder("clouds scale");
-      scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"y",0,10,0.1);
-      scaleFolder.add(gltf.scene.scale,"z",0,10,0.1);
-      scaleFolder.open();
-    
-    gltf.scene.position.set(-10,-10,0);
-
-    for (let i=0;i<=15;i++){
-
-      let clone=gltf.scene.clone();
-
-      if(i%2==0){
-        clone.position.set(-10+(i*1),-10,2);
-      }
-      else{
-        clone.position.set(-10+(i*1),-10,-2);
-      }
-      scene.add(clone);
-
-    }
-    console.log(gltf.scene);
-
-  }, undefined, function ( error ) {
-  
-    console.error( error );
-  
-  } );
-
-
-}
-
 ngOnInit(): void {
+  this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf');
+  this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf');
   this.controls();
   this.guiSettings();
   this.sceneSettings();
   this.skySettings();
   this.skyGui();
   this.light();
-  this.loadModel();
-  this.loadCloud();
   this.render();
   this.animate();
   this.initTerrain();
