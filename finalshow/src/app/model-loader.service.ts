@@ -1,24 +1,31 @@
 import { Injectable } from '@angular/core';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three';
+import { GuiService } from './gui.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModelLoaderService {
 
+  gui=new GuiService();
+
   loader=new GLTFLoader();
 
   constructor() { }
 
-  loadModel(scene:any,url:string){
+  loadModel(scene:any,url:string,guiName:string){
 
     const loader=this.loader;
+    const gui=this.gui;
 
     loader.load(url, function ( gltf ) {
       
       scene.add( gltf.scene );
       console.log(gltf.scene);
+
+      gui.scale(guiName,gltf.scene);
+      gui.position(guiName,gltf.scene);
 
     }, undefined, function ( error ) {
     
@@ -45,11 +52,9 @@ export class ModelLoaderService {
     let resultData: any;
     this.loadTerrain(terrainFile, function(data: any) {
     resultData = data;
-    console.log(resultData);
 
     var geometry = planeGeometry;
-    console.log(geometry);
-   
+
     const position = geometry.attributes.position;
     const vector = new THREE.Vector3();
     let positions: any = [];
@@ -61,9 +66,7 @@ export class ModelLoaderService {
         positions.push(vector.y);
         positions.push(vector.z);
     }
-    console.log(positions);
     const typedArray = Float32Array.from(positions);
-    console.log(typedArray);
     geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
 
     var material = new THREE.MeshPhongMaterial({

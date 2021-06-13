@@ -4,6 +4,7 @@ import * as dat from 'three/examples/jsm/libs/dat.gui.module';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
 import { ModelLoaderService } from './model-loader.service';
+import { GuiService } from './gui.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,11 @@ export class AppComponent {
   title = 'finalshow';
   sky=new Sky();
   sun=new THREE.Vector3();
-   scene = new THREE.Scene();
+  scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
+  guiService=new GuiService();
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
   //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
   //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
@@ -35,11 +37,7 @@ export class AppComponent {
   };
   
   guiSettings(){
-    const cameraFolder=this.gui.addFolder("Camera");
-    cameraFolder.add(this.camera.position,"x",0,10,0.01);
-    cameraFolder.add(this.camera.position,"y",0,10,0.01);
-    cameraFolder.add(this.camera.position,"z",0,10,0.01);  
-    cameraFolder.open();
+    this.guiService.position("camera",this.camera,true);
   }
 
   controls(){
@@ -109,8 +107,8 @@ export class AppComponent {
 }
 
 ngOnInit(): void {
-  this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf');
-  this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf');
+  this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+  this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
   this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   this.controls();
   this.guiSettings();
