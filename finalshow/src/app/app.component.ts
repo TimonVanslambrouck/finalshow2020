@@ -68,10 +68,21 @@ export class AppComponent {
   }
 
   loadModels(){
-    let cloud=this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    let plane=this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
-    let drone=this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneFP.glb',"droneFP");
-    let room=this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room");
+    const scene = this.scene;
+    let cloud=this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud", function ( gltf: any ) {
+      scene.add( gltf.scene );
+      //gui.scale(guiName,gltf.scene,false,-100,100,0.1);
+      //gui.position(guiName,gltf.scene,false,-100,100,0.1);
+    });
+    let plane=this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15", function ( gltf: any ) {
+      scene.add( gltf.scene );
+    });
+    let drone=this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneFP.glb',"droneFP", function ( gltf: any ) {
+      scene.add( gltf.scene );
+    });
+    let room=this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", function ( gltf: any ) {
+      scene.add( gltf.scene );
+    });
     let terrain=this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
   

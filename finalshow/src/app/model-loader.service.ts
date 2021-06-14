@@ -16,29 +16,17 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string){
+  loadModel(scene:any,url:string,guiName:string, callback: any){
 
     const loader=this.loader;
     const gui=this.gui;
     let model=new THREE.Group();
 
-    loader.load(url, function ( gltf ) {
-
-      scene.add( gltf.scene );
-
-      model=gltf.scene;
-
-      gui.scale(guiName,gltf.scene,false,-100,100,0.1);
-      gui.position(guiName,gltf.scene,false,-100,100,0.1);
-
-    }, undefined, function ( error ) {
-    
+    loader.load(url, callback, undefined, function ( error ) {
       console.error( error );
-    
     } );
 
     return model;
-
   }
 
   private loadTerrain(file: any, callback: any) {
