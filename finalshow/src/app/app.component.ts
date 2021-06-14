@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as dat from 'dat.gui';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
-import { SkyComponent } from './sky/sky.component';
+import { SkyService } from './sky.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ export class AppComponent {
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
-  sky=new SkyComponent();
+  sky=new SkyService(this.renderer);
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
   //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
   //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
@@ -55,6 +54,7 @@ export class AppComponent {
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z=25;
     document.body.appendChild( this.renderer.domElement );
+    this.renderer.autoClear=false;
     console.log(this.scene);
   }
   
@@ -68,7 +68,8 @@ ngOnInit(): void {
   this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
   //this.modelLoader.loadModel(this.scene,'../assets/3D_models/landing_pad/scene.gltf', "pad");
   this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-  this.sky.skyGui(this.scene);
+  this.sky.skyGui();
+  this.sky.skySettings(this.scene);
   this.controls();
   this.guiSettings();
   this.sceneSettings();
