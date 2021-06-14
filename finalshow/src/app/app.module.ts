@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScrollAnimationComponent } from './scroll-animation/scroll-animation.component';
+import { FlightAnimationComponent } from './flight-animation/flight-animation.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-    ScrollAnimationComponent
+    ScrollAnimationComponent,
+    FlightAnimationComponent
   ],
   imports: [
     BrowserModule,
