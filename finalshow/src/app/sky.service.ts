@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import * as THREE from 'three';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
-import * as dat from 'three/examples/jsm/libs/dat.gui.module';
+import * as dat from 'dat.gui';
 
 @Injectable({
   providedIn: 'root'
