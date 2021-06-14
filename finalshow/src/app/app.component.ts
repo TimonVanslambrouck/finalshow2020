@@ -57,6 +57,14 @@ export class AppComponent {
     this.renderer.autoClear=false;
     console.log(this.scene);
   }
+
+  loadModels(){
+    let cloud=this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+    let plane=this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
+    let drone=this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/Drone.glb',"drone");
+    let room=this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room");
+    let terrain=this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+  }
   
  animate() {
 	requestAnimationFrame( this.animate.bind(this) );
@@ -64,9 +72,7 @@ export class AppComponent {
 }
 
 ngOnInit(): void {
-  this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-  this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
-  this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+  this.loadModels();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
   this.controls();
