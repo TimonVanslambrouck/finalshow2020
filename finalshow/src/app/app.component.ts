@@ -55,7 +55,9 @@ export class AppComponent {
     this.camera.position.z=25;
     document.body.appendChild( this.renderer.domElement );
     this.renderer.autoClear=false;
+    this.scene.autoUpdate=true;
     console.log(this.scene);
+    console.log(this.scene.children);
   }
 
   loadModels(){
@@ -72,7 +74,7 @@ export class AppComponent {
 }
 
 ngOnInit(): void {
-  this.loadModels();
+
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
   this.controls();
@@ -81,6 +83,9 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
+  this.loadModels();
+
+
 }
 
 }

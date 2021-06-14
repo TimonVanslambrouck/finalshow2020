@@ -20,12 +20,11 @@ export class ModelLoaderService {
 
     const loader=this.loader;
     const gui=this.gui;
-    let model=new THREE.Group();
+    let model=new THREE.Object3D();
 
     loader.load(url, function ( gltf ) {
 
-      scene.add( gltf.scene );
-
+      scene.add(gltf.scene);
       model=gltf.scene;
 
       gui.scale(guiName,gltf.scene,false,-100,100,0.1);
