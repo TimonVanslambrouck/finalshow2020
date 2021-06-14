@@ -42,6 +42,9 @@ export class AppComponent {
 
   light(){
     this.sun.castShadow = true;
+    this.sun.shadow.bias = -0.0001;
+    this.sun.shadow.mapSize.width = 1024*4;
+    this.sun.shadow.mapSize.height = 1024*4;
     this.scene.add(this.sun);
     //this.rectLight.position.set( 5, 100, 0 );
     //this.rectLight.lookAt( 0, 0, 0 );
@@ -51,6 +54,7 @@ export class AppComponent {
   }
 
   render(){
+    this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;

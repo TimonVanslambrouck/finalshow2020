@@ -19,13 +19,23 @@ export class ModelLoaderService {
     const loader=this.loader;
     const gui=this.gui;
 
-    loader.load(url, function ( gltf ) {
-      
-      scene.add( gltf.scene );
-      console.log(gltf.scene);
+    loader.load(url, result => {
+      const model = result.scene.children[0];
+      if (model instanceof THREE.Mesh) {
+        model.castShadow = true;
+        model.receiveShadow = true;
+        if(model.material.map){
+          model.material.map.anisotropy = 16;
+        }
+      }
+      model.castShadow = true;
+      model.receiveShadow = true;
 
-      gui.scale(guiName,gltf.scene);
-      gui.position(guiName,gltf.scene);
+      scene.add( model );
+      console.log(model);
+
+      gui.scale(guiName,model);
+      gui.position(guiName,model);
 
     }, undefined, function ( error ) {
     
