@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
-import * as dat from 'three/examples/jsm/libs/dat.gui.module';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import * as dat from 'dat.gui';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
