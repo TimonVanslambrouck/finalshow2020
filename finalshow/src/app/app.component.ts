@@ -5,6 +5,7 @@ import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
 import { SkyService } from './sky.service';
+import { AxesHelper } from 'three';
 
 @Component({
   selector: 'app-root',
@@ -54,6 +55,7 @@ export class AppComponent {
   }
 
   render(){
+    this.scene.add(new THREE.AxesHelper(500))
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
