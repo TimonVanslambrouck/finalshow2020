@@ -22,7 +22,8 @@ export class AppComponent {
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
   //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
   //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
-  hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+  hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 4 );
+  sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
   orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
@@ -40,6 +41,8 @@ export class AppComponent {
   }
 
   light(){
+    this.sun.castShadow = true;
+    this.scene.add(this.sun);
     //this.rectLight.position.set( 5, 100, 0 );
     //this.rectLight.lookAt( 0, 0, 0 );
     this.hemiLight.position.set(0,20,0);
@@ -49,8 +52,8 @@ export class AppComponent {
 
   render(){
     this.renderer.outputEncoding = THREE.sRGBEncoding;
-    this.renderer.toneMapping= THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 0.5;
+    this.renderer.toneMapping= THREE.ReinhardToneMapping;
+    this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z=25;
     document.body.appendChild( this.renderer.domElement );
@@ -61,6 +64,11 @@ export class AppComponent {
  animate() {
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
+  this.sun.position.set(
+    this.camera.position.x + 10,
+    this.camera.position.y + 10,
+    this.camera.position.z + 10
+    )
 }
 
 ngOnInit(): void {

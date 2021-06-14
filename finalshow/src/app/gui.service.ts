@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as THREE from 'three';
-import * as dat from 'three/examples/jsm/libs/dat.gui.module';
+import * as dat from 'dat.gui';
 
 @Injectable({
   providedIn: 'root'
