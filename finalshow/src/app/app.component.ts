@@ -66,6 +66,7 @@ export class AppComponent {
 ngOnInit(): void {
   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
   this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15");
+  //this.modelLoader.loadModel(this.scene,'../assets/3D_models/landing_pad/scene.gltf', "pad");
   this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   this.sky.skyGui(this.scene);
   this.controls();

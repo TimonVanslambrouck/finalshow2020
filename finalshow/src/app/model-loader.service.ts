@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { GuiService } from './gui.service';
+import { AnimationMixer, AnimationClip, VectorKeyframeTrack } from 'three';
 
 @Injectable({
   providedIn: 'root'
@@ -81,12 +82,6 @@ export class ModelLoaderService {
     plane.rotateY(Math.PI);
     //scene.add(new THREE.DirectionalLight( 0xffffff, 1 ));
     });
-
-
-
-
-
-
   }
 
 
