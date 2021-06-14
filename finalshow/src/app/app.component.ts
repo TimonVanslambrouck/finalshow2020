@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as dat from 'three/examples/jsm/libs/dat.gui.module';
+import * as dat from 'dat.gui';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import {Sky} from 'three/examples/jsm/objects/Sky.js';
 
@@ -117,11 +117,11 @@ export class AppComponent {
 
       scene.add( gltf.scene );
       console.log(gltf.scene);
-      const modelFolder=gui.addFolder("X-15 scale");
+      /* const modelFolder=gui.addFolder("X-15 scale");
       modelFolder.add(gltf.scene.scale,"x",0,10,0.1);
       modelFolder.add(gltf.scene.scale,"y",0,10,0.1);
       modelFolder.add(gltf.scene.scale,"z",0,10,0.1);
-      modelFolder.open();
+      modelFolder.open(); */
 
       const scaleFolder=gui.addFolder("X-15 scale");
       scaleFolder.add(gltf.scene.scale,"x",0,10,0.1);
