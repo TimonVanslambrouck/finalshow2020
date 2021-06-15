@@ -46,6 +46,8 @@ export class AppComponent {
   scroll(){  
     gsap.registerPlugin(ScrollTrigger);
 
+    console.log(this.drone);
+
     var cam_anim = gsap.timeline({
       scrollTrigger: {
         trigger: this.renderer.domElement,
@@ -139,11 +141,8 @@ onResizeWindow(event:any){
   let renderer = this.renderer;
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
-
-
 
 ngOnInit(): void {
 
@@ -153,10 +152,11 @@ ngOnInit(): void {
   this.sky.skySettings(this.scene);
   this.controls();
   this.guiSettings();
-  this.scroll();
+  
   this.light();
   this.render();
   this.animate();
+  this.scroll();
 
 }
 }
