@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { GuiService } from './gui.service';
-import { AnimationMixer, AnimationClip, VectorKeyframeTrack } from 'three';
-
+import { AnimationMixer, AnimationClip, VectorKeyframeTrack, Vector3 } from 'three';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +15,19 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string, callback: any){
+  loadModel(scene:any,url:string,guiName:string){
 
     const loader=this.loader;
     const gui=this.gui;
-    let model=new THREE.Group();
 
-    loader.load(url, callback, undefined, function ( error ) {
-      console.error( error );
-    } );
+    loader.load(url, function ( gltf ) {
 
-    return model;
+      scene.add(gltf.scene);
+
+      gui.scale(guiName,gltf.scene,false,-100,100,0.1);
+      gui.position(guiName,gltf.scene,false,-100,100,0.1);
+    });
+
   }
 
   private loadTerrain(file: any, callback: any) {

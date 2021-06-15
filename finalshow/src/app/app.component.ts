@@ -5,6 +5,7 @@ import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
 import { SkyService } from './sky.service';
+import { Object3D } from 'three';
 import { AxesHelper } from 'three';
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -22,6 +23,9 @@ export class AppComponent {
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
   sky=new SkyService(this.renderer);
+  drone:any;
+  room:any;
+  cloud:any;
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
   //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
   //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
@@ -104,29 +108,22 @@ export class AppComponent {
     this.camera.position.z=25;
     document.body.appendChild( this.renderer.domElement );
     this.renderer.autoClear=false;
+    this.scene.autoUpdate=true;
     console.log(this.scene);
+    console.log(this.scene.children);
   }
 
   loadModels(){
-    const scene = this.scene;
-    let cloud=this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud", function ( gltf: any ) {
-      scene.add( gltf.scene );
-      //gui.scale(guiName,gltf.scene,false,-100,100,0.1);
-      //gui.position(guiName,gltf.scene,false,-100,100,0.1);
-    });
-    let plane=this.modelLoader.loadModel(this.scene,'../assets/3D_models/north_american_x-15/scene.gltf',"x-15", function ( gltf: any ) {
-      scene.add( gltf.scene );
-    });
-    let drone=this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneFP.glb',"droneFP", function ( gltf: any ) {
-      scene.add( gltf.scene );
-    });
-    let room=this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", function ( gltf: any ) {
-      scene.add( gltf.scene );
-    });
-    let terrain=this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/Drone.glb',"drone");
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room");
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
   
  animate() {
+  this.drone=this.scene.children[3];
+  this.room=this.scene.children[4];
+  this.cloud=this.scene.children[5];
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
@@ -149,6 +146,7 @@ onResizeWindow(event:any){
 
 
 ngOnInit(): void {
+
   this.loadModels();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
