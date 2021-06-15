@@ -25,6 +25,7 @@ export class AppComponent {
   loader=new GLTFLoader();
   fontLoader=new THREE.FontLoader();
   sky=new SkyService(this.renderer);
+  
   drone:any;
   room:any;
   cloud:any;
@@ -80,11 +81,12 @@ export class AppComponent {
       var mesh = new THREE.Mesh(geometry, material);
       var mesh1 = new THREE.Mesh(geometry1, material);
 
-      let z=80;
+      let z=0;
       mesh.position.x=-35;
-      mesh.position.y=25;
+      mesh.position.y=95;
       mesh.position.z=z;
       mesh1.position.x=-40;
+      mesh1.position.y=70;
       mesh1.position.z=z;
       let textGroup = new THREE.Group;
       textGroup.add(mesh);
@@ -125,6 +127,8 @@ export class AppComponent {
   }
 
   render(){
+    //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
+
     this.scene.add(new THREE.AxesHelper(500))
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -158,16 +162,16 @@ export class AppComponent {
       scene.add(gltf.scene);
       gltf.scene.position.z = 450;
       gltf.scene.position.y = -130;
+      gltf.scene.scale.set(2.5,2.5,2.5);
 
     
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
 
-        let drone=scene.children[9];
+        let drone=scene.children[8];
         
         guiService.position("drone", drone, true, -1000, 1000)
     
-        console.log(drone);
     
         var drone_anim = gsap.timeline({
           scrollTrigger: {
