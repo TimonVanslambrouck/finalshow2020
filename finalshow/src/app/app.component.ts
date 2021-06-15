@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
@@ -22,8 +23,8 @@ export class AppComponent {
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
+  loader=new GLTFLoader();
   sky=new SkyService(this.renderer);
-  drone:any;
   room:any;
   cloud:any;
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
@@ -45,8 +46,6 @@ export class AppComponent {
 
   scroll(){  
     gsap.registerPlugin(ScrollTrigger);
-
-    console.log(this.drone);
 
     var cam_anim = gsap.timeline({
       scrollTrigger: {
@@ -117,13 +116,21 @@ export class AppComponent {
 
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneFP.glb',"drone");
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
+
+  loadDrone(scene:any,url:any){
+
+    this.loader.load(url, function ( gltf ) {
+
+      scene.add(gltf.scene);
+
+    });
+
+  }
   
  animate() {
-  this.drone=this.scene.children[5];
   this.room=this.scene.children[7];
   this.cloud=this.scene.children[8];
 	requestAnimationFrame( this.animate.bind(this) );
@@ -148,6 +155,7 @@ ngOnInit(): void {
 
   this.sound();
   this.loadModels();
+  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.gltf');
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
   this.controls();
