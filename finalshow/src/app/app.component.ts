@@ -37,7 +37,7 @@ export class AppComponent {
  // orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
   guiSettings(){
-    this.guiService.position("camera",this.camera,true);
+    this.guiService.position("camera",this.camera,true,-1000,1000);
   }
 
   controls(){
@@ -113,7 +113,7 @@ export class AppComponent {
 
         let drone=scene.children[6];
         
-        guiService.position("drone", drone, true, -1000, 1000)
+        guiService.position("drone", drone, true, -300, 300)
     
         console.log(drone);
     
