@@ -25,6 +25,7 @@ export class AppComponent {
   loader=new GLTFLoader();
   fontLoader=new THREE.FontLoader();
   sky=new SkyService(this.renderer);
+  
   drone:any;
   room:any;
   cloud:any;
@@ -34,15 +35,16 @@ export class AppComponent {
   hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 4 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
- // orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
+ //orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
   guiSettings(){
     this.guiService.position("camera",this.camera,true,-1000,1000);
+    //this.guiService.rotate("camera",this.camera,true);
   }
 
   controls(){
    // console.log(this.orbit);
-    //this.orbit.enableZoom=false;
+  //  this.orbit.enableZoom=false;
   }
 
   loadText(){
@@ -79,11 +81,12 @@ export class AppComponent {
       var mesh = new THREE.Mesh(geometry, material);
       var mesh1 = new THREE.Mesh(geometry1, material);
 
-      let z=80;
+      let z=0;
       mesh.position.x=-35;
-      mesh.position.y=25;
+      mesh.position.y=95;
       mesh.position.z=z;
       mesh1.position.x=-40;
+      mesh1.position.y=70;
       mesh1.position.z=z;
       let textGroup = new THREE.Group;
       textGroup.add(mesh);
@@ -124,13 +127,16 @@ export class AppComponent {
   }
 
   render(){
+    //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
+
     this.scene.add(new THREE.AxesHelper(500))
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z=25;
+    this.camera.position.z=550;
+    this.camera.position.y=-100;
     document.body.appendChild( this.renderer.domElement );
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -141,6 +147,7 @@ export class AppComponent {
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", 1,[0,0,0]);
+ //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
@@ -154,7 +161,11 @@ export class AppComponent {
     this.loader.load(url, function ( gltf ) {
       gltf.scene.scale.set(2.5,2.5,2.5);
       scene.add(gltf.scene);
+      gltf.scene.position.z = 450;
+      gltf.scene.position.y = -130;
+      gltf.scene.scale.set(2.5,2.5,2.5);
 
+    
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
         
@@ -162,7 +173,6 @@ export class AppComponent {
         
         guiService.position("drone", drone, true, -1000, 1000)
     
-        console.log(drone);
     
         var drone_anim = gsap.timeline({
           scrollTrigger: {
@@ -170,40 +180,34 @@ export class AppComponent {
             scrub: 1.2,
             start: 'top top',
             end:'+=5000',
-            markers: true,
           }
         }).to(drone.position, {
-          x: 200,
           y: 50,
-          z: 300,
-          duration: 1,
-          ease: 'none'
-        }).to(drone.rotation, { z: 0, y: 0.5 }, "simultaneously").to(drone.position, {
-          x: 200,
+          z: -100,
           duration: 1,
           ease: 'none'
         });
         
-
         var cam_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
             scrub: 1.2,
             start: 'top top',
             end:'+=5000',
-            markers: true,
           }
         }).to(camera.position, {
-          x: 0,
-          y: 200,
-          z: 600,
+          x: 38,
+          y: 27,
+          z: 137,
           duration: 1,
           ease: 'none'
-        }).to(camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(camera.position, {
+        })
+        .to(camera.rotation, { z: 0, y: 0.5 }, 0)
+     /*    .to(camera.position, {
           y: 200,
           duration: 1,
           ease: 'none'
-        });
+        });  */
       };
       scroll();
     });
@@ -211,8 +215,8 @@ export class AppComponent {
   }
   
  animate() {
-  this.room=this.scene.children[7];
-  this.cloud=this.scene.children[8];
+  this.room=this.scene.children[8];
+  this.cloud=this.scene.children[10];
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
