@@ -15,17 +15,20 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string){
+  loadModel(scene:any,url:string,guiName:string,scale:number,position:any){
 
     const loader=this.loader;
     const gui=this.gui;
 
     loader.load(url, function ( gltf ) {
+      let model = gltf.scene;
+      model.position.set(position[0],position[1],position[2])
+      model.scale.set(scale,scale,scale);
 
-      scene.add(gltf.scene);
+      scene.add(model);
 
-      gui.scale(guiName,gltf.scene,false,-100,100,0.1);
-      gui.position(guiName,gltf.scene,false,-100,100,0.1);
+      gui.scale(guiName,model,false,-100,100,0.1);
+      gui.position(guiName,model,false,-100,100,0.1);
     });
 
   }
