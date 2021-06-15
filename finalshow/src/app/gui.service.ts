@@ -32,5 +32,18 @@ export class GuiService {
     }
   }
 
+  rotate(name:string,object:any,open:boolean=false,min:number=0,max:number=10,step:number=0.1){
+    const folder=this.gui.addFolder(name + "-" + "scale");
+    const rotate=folder.add(object.rotate,"x",min,max,step).listen();
+    folder.add(object.rotate,"y",min,max,step).listen();
+    folder.add(object.rotate,"z",min,max,step).listen();    
+    if(open==true){
+      folder.open();
+    }
+  }
+
+
+
+
 
 }
