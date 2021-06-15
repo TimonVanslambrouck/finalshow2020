@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.3",
     "@types/dat.gui": "^0.7.6",
     "dat.gui": "^0.7.7",
+    "gsap": "^3.6.1",
     "rxjs": "~6.6.0",
     "three": "^0.129.0",
     "tslib": "^2.0.0",
