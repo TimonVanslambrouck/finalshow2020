@@ -172,7 +172,5 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
-  
-
 }
 }
