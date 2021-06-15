@@ -85,8 +85,10 @@ export class AppComponent {
       mesh.position.z=z;
       mesh1.position.x=-40;
       mesh1.position.z=z;
-      scene.add(mesh);
-      scene.add(mesh1);
+      let textGroup = new THREE.Group;
+      textGroup.add(mesh);
+      textGroup.add(mesh1);
+      scene.add(textGroup);
 
     } );
   }
@@ -157,7 +159,7 @@ export class AppComponent {
 
         let drone=scene.children[6];
         
-        guiService.position("drone", drone, true, -300, 300)
+        guiService.position("drone", drone, true, -1000, 1000)
     
         console.log(drone);
     
