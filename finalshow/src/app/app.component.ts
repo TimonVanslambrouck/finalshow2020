@@ -25,6 +25,7 @@ export class AppComponent {
   guiService=new GuiService();
   loader=new GLTFLoader();
   sky=new SkyService(this.renderer);
+  drone:any;
   room:any;
   cloud:any;
   //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
@@ -44,30 +45,7 @@ export class AppComponent {
     //this.orbit.enableZoom=false;
   }
 
-  scroll(){  
-    gsap.registerPlugin(ScrollTrigger);
-
-    var cam_anim = gsap.timeline({
-      scrollTrigger: {
-        trigger: this.renderer.domElement,
-        scrub: 1.2,
-        start: 'top top',
-        end:'+=5000',
-        markers: true,
-      }
-    }).to(this.camera.position, {
-      x: 200,
-      y: 50,
-      z: 300,
-      duration: 1,
-      ease: 'none'
-    }).to(this.camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(this.camera.position, {
-      y: 200,
-      duration: 1,
-      ease: 'none'
-    });
-    
-  };
+ 
 
   light(){
     this.sun.castShadow = true;
@@ -122,10 +100,41 @@ export class AppComponent {
 
   loadDrone(scene:any,url:any){
 
+    let renderer=this.renderer;
+    let camera=this.camera;
+    
     this.loader.load(url, function ( gltf ) {
-
       scene.add(gltf.scene);
 
+      function scroll(){  
+        gsap.registerPlugin(ScrollTrigger);
+
+        let drone=scene.children[6];
+    
+        console.log(drone);
+    
+        var cam_anim = gsap.timeline({
+          scrollTrigger: {
+            trigger: renderer.domElement,
+            scrub: 1.2,
+            start: 'top top',
+            end:'+=5000',
+            markers: true,
+          }
+        }).to(drone.position, {
+          x: 200,
+          y: 50,
+          z: 300,
+          duration: 1,
+          ease: 'none'
+        }).to(drone.rotation, { z: 0, y: 0.5 }, "simultaneously").to(drone.position, {
+          y: 200,
+          duration: 1,
+          ease: 'none'
+        });
+        
+      };
+      scroll();
     });
 
   }
@@ -163,7 +172,7 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
-  this.scroll();
+  
 
 }
 }
