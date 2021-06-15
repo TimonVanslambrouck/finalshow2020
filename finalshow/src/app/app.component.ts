@@ -96,6 +96,16 @@ export class AppComponent {
     )
 }
 
+// Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
+onResize(event:any){
+  let camera = this.camera;
+  let renderer = this.renderer;
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+}
+
 ngOnInit(): void {
   this.loadModels();
   this.sky.skyGui();
