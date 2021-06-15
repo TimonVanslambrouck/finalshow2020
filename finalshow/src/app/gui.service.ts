@@ -11,6 +11,7 @@ export class GuiService {
 
   gui=new dat.GUI();
 
+  // https://stackoverflow.com/a/16174621
   position(name:string,object:any,open:boolean=false,min:number=0,max:number=10,step:number=0.01){
     const folder=this.gui.addFolder(name + "-" + "position");
     folder.add(object.position,"x",min,max,step).listen();
