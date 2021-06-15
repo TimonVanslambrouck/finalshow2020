@@ -22,6 +22,7 @@ canvas {
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
+  display:none;
   width: 15px;
 }
 

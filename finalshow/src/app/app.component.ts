@@ -6,7 +6,6 @@ import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
 import { SkyService } from './sky.service';
-import { Object3D } from 'three';
 import { AxesHelper } from 'three';
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -24,6 +23,7 @@ export class AppComponent {
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
   loader=new GLTFLoader();
+  fontLoader=new THREE.FontLoader();
   sky=new SkyService(this.renderer);
   drone:any;
   room:any;
@@ -45,7 +45,51 @@ export class AppComponent {
     //this.orbit.enableZoom=false;
   }
 
- 
+  loadText(){
+
+    let scene=this.scene;
+
+    this.fontLoader.load( '../assets/fonts/Potra Light_Regular.json', function ( font ) {
+
+      const geometry = new THREE.TextGeometry('Final', {
+        font: font,
+        size: 20,
+        height: 1,
+        curveSegments: 12,
+        bevelEnabled: false,
+        bevelThickness: 10,
+        bevelSize: 2,
+        bevelOffset: 0,
+        bevelSegments: 1
+      } );
+
+      const geometry1 = new THREE.TextGeometry('Show', {
+        font: font,
+        size: 20,
+        height: 1,
+        curveSegments: 12,
+        bevelEnabled: false,
+        bevelThickness: 10,
+        bevelSize: 2,
+        bevelOffset: 0,
+        bevelSegments: 1
+      } );
+
+      var material = new THREE.MeshLambertMaterial({color: 'rgb(2,2,2)'});
+      var mesh = new THREE.Mesh(geometry, material);
+      var mesh1 = new THREE.Mesh(geometry1, material);
+
+      let z=80;
+      mesh.position.x=-35;
+      mesh.position.y=25;
+      mesh.position.z=z;
+      mesh1.position.x=-40;
+      mesh1.position.z=z;
+      scene.add(mesh);
+      scene.add(mesh1);
+
+    } );
+  }
 
   light(){
     this.sun.castShadow = true;
@@ -185,6 +229,7 @@ ngOnInit(): void {
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.glb');
+  this.loadText();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
   this.controls();
