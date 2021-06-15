@@ -129,21 +129,7 @@ export class AppComponent {
           duration: 1,
           ease: 'none'
         });
-
-        var cam_anim2 = gsap.timeline({
-          scrollTrigger: {
-            trigger: renderer.domElement,
-            scrub: 1.2,
-            start: 'top top',
-            end:'+=5000',
-          }
-        }).to(camera.rotation, {
-          y: 1,
-          duration: 1,
-          ease: 'none'
-        });
         
-
         var cam_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
@@ -152,16 +138,18 @@ export class AppComponent {
             end:'+=5000',
           }
         }).to(camera.position, {
-          x: 300,
-          y: 15,
+          x: 38,
+          y: 27,
           z: 137,
           duration: 1,
           ease: 'none'
-        });/* .to(camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(camera.position, {
+        })
+        .to(camera.rotation, { z: 0, y: 0.5 }, 0)
+     /*    .to(camera.position, {
           y: 200,
           duration: 1,
           ease: 'none'
-        }); */
+        });  */
       };
       scroll();
     });
