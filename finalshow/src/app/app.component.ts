@@ -38,6 +38,7 @@ export class AppComponent {
 
   guiSettings(){
     this.guiService.position("camera",this.camera,true,-1000,1000);
+    //this.guiService.rotate("camera",this.camera,true);
   }
 
   controls(){
@@ -155,7 +156,7 @@ export class AppComponent {
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
 
-        let drone=scene.children[6];
+        let drone=scene.children[9];
         
         guiService.position("drone", drone, true, -300, 300)
     
@@ -208,8 +209,8 @@ export class AppComponent {
   }
   
  animate() {
-  this.room=this.scene.children[7];
-  this.cloud=this.scene.children[8];
+  this.room=this.scene.children[8];
+  this.cloud=this.scene.children[10];
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
@@ -232,7 +233,7 @@ ngOnInit(): void {
 
   this.sound();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.glb');
+  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
   this.loadText();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
