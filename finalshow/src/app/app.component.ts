@@ -19,7 +19,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 export class AppComponent {
   title = 'finalshow';
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
@@ -113,7 +113,7 @@ export class AppComponent {
     
         console.log(drone);
     
-        var cam_anim = gsap.timeline({
+        var drone_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
             scrub: 1.2,
@@ -133,6 +133,26 @@ export class AppComponent {
           ease: 'none'
         });
         
+
+        var cam_anim = gsap.timeline({
+          scrollTrigger: {
+            trigger: renderer.domElement,
+            scrub: 1.2,
+            start: 'top top',
+            end:'+=5000',
+            markers: true,
+          }
+        }).to(camera.position, {
+          x: 0,
+          y: 200,
+          z: 600,
+          duration: 1,
+          ease: 'none'
+        }).to(camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(camera.position, {
+          y: 200,
+          duration: 1,
+          ease: 'none'
+        });
       };
       scroll();
     });
