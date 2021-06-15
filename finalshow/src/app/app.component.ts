@@ -155,12 +155,11 @@ ngOnInit(): void {
 
   this.sound();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.gltf');
+  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.glb');
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
   this.controls();
   this.guiSettings();
-  
   this.light();
   this.render();
   this.animate();
