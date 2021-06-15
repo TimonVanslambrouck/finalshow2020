@@ -121,9 +121,9 @@ export class AppComponent {
   }
   
  animate() {
-  this.drone=this.scene.children[4];
-  this.room=this.scene.children[6];
-  this.cloud=this.scene.children[7];
+  this.drone=this.scene.children[5];
+  this.room=this.scene.children[7];
+  this.cloud=this.scene.children[8];
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
@@ -147,6 +147,7 @@ onResizeWindow(event:any){
 
 ngOnInit(): void {
 
+  this.sound();
   this.loadModels();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
@@ -156,6 +157,6 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
-  this.sound();
+
 }
 }
