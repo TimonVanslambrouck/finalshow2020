@@ -153,6 +153,9 @@ export class AppComponent {
     let guiService = this.guiService;
     
     this.loader.load(url, function ( gltf ) {
+
+      gltf.scene.scale.addScalar(0.1);
+
       scene.add(gltf.scene);
 
       function scroll(){  
@@ -235,7 +238,7 @@ ngOnInit(): void {
 
   this.sound();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
+  this.loadDrone(this.scene,'../assets/3D_models/drone_concept/scene.gltf');
   this.loadText();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
