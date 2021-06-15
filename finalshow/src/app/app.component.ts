@@ -129,6 +129,19 @@ export class AppComponent {
           duration: 1,
           ease: 'none'
         });
+
+        var cam_anim2 = gsap.timeline({
+          scrollTrigger: {
+            trigger: renderer.domElement,
+            scrub: 1.2,
+            start: 'top top',
+            end:'+=5000',
+          }
+        }).to(camera.rotation, {
+          y: 1,
+          duration: 1,
+          ease: 'none'
+        });
         
 
         var cam_anim = gsap.timeline({
@@ -139,9 +152,9 @@ export class AppComponent {
             end:'+=5000',
           }
         }).to(camera.position, {
-          x: 0,
-          y: 0,
-          z: 200,
+          x: 300,
+          y: 15,
+          z: 137,
           duration: 1,
           ease: 'none'
         });/* .to(camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(camera.position, {
