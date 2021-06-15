@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as THREE from 'three';
 import { GuiService } from './gui.service';
-import { AnimationMixer, AnimationClip, VectorKeyframeTrack } from 'three';
-
+import { AnimationMixer, AnimationClip, VectorKeyframeTrack, Vector3 } from 'three';
 
 @Injectable({
   providedIn: 'root'
@@ -20,23 +19,14 @@ export class ModelLoaderService {
 
     const loader=this.loader;
     const gui=this.gui;
-    let model=new THREE.Object3D();
 
     loader.load(url, function ( gltf ) {
 
       scene.add(gltf.scene);
-      model=gltf.scene;
 
       gui.scale(guiName,gltf.scene,false,-100,100,0.1);
       gui.position(guiName,gltf.scene,false,-100,100,0.1);
-
-    }, undefined, function ( error ) {
-    
-      console.error( error );
-    
-    } );
-
-    return model;
+    });
 
   }
 
