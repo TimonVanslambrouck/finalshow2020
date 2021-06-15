@@ -38,12 +38,12 @@ export class AppComponent {
     //this.orbit.enableZoom=false;
   }
 
-  scrollSettings(){  
+  scroll(){  
     gsap.registerPlugin(ScrollTrigger);
 
     var cam_anim = gsap.timeline({
       scrollTrigger: {
-        trigger: 'canvas',
+        trigger: this.renderer.domElement,
         scrub: 1.2,
         start: 'top top',
         end:'+=5000',
@@ -55,7 +55,7 @@ export class AppComponent {
       z: 300,
       duration: 1,
       ease: 'none'
-    }).to(this.camera.position, {
+    }).to(this.camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(this.camera.position, {
       y: 200,
       duration: 1,
       ease: 'none'
@@ -92,7 +92,7 @@ ngOnInit(): void {
   this.sky.skyGui(this.scene);
   this.controls();
   this.guiSettings();
-  this.scrollSettings();
+  this.scroll();
   this.light();
   this.render();
   this.animate();
