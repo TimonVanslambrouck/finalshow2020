@@ -81,6 +81,23 @@ export class AppComponent {
     this.scene.add(this.hemiLight);
   }
 
+  sound(){
+    const audioLoader = new THREE.AudioLoader();
+    const listener = new THREE.AudioListener();
+		this.camera.add( listener );
+
+    const sound1 = new THREE.PositionalAudio( listener );
+				audioLoader.load( '../assets/sounds/sound.ogg', function ( buffer ) {
+					sound1.setBuffer( buffer );
+					sound1.setRefDistance( 20 );
+          sound1.setLoop( true );
+          sound1.setVolume( 0.5 );
+					sound1.play();
+
+				} );
+				this.scene.add( sound1 );
+  }
+
   render(){
     this.scene.add(new THREE.AxesHelper(500))
     this.renderer.shadowMap.enabled = true;
@@ -126,6 +143,8 @@ onResizeWindow(event:any){
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
+
+
 ngOnInit(): void {
 
   this.loadModels();
@@ -137,5 +156,6 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
+  this.sound();
 }
 }
