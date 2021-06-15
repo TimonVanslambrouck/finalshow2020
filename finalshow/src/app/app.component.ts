@@ -102,6 +102,8 @@ export class AppComponent {
 
     let renderer=this.renderer;
     let camera=this.camera;
+
+    let guiService = this.guiService;
     
     this.loader.load(url, function ( gltf ) {
       scene.add(gltf.scene);
@@ -110,6 +112,8 @@ export class AppComponent {
         gsap.registerPlugin(ScrollTrigger);
 
         let drone=scene.children[6];
+        
+        guiService.position("drone", drone, true, -1000, 1000)
     
         console.log(drone);
     
@@ -128,7 +132,7 @@ export class AppComponent {
           duration: 1,
           ease: 'none'
         }).to(drone.rotation, { z: 0, y: 0.5 }, "simultaneously").to(drone.position, {
-          y: 200,
+          x: 200,
           duration: 1,
           ease: 'none'
         });
