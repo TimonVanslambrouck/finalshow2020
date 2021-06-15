@@ -152,12 +152,13 @@ export class AppComponent {
     let guiService = this.guiService;
     
     this.loader.load(url, function ( gltf ) {
+      gltf.scene.scale.set(2.5,2.5,2.5);
       scene.add(gltf.scene);
 
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
-
-        let drone=scene.children[6];
+        
+        let drone=scene.children[8];
         
         guiService.position("drone", drone, true, -1000, 1000)
     
@@ -234,7 +235,7 @@ ngOnInit(): void {
 
   this.sound();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneFP.glb');
+  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
   this.loadText();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
