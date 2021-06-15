@@ -11,8 +11,7 @@ export class GuiService {
 
   gui=new dat.GUI();
 
-  // https://stackoverflow.com/a/16174621
-  position(name:string,object:any,open:boolean=false,min:number=0,max:number=10,step:number=0.01){
+  position(name:string,object:any,open:boolean=false,min:number=0,max:number=1000,step:number=1){
     const folder=this.gui.addFolder(name + "-" + "position");
     folder.add(object.position,"x",min,max,step).listen();
     folder.add(object.position,"y",min,max,step).listen();
@@ -23,7 +22,7 @@ export class GuiService {
     }
   }
 
-  scale(name:string,object:any,open:boolean=false,min:number=0,max:number=10,step:number=0.1){
+  scale(name:string,object:any,open:boolean=false,min:number=0,max:number=1000,step:number=1){
     const folder=this.gui.addFolder(name + "-" + "scale");
     const scale=folder.add(object.scale,"x",min,max,step).listen();
     folder.add(object.scale,"y",min,max,step).listen();

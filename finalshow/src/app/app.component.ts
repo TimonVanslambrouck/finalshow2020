@@ -34,7 +34,7 @@ export class AppComponent {
   hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 4 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
- // orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
+ //orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
   guiSettings(){
     this.guiService.position("camera",this.camera,true,-1000,1000);
@@ -42,7 +42,7 @@ export class AppComponent {
 
   controls(){
    // console.log(this.orbit);
-    //this.orbit.enableZoom=false;
+  //  this.orbit.enableZoom=false;
   }
 
   loadText(){
@@ -130,7 +130,8 @@ export class AppComponent {
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z=25;
+    this.camera.position.z=550;
+    this.camera.position.y=-100;
     document.body.appendChild( this.renderer.domElement );
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -141,6 +142,7 @@ export class AppComponent {
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", 1,[0,0,0]);
+ //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
@@ -153,7 +155,10 @@ export class AppComponent {
     
     this.loader.load(url, function ( gltf ) {
       scene.add(gltf.scene);
+      gltf.scene.position.z = 450;
+      gltf.scene.position.y = -130;
 
+    
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
 
@@ -169,40 +174,34 @@ export class AppComponent {
             scrub: 1.2,
             start: 'top top',
             end:'+=5000',
-            markers: true,
           }
         }).to(drone.position, {
-          x: 200,
           y: 50,
-          z: 300,
-          duration: 1,
-          ease: 'none'
-        }).to(drone.rotation, { z: 0, y: 0.5 }, "simultaneously").to(drone.position, {
-          x: 200,
+          z: -100,
           duration: 1,
           ease: 'none'
         });
         
-
         var cam_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
             scrub: 1.2,
             start: 'top top',
             end:'+=5000',
-            markers: true,
           }
         }).to(camera.position, {
-          x: 0,
-          y: 200,
-          z: 600,
+          x: 38,
+          y: 27,
+          z: 137,
           duration: 1,
           ease: 'none'
-        }).to(camera.rotation, { z: 0, y: 0.5 }, "simultaneously").to(camera.position, {
+        })
+        .to(camera.rotation, { z: 0, y: 0.5 }, 0)
+     /*    .to(camera.position, {
           y: 200,
           duration: 1,
           ease: 'none'
-        });
+        });  */
       };
       scroll();
     });
