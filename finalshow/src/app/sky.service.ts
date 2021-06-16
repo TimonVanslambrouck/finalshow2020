@@ -47,13 +47,13 @@ export class SkyService {
 }
 
   skyGui(){
-    this.gui.add( this.effectController, 'turbidity', 0.0, 20.0, 0.1 ).onChange( this.guiChanged);
-    this.gui.add( this.effectController, 'rayleigh', 0.0, 4, 0.001 ).onChange( this.guiChanged );
-    this.gui.add( this.effectController, 'mieCoefficient', 0.0, 0.1, 0.001 ).onChange( this.guiChanged );
-    this.gui.add( this.effectController, 'mieDirectionalG', 0.0, 1, 0.001 ).onChange( this.guiChanged );
-    this.gui.add( this.effectController, 'elevation', 0, 90, 0.1 ).onChange( this.guiChanged );
-    this.gui.add( this.effectController, 'azimuth', - 180, 180, 0.1 ).onChange( this.guiChanged );
-    this.gui.add( this.effectController, 'exposure', 0, 1, 0.0001 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'turbidity', 0.0, 20.0, 0.1 ).onChange( this.guiChanged);
+    // this.gui.add( this.effectController, 'rayleigh', 0.0, 4, 0.001 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'mieCoefficient', 0.0, 0.1, 0.001 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'mieDirectionalG', 0.0, 1, 0.001 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'elevation', 0, 90, 0.1 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'azimuth', - 180, 180, 0.1 ).onChange( this.guiChanged );
+    // this.gui.add( this.effectController, 'exposure', 0, 1, 0.0001 ).onChange( this.guiChanged );
     this.guiChanged();
   }
 }

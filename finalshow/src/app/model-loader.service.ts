@@ -67,12 +67,16 @@ export class ModelLoaderService {
     const typedArray = Float32Array.from(positions);
     geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
 
+    let stone = new THREE.TextureLoader().load(textureFile);
+    stone.wrapS = THREE.RepeatWrapping;
+    stone.wrapT = THREE.RepeatWrapping;
+    stone.repeat.set(5,5);
     var material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load(textureFile)
+      map: stone
     });
 
     var plane = new THREE.Mesh(geometry, material);
-    plane.position.setY(-225);
+    plane.position.setY(-255);
     scene.add(plane);
     plane.scale.set(20,20,20);
     plane.rotateX(Math.PI / 2);

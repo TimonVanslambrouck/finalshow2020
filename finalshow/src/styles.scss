@@ -1,11 +1,6 @@
 /*https://www.digitalocean.com/community/tutorials/css-scrollbars*/
 
 
-body {
-  margin: 0;
-  height: 5000px;
-
-}
 
 html, body {
   overscroll-behavior: none;
@@ -21,8 +16,6 @@ canvas {
 	top: 0;
   z-index: 99;
 }
-
-
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
