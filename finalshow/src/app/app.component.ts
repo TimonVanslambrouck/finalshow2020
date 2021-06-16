@@ -183,6 +183,8 @@ export class AppComponent {
           }
         });
 
+        console.log(drone);
+
         let clouds = document.getElementById('box')!
 
         guiService.position("drone", drone, true, -1000, 1000)
@@ -199,8 +201,6 @@ export class AppComponent {
           rendererContainer.style.display = 'none';
           clouds.style.display = "block";
         }        
-
-        guiService.position("drone", drone, true, -1000, 1000)    
     
         var drone_anim = gsap.timeline({
           scrollTrigger: {
@@ -322,7 +322,7 @@ onResizeWindow(event:any){
 }
 
 ngOnInit(): void {
-  this.fog();
+  // this.fog();
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
