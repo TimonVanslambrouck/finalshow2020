@@ -75,7 +75,7 @@ export class AppComponent {
         bevelSegments: 1
       } );
 
-      var material = new THREE.MeshLambertMaterial({color: 'rgb(2,2,2)'});
+      var material = new THREE.MeshLambertMaterial({color: 'rgb(139,0,0)'});
       var mesh = new THREE.Mesh(geometry, material);
       var mesh1 = new THREE.Mesh(geometry1, material);
 
@@ -132,7 +132,7 @@ export class AppComponent {
     //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
     let axes = new THREE.AxesHelper(500);
     axes.name = "helper axes";
-    this.scene.add(axes)
+    //this.scene.add(axes)
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
@@ -152,7 +152,7 @@ export class AppComponent {
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    // this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
   loadDrone(scene:any,url:any){
@@ -192,7 +192,7 @@ export class AppComponent {
         ScrollTrigger.create({
           trigger: renderer.domElement,
           start: "top top",
-          end: "+=3800",
+          end: "+=3900",
           onLeave: loading,
         });
 
@@ -224,7 +224,7 @@ export class AppComponent {
             end:'+=5000',
           }
         }).to(camera.position, {
-          x: 38,
+          x: 90,
           y: 27,
           z: 137,
           duration: 1,
