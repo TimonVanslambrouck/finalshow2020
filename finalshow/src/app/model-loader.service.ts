@@ -72,7 +72,7 @@ export class ModelLoaderService {
     });
 
     var plane = new THREE.Mesh(geometry, material);
-    plane.position.setY(-225);
+    plane.position.setY(-255);
     scene.add(plane);
     plane.scale.set(20,20,20);
     plane.rotateX(Math.PI / 2);
