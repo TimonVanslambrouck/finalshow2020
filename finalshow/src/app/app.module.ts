@@ -10,7 +10,7 @@ import { LoadingComponent } from './loading/loading.component';
   declarations: [	
     AppComponent,
     LoadingComponent,
-    CountdownTimerComponent
+    CountdownTimerComponent,
   ],
   imports: [
     BrowserModule,
