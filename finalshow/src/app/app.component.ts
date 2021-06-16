@@ -149,10 +149,12 @@ export class AppComponent {
   }
 
   loadModels(){
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[400,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[-400,80,80]);
+
   }
 
   loadDrone(scene:any,url:any){
@@ -183,7 +185,7 @@ export class AppComponent {
           }
         });
 
-        console.log(drone);
+        console.log(scene.children);
 
         let clouds = document.getElementById('box')!
 
@@ -212,10 +214,24 @@ export class AppComponent {
         }).to(drone.position, {
           y: 50,
           z: -100,
-          duration: 1,
           ease: 'none'
         });
-        
+
+        var zeplin_anim = gsap.timeline({
+          scrollTrigger: {
+            trigger: renderer.domElement,
+            scrub: 1.2,
+            start: 'top top',
+            end:'+=5000',
+          }
+        }).to(scene.children[7].position, {
+          y: 90,
+          x:800,
+          z: 80,
+          ease: 'none'
+        });
+
+
         var cam_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
@@ -227,7 +243,6 @@ export class AppComponent {
           x: 90,
           y: 27,
           z: 137,
-          duration: 1,
           ease: 'none'
         })
         .to(camera.rotation, { z: 0, y: 0.5 }, 0)
