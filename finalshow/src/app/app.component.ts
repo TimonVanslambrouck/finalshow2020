@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as angular from "angular";
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';

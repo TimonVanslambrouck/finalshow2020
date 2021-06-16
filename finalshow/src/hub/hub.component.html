@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final Show</title>
+  <title>Hub</title>
 </head>
-
-<body (window:resize)="onResizeWindow($event)">
-<app-loading></app-loading>
-<div id="renderContainer"></div>
-<router-outlet></router-outlet>
+<body (window:resize)="onResize()" (window:mousemove)="onMouseMove($event)" (window:click)="onClick($event)">
+  
 </body>
-
 </html>
