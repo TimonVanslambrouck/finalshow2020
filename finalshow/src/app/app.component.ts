@@ -10,11 +10,6 @@ import { SkyService } from './sky.service';
 import { AxesHelper } from 'three';
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
-import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
-import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
-import{HorizontalBlurShader}from 'three/examples/jsm/shaders/HorizontalBlurShader';
-import{VerticalBlurShader}from 'three/examples/jsm/shaders/VerticalBlurShader';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +17,6 @@ import{VerticalBlurShader}from 'three/examples/jsm/shaders/VerticalBlurShader';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  // https://stackoverflow.com/questions/15354117/three-js-blur-the-frame-buffer
-
 
   title = 'finalshow';
   scene = new THREE.Scene();
@@ -39,7 +31,6 @@ export class AppComponent {
   drone:any;
   room:any;
   cloud:any;
- 
   hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 3 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
@@ -54,37 +45,6 @@ export class AppComponent {
    // console.log(this.orbit);
   //  this.orbit.enableZoom=false;
   }
-
-  // blur(){
-
-  //   this.hblur.uniforms["h"].value=(3.0/window.innerWidth)*window.devicePixelRatio
-  //   this.vblur.uniforms["v"].value=(3.0/window.innerWidth)*window.devicePixelRatio
-  //   this.composer.addPass( new RenderPass( this.scene, this.camera ) );
-  //   this.composer.addPass( this.hblur );
-  //   this.vblur.renderToScreen = true;
-  //   this.composer.addPass( this.vblur );
-  //   console.log(this.hblur);
-  //   console.log(this.vblur);
-
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   var intro_anim = gsap.timeline({
-
-  //     scrollTrigger: {
-      
-  //     trigger: this.renderer.domElement,
-      
-  //     scrub: 1.2,
-      
-  //     start: 'top top',
-      
-  //     end:'+=500',
-      
-  //     }
-      
-  //     }).to(this.scene, {
-        
-  //     })
-  // }
 
   loadText(){
 
