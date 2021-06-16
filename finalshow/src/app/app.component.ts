@@ -149,79 +149,70 @@ export class AppComponent {
   }
 
   loadModels(){
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
-  loadDrone(scene:any,url:any){
+  loadDrone(scene: any, url: any) {
 
-    let renderer=this.renderer;
-    let camera=this.camera;
-
+    let renderer = this.renderer;
+    let camera = this.camera;
+  
     let guiService = this.guiService;
-    
-    this.loader.load(url, function ( gltf ) {
-      gltf.scene.scale.set(2.5,2.5,2.5);
-      gltf.scene.name = "drone";
-      scene.add(gltf.scene);
-      gltf.scene.position.z = 450;
-      gltf.scene.position.y = -130;
-      gltf.scene.scale.set(2.5,2.5,2.5);
-
-    
-      function scroll(){  
-        gsap.registerPlugin(ScrollTrigger);
-
-        let drone = scene.children[0];
-
-        scene.children.forEach((element: any) => {
-          if (element.name == "drone") {
-            drone = element;
-            return;
-          }
-        });
-
-        console.log(drone);
-
-        let clouds = document.getElementById('box')!
-
+  
+    this.loader.load(url, function (gltf) {
+  
+      gsap.registerPlugin(ScrollTrigger);
+  
+      let drone = scene.children[0];
+  
+      scene.children.forEach((element: any) => {
+        if (element.name == "drone") {
+          drone = element;
+          return;
+        }
+      });
+  
+      let clouds = document.getElementById('box') !
+  
         guiService.position("drone", drone, true, -1000, 1000)
-
-        ScrollTrigger.create({
-          trigger: renderer.domElement,
-          start: "top top",
-          end: "+=3900",
-          onLeave: loading,
-        });
-
-        function loading(){
-          const rendererContainer = document.getElementById('renderContainer')!
+  
+      ScrollTrigger.create({
+        trigger: renderer.domElement,
+        start: "top top",
+        end: "+=3900",
+        onLeave: loading,
+      });
+  
+      function loading() {
+        const rendererContainer = document.getElementById('renderContainer') !
           rendererContainer.style.display = 'none';
-          clouds.style.display = "block";
-        }        
-    
-        var drone_anim = gsap.timeline({
+        clouds.style.display = "block";
+      }
+  
+      var drone_anim = gsap.timeline({
+        scrollTrigger: {
+          trigger: renderer.domElement,
+          scrub: 1.2,
+          start: 'top top',
+          end: '+=5000',
+        }
+      }).to(drone.position, {
+        y: 50,
+        z: -100,
+        duration: 1,
+        ease: 'none'
+      });
+  
+      var cam_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
             scrub: 1.2,
             start: 'top top',
-            end:'+=5000',
-          }
-        }).to(drone.position, {
-          y: 50,
-          z: -100,
-          duration: 1,
-          ease: 'none'
-        });
-        
-        var cam_anim = gsap.timeline({
-          scrollTrigger: {
-            trigger: renderer.domElement,
-            scrub: 1.2,
-            start: 'top top',
-            end:'+=5000',
+            end: '+=5000',
           }
         }).to(camera.position, {
           x: 90,
@@ -230,17 +221,19 @@ export class AppComponent {
           duration: 1,
           ease: 'none'
         })
-        .to(camera.rotation, { z: 0, y: 0.5 }, 0)
-     /*    .to(camera.position, {
-          y: 200,
-          duration: 1,
-          ease: 'none'
-        });  */
-      };
-      scroll();
+        .to(camera.rotation, {
+          z: 0,
+          y: 0.5
+        }, 0)
+      /*    .to(camera.position, {
+           y: 200,
+           duration: 1,
+           ease: 'none'
+         });  */
     });
-
+  
   }
+  
   
  animate() {
   this.room=this.scene.children[8];

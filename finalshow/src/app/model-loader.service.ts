@@ -15,14 +15,15 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string,scale:number,position:any){
+  loadModel(scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[]){
 
     const loader=this.loader;
     const gui=this.gui;
 
     loader.load(url, function ( gltf ) {
       let model = gltf.scene;
-      model.position.set(position[0],position[1],position[2])
+      model.rotation.set(rotation[0],rotation[1],rotation[2]);
+      model.position.set(position[0],position[1],position[2]);
       model.scale.set(scale,scale,scale);
       model.name = guiName;
       scene.add(model);
