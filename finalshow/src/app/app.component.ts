@@ -89,6 +89,7 @@ export class AppComponent {
       let textGroup = new THREE.Group;
       textGroup.add(mesh);
       textGroup.add(mesh1);
+      textGroup.name = "final show text"
       scene.add(textGroup);
 
     } );
@@ -99,11 +100,13 @@ export class AppComponent {
     this.sun.shadow.bias = -0.0001;
     this.sun.shadow.mapSize.width = 1024*4;
     this.sun.shadow.mapSize.height = 1024*4;
+    this.sun.name = "sun";
     this.scene.add(this.sun);
     //this.rectLight.position.set( 5, 100, 0 );
     //this.rectLight.lookAt( 0, 0, 0 );
     this.hemiLight.position.set(0,20,0);
     //this.scene.add( this.rectLight );
+    this.hemiLight.name = "hemi light"
     this.scene.add(this.hemiLight);
   }
 
@@ -119,13 +122,17 @@ export class AppComponent {
           sound1.setLoop( true );
           sound1.setVolume( 0 );
 					sound1.play();
+          sound1.name = "sound";
 
 				} );
 				this.scene.add( sound1 );
   }
 
   render(){
-    this.scene.add(new THREE.AxesHelper(500))
+    //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
+    let axes = new THREE.AxesHelper(500);
+    axes.name = "helper axes";
+    this.scene.add(axes)
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
@@ -145,7 +152,7 @@ export class AppComponent {
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    // this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
   loadDrone(scene:any,url:any){
@@ -157,6 +164,7 @@ export class AppComponent {
     
     this.loader.load(url, function ( gltf ) {
       gltf.scene.scale.set(2.5,2.5,2.5);
+      gltf.scene.name = "drone";
       scene.add(gltf.scene);
       gltf.scene.position.z = 450;
       gltf.scene.position.y = -130;
@@ -165,8 +173,16 @@ export class AppComponent {
     
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
-        
-        let drone=scene.children[8];
+
+        let drone = scene.children[0];
+
+        scene.children.forEach((element: any) => {
+          if (element.name == "drone") {
+            drone = element;
+            return;
+          }
+        });
+
         let clouds = document.getElementById('box')!
 
         guiService.position("drone", drone, true, -1000, 1000)
@@ -182,8 +198,10 @@ export class AppComponent {
           const rendererContainer = document.getElementById('renderContainer')!
           rendererContainer.style.display = 'none';
           clouds.style.display = "block";
-        }
+        }        
 
+        guiService.position("drone", drone, true, -1000, 1000)    
+    
         var drone_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
@@ -244,9 +262,62 @@ fog() {
   scene.fog = new THREE.Fog(color, near, far);
 }
 
+skybox(){
+  let loader = new THREE.TextureLoader;
+  let materialArray = [];
+  let path = "../assets/images/skyBox/";
+  let fileName = "yonder";
+  let texture_ft = loader.load(`${path}${fileName}_ft.jpg`);
+  let texture_bk = loader.load(`${path}${fileName}_bk.jpg`);
+  let texture_up = loader.load(`${path}${fileName}_up.jpg`);
+  let texture_dn = loader.load(`${path}${fileName}_dn.jpg`);
+  let texture_rt = loader.load(`${path}${fileName}_rt.jpg`);
+  let texture_lf = loader.load(`${path}${fileName}_lf.jpg`);
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "front",
+    map: texture_ft,
+    side: THREE.BackSide
+  }));
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "back",
+    map: texture_bk,
+    side: THREE.BackSide
+  }));
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "top",
+    map: texture_up,
+    side: THREE.BackSide
+  }));
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "bottom",
+    map: texture_dn,
+    side: THREE.BackSide
+  }));
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "right",
+    map: texture_rt,
+    side: THREE.BackSide
+  }));
+  materialArray.push(new THREE.MeshBasicMaterial({
+    name: "left",
+    map: texture_lf,
+    side: THREE.BackSide
+  }));
+  materialArray.forEach(element => {
+    element.side = THREE.BackSide;
+  });
+  console.log(materialArray);
+  let skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
+  let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+  skybox.name = "skybox";
+  skybox.position.set(0,0,0);
+  this.scene.add(skybox);
+  console.log(this.scene.children);
+
+}
+
 // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
 onResizeWindow(event:any){
-  window.scrollTo(0, 0);
  location.reload();
 }
 
@@ -262,6 +333,7 @@ ngOnInit(): void {
   this.guiSettings();
   this.light();
   this.render();
+  this.skybox();
   this.animate();
 }
 }
