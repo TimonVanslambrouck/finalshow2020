@@ -156,6 +156,7 @@ export class AppComponent {
     let guiService = this.guiService;
     
     this.loader.load(url, function ( gltf ) {
+      gltf.scene.scale.set(2.5,2.5,2.5);
       scene.add(gltf.scene);
       gltf.scene.position.z = 450;
       gltf.scene.position.y = -130;
@@ -164,7 +165,7 @@ export class AppComponent {
     
       function scroll(){  
         gsap.registerPlugin(ScrollTrigger);
-
+        
         let drone=scene.children[8];
         let clouds = document.getElementById('box')!
 
@@ -235,12 +236,22 @@ export class AppComponent {
     )
 }
 
+fog() {
+  const scene = this.scene;
+  const color = 0xFFFFFF;
+  const near = 1;
+  const far = 750;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+
+// Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
 onResizeWindow(event:any){
   window.scrollTo(0, 0);
  location.reload();
 }
 
 ngOnInit(): void {
+  this.fog();
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
