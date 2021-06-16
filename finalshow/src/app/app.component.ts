@@ -302,8 +302,15 @@ export class AppComponent {
   
   
  animate() {
-  this.room=this.scene.children[8];
-  this.cloud=this.scene.children[10];
+   let scene = this.scene;
+   let text = scene.children[0];
+  scene.children.forEach((element: any) => {
+    if (element.name == "final show text") {
+      text = element;
+      return;
+    }
+  });
+  text.rotation.y += 0.01;
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
