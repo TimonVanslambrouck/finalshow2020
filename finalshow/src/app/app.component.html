@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- https://codemyui.com/scroll-icon-animation/ -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Final Show</title>
+  <!-- <link rel="icon" type="image/png" href="./images/fav.png"/> -->
+  <link rel="stylesheet" href="app.component.scss">
+  <script src="https://kit.fontawesome.com/3f2d033088.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body (window:resize)="onResizeWindow($event)">
+  <!-- <div class="bg_img"></div> -->
+  <div class="innerbody" id="innerbody">
+      <div id="tsparticles"></div>
+      <div id="logoDiv">
+          <img data-tilt id="logo" src="../assets/images/logofinalshow.png" alt="EhackB v7 logo">
+      </div>
+      <div id="contentDiv">
+          <h2>25 juni - 18:00 uur</h2>
+          <app-countdown-timer></app-countdown-timer>
+          <h2 id="beginscroll">Scroll to begin</h2>
+          <div class="icon-scroll"></div>
+      </div>
+      <footer>
+          <p class="copyright">© Erasmushogeschool Brussel - <a href="https://www.ehb.be"
+                  target="_blank">www.ehb.be</a>
+          </p>
+      </footer>
+  </div>
 <app-loading></app-loading>
 <div id="renderContainer"></div>
 </body>

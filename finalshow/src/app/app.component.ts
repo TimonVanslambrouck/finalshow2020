@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import * as angular from "angular";
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
@@ -17,10 +17,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'finalshow';
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
   renderer = new THREE.WebGLRenderer();
+  composer=new EffectComposer(this.renderer)
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
   loader=new GLTFLoader();
@@ -29,7 +31,6 @@ export class AppComponent {
   drone:any;
   room:any;
   cloud:any;
- 
   hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 3 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
@@ -140,6 +141,9 @@ export class AppComponent {
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z=550;
     this.camera.position.y=-100;
+    this.renderer.domElement.style.filter="blur(4px)";
+    document.body.appendChild( this.renderer.domElement );
+    console.log(this.renderer.domElement);
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
     console.log(this.scene);
@@ -153,6 +157,8 @@ export class AppComponent {
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[-400,80,80],[0,0,0]);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
@@ -218,20 +224,40 @@ export class AppComponent {
           x: 90,
           y: 27,
           z: 137,
-          duration: 1,
           ease: 'none'
         })
-        .to(camera.rotation, {
-          z: 0,
-          y: 0.5
-        }, 0)
-      /*    .to(camera.position, {
-           y: 200,
-           duration: 1,
-           ease: 'none'
-         });  */
-    });
-  
+        .to(camera.rotation, { z: 0, y: 0.5 }, 0)
+     /*    .to(camera.position, {
+          y: 200,
+          duration: 1,
+          ease: 'none'
+        });  */
+      })
+      gsap.registerPlugin(ScrollTrigger);
+      var intro_anim = gsap.timeline({
+
+       scrollTrigger: {
+       trigger: renderer.domElement,
+      scrub: 1.2,
+       start: 'top top',
+      end:'+=500',
+      }
+       }).to(renderer.domElement, {
+        filter:"blur(0px)"
+       })
+       var text_anim = gsap.timeline({
+        scrollTrigger: {
+        trigger: renderer.domElement,
+       scrub: 1.2,
+        start: 'top top',
+       end:'+=500',
+       }
+        }).to(document.getElementById("innerbody"), {
+         opacity:0,
+        }).to(document.getElementById("innerbody"), {
+          display: 'none',
+         })
+      scroll();  
   }
   
   
@@ -328,5 +354,6 @@ ngOnInit(): void {
   this.render();
   this.skybox();
   this.animate();
+
 }
 }
