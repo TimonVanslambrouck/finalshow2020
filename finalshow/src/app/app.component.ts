@@ -30,7 +30,7 @@ export class AppComponent {
   room:any;
   cloud:any;
  
-  hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 4 );
+  hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 3 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
  //orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
@@ -152,7 +152,7 @@ export class AppComponent {
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
   loadDrone(scene:any,url:any){
