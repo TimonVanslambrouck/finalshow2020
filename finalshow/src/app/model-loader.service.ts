@@ -24,7 +24,7 @@ export class ModelLoaderService {
       let model = gltf.scene;
       model.position.set(position[0],position[1],position[2])
       model.scale.set(scale,scale,scale);
-
+      model.name = guiName;
       scene.add(model);
 
       gui.scale(guiName,model,false,-100,100,0.1);
