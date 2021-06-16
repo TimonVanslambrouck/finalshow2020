@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ScrollAnimationComponent } from './scroll-animation/scroll-animation.component';
 import { FlightAnimationComponent } from './flight-animation/flight-animation.component';
+import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 
 @NgModule({
   declarations: [	
     AppComponent,
     ScrollAnimationComponent,
-    FlightAnimationComponent
+    FlightAnimationComponent,
+    CountdownTimerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,Directive,Input,ViewChild } from '@angular/core';
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
@@ -9,6 +10,11 @@ import { SkyService } from './sky.service';
 import { AxesHelper } from 'three';
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { GlitchPass } from 'three/examples/jsm/postprocessing/GlitchPass.js';
+import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
+import{HorizontalBlurShader}from 'three/examples/jsm/shaders/HorizontalBlurShader';
+import{VerticalBlurShader}from 'three/examples/jsm/shaders/VerticalBlurShader';
 
 @Component({
   selector: 'app-root',
@@ -16,16 +22,22 @@ import ScrollTrigger from "gsap/ScrollTrigger";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  // https://stackoverflow.com/questions/15354117/three-js-blur-the-frame-buffer
+
+
   title = 'finalshow';
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
   renderer = new THREE.WebGLRenderer();
+  composer=new EffectComposer(this.renderer)
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
   loader=new GLTFLoader();
   fontLoader=new THREE.FontLoader();
   sky=new SkyService(this.renderer);
-  
+  hblur = new ShaderPass( HorizontalBlurShader );
+  vblur = new ShaderPass( VerticalBlurShader );
   drone:any;
   room:any;
   cloud:any;
@@ -46,6 +58,37 @@ export class AppComponent {
    // console.log(this.orbit);
   //  this.orbit.enableZoom=false;
   }
+
+  // blur(){
+
+  //   this.hblur.uniforms["h"].value=(3.0/window.innerWidth)*window.devicePixelRatio
+  //   this.vblur.uniforms["v"].value=(3.0/window.innerWidth)*window.devicePixelRatio
+  //   this.composer.addPass( new RenderPass( this.scene, this.camera ) );
+  //   this.composer.addPass( this.hblur );
+  //   this.vblur.renderToScreen = true;
+  //   this.composer.addPass( this.vblur );
+  //   console.log(this.hblur);
+  //   console.log(this.vblur);
+
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   var intro_anim = gsap.timeline({
+
+  //     scrollTrigger: {
+      
+  //     trigger: this.renderer.domElement,
+      
+  //     scrub: 1.2,
+      
+  //     start: 'top top',
+      
+  //     end:'+=500',
+      
+  //     }
+      
+  //     }).to(this.scene, {
+        
+  //     })
+  // }
 
   loadText(){
 
@@ -137,7 +180,9 @@ export class AppComponent {
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z=550;
     this.camera.position.y=-100;
+    this.renderer.domElement.style.filter="blur(4px)";
     document.body.appendChild( this.renderer.domElement );
+    console.log(this.renderer.domElement);
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
     console.log(this.scene);
@@ -159,8 +204,6 @@ export class AppComponent {
     let guiService = this.guiService;
     
     this.loader.load(url, function ( gltf ) {
-
-      gltf.scene.scale.addScalar(0.1);
 
       scene.add(gltf.scene);
       gltf.scene.position.z = 450;
@@ -211,6 +254,39 @@ export class AppComponent {
           ease: 'none'
         });  */
       };
+      gsap.registerPlugin(ScrollTrigger);
+      var intro_anim = gsap.timeline({
+
+       scrollTrigger: {
+      
+       trigger: renderer.domElement,
+      
+      scrub: 1.2,
+      
+       start: 'top top',
+      
+      end:'+=500',
+      
+      }
+       }).to(renderer.domElement, {
+        filter:"blur(0px)"
+       })
+       var text_anim = gsap.timeline({
+
+        scrollTrigger: {
+       
+        trigger: renderer.domElement,
+       
+       scrub: 1.2,
+       
+        start: 'top top',
+       
+       end:'+=500',
+       
+       }
+        }).to(document.getElementById("innerbody"), {
+         opacity:0,
+        })
       scroll();
     });
 
@@ -238,10 +314,9 @@ onResizeWindow(event:any){
 }
 
 ngOnInit(): void {
-
   this.sound();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone_concept/scene.gltf');
+  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
   this.loadText();
   this.sky.skyGui();
   this.sky.skySettings(this.scene);
@@ -250,5 +325,6 @@ ngOnInit(): void {
   this.light();
   this.render();
   this.animate();
+
 }
 }
