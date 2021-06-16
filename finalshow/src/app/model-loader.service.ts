@@ -24,7 +24,7 @@ export class ModelLoaderService {
       let model = gltf.scene;
       model.position.set(position[0],position[1],position[2])
       model.scale.set(scale,scale,scale);
-
+      model.name = guiName;
       scene.add(model);
 
       gui.scale(guiName,model,false,-100,100,0.1);
@@ -67,12 +67,16 @@ export class ModelLoaderService {
     const typedArray = Float32Array.from(positions);
     geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
 
+    let stone = new THREE.TextureLoader().load(textureFile);
+    stone.wrapS = THREE.RepeatWrapping;
+    stone.wrapT = THREE.RepeatWrapping;
+    stone.repeat.set(5,5);
     var material = new THREE.MeshPhongMaterial({
-      map: new THREE.TextureLoader().load(textureFile)
+      map: stone
     });
 
     var plane = new THREE.Mesh(geometry, material);
-    plane.position.setY(-225);
+    plane.position.setY(-255);
     scene.add(plane);
     plane.scale.set(20,20,20);
     plane.rotateX(Math.PI / 2);

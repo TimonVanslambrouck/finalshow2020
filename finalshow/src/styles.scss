@@ -14,8 +14,6 @@ html, body {
 * {
   margin: 0;
   padding: 0;
-  scrollbar-width: thin;
-  scrollbar-color: white rgba(255,255,255,0);
 }
 
 canvas {
@@ -30,7 +28,6 @@ canvas {
 *::-webkit-scrollbar {
   display:none;
   width: 15px;
-  display: none;
 }
 
 *::-webkit-scrollbar-track {
