@@ -160,12 +160,10 @@ export class AppComponent {
     
     this.loader.load(url, function ( gltf ) {
 
-      gltf.scene.scale.addScalar(0.1);
-
       scene.add(gltf.scene);
       gltf.scene.position.z = 450;
       gltf.scene.position.y = -130;
-      gltf.scene.scale.set(2.5,2.5,2.5);
+      gltf.scene.scale.set(0.05,0.05,0.05);
 
     
       function scroll(){  
