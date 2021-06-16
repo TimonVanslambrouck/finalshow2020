@@ -300,35 +300,26 @@ export class AppComponent {
       var intro_anim = gsap.timeline({
 
        scrollTrigger: {
-      
        trigger: renderer.domElement,
-      
       scrub: 1.2,
-      
        start: 'top top',
-      
       end:'+=500',
-      
       }
        }).to(renderer.domElement, {
         filter:"blur(0px)"
        })
        var text_anim = gsap.timeline({
-
         scrollTrigger: {
-       
         trigger: renderer.domElement,
-       
        scrub: 1.2,
-       
         start: 'top top',
-       
        end:'+=500',
-       
        }
         }).to(document.getElementById("innerbody"), {
          opacity:0,
-        })
+        }).to(document.getElementById("innerbody"), {
+          display: 'none',
+         })
       scroll();
     });
 
