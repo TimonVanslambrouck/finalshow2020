@@ -157,8 +157,7 @@ export class AppComponent {
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[-400,80,80],[0,0,0]);
+     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80]);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
@@ -232,8 +231,46 @@ export class AppComponent {
           duration: 1,
           ease: 'none'
         });  */
-      })
-      gsap.registerPlugin(ScrollTrigger);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+      let zeplin = scene.children[0];
+
+      scene.children.forEach((element: any) => {
+        if (element.name == "zeplin") {
+          zeplin = element;
+          return;
+        }
+      });
+
+      console.log(zeplin);
+
+      var zeplin_anim = gsap.timeline({
+
+        scrollTrigger: {
+        
+        trigger: renderer.domElement,
+        
+        scrub: 1.2,
+        
+        start: 'top top',
+        
+        end:'+=5000',
+        
+        }
+        
+        }).to(zeplin.position, {
+        
+        y: 90,
+        
+        x:800,
+        
+        z: 80,
+        
+        ease: 'none'
+        
+        });
+
       var intro_anim = gsap.timeline({
 
        scrollTrigger: {
@@ -256,7 +293,10 @@ export class AppComponent {
          opacity:0,
         }).to(document.getElementById("innerbody"), {
           display: 'none',
-         })
+         })        
+      })
+
+      
       scroll();  
   }
   
