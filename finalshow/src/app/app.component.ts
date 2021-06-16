@@ -147,7 +147,7 @@ export class AppComponent {
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", 1,[0,0,0]);
- //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+    //this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud", 1, [0,0,0]);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
@@ -226,6 +226,14 @@ export class AppComponent {
     )
 }
 
+fog() {
+  const scene = this.scene;
+  const color = 0xFFFFFF;
+  const near = 1;
+  const far = 750;
+  scene.fog = new THREE.Fog(color, near, far);
+}
+
 // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
 onResizeWindow(event:any){
   let camera = this.camera;
@@ -236,7 +244,7 @@ onResizeWindow(event:any){
 }
 
 ngOnInit(): void {
-
+  this.fog();
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
