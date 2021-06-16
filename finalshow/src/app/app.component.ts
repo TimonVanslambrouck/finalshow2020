@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as angular from "angular";
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -25,13 +26,10 @@ export class AppComponent {
   loader=new GLTFLoader();
   fontLoader=new THREE.FontLoader();
   sky=new SkyService(this.renderer);
-  
   drone:any;
   room:any;
   cloud:any;
-  //rectLight=new THREE.RectAreaLight(0xffffff,50,200,200);
-  //hemiLight=new THREE.HemisphereLight( 0xeeeeee, 0xeeeeee, 1 );
-  //hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444, 1 );
+ 
   hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 4 );
   sun = new THREE.SpotLight(0xffa95c, 4)
   gui=new dat.GUI();
@@ -119,7 +117,7 @@ export class AppComponent {
 					sound1.setBuffer( buffer );
 					sound1.setRefDistance( 20 );
           sound1.setLoop( true );
-          sound1.setVolume( 0.5 );
+          sound1.setVolume( 0 );
 					sound1.play();
 
 				} );
@@ -127,8 +125,6 @@ export class AppComponent {
   }
 
   render(){
-    //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
-
     this.scene.add(new THREE.AxesHelper(500))
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
@@ -137,16 +133,17 @@ export class AppComponent {
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.z=550;
     this.camera.position.y=-100;
-    document.body.appendChild( this.renderer.domElement );
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
     console.log(this.scene);
     console.log(this.scene.children);
+    const rendererContainer = document.getElementById('renderContainer')!
+    rendererContainer.append(this.renderer.domElement);
   }
 
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/RoomProjectsHexa.glb',"room", 1,[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
@@ -169,10 +166,23 @@ export class AppComponent {
         gsap.registerPlugin(ScrollTrigger);
 
         let drone=scene.children[8];
-        
+        let clouds = document.getElementById('box')!
+
         guiService.position("drone", drone, true, -1000, 1000)
-    
-    
+
+        ScrollTrigger.create({
+          trigger: renderer.domElement,
+          start: "top top",
+          end: "+=3800",
+          onLeave: loading,
+        });
+
+        function loading(){
+          const rendererContainer = document.getElementById('renderContainer')!
+          rendererContainer.style.display = 'none';
+          clouds.style.display = "block";
+        }
+
         var drone_anim = gsap.timeline({
           scrollTrigger: {
             trigger: renderer.domElement,
@@ -225,17 +235,12 @@ export class AppComponent {
     )
 }
 
-// Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
 onResizeWindow(event:any){
-  let camera = this.camera;
-  let renderer = this.renderer;
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize( window.innerWidth, window.innerHeight );
+  window.scrollTo(0, 0);
+ location.reload();
 }
 
 ngOnInit(): void {
-
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
