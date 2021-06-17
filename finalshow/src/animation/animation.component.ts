@@ -121,6 +121,7 @@ fog() {
 }
 
 ngOnInit(): void {
+  window.scrollTo(0,0);
   this.loadModels();
   this.scrollAnimations();
   this.manager.onLoad = () => {
