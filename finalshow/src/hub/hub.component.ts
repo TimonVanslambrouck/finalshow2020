@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
+import { SkyboxComponent } from '../animation/skybox/skybox.component';
 import { Vector2 } from 'three';
 
 @Component({
@@ -21,6 +22,7 @@ export class HubComponent implements OnInit {
   hlight = new THREE.AmbientLight(0x404040,5);
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
   mouse = new THREE.Vector2();
+  skyBox=new SkyboxComponent();
 
   constructor() { }
 
@@ -45,17 +47,8 @@ export class HubComponent implements OnInit {
   }
 
   loaderFunction() {
-    const geometry = new THREE.SphereGeometry( 1000, 32, 32 );
-    const textureLoader= new THREE.TextureLoader();
     const textureLoaderRoom = new THREE.TextureLoader();
-    const texture = textureLoader.load('../assets/HUB/testbackground.jpg');
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.repeat.x = -1;
     const textureRoom = textureLoaderRoom.load('');
-
-    const material = new THREE.MeshBasicMaterial( {map: texture, side:THREE.DoubleSide} );
-    const sphere = new THREE.Mesh( geometry, material );
-    this.scene.add( sphere );
     let loader = new GLTFLoader();
 
     this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -155,6 +148,7 @@ export class HubComponent implements OnInit {
     this.controls.update();
     this.loaderFunction();
     this.lights();
+    this.skyBox.skybox(this.scene);
     this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
 	  this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
     this.animate();
