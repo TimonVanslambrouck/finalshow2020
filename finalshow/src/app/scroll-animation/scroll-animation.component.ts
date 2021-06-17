@@ -60,6 +60,7 @@ export class ScrollAnimationComponent implements OnInit {
 
   zeppelinAnim(renderer:any,scene:any){
     gsap.registerPlugin(ScrollTrigger);
+    console.log(scene.children[7]);
     var zeppelin_anim= this.scroll.scrollAnim(renderer.domElement).to(scene.children[7].position, {
       y: 90,
       x:800,
