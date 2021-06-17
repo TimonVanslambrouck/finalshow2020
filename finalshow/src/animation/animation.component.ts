@@ -46,7 +46,7 @@ export class AnimationComponent implements OnInit {
 
   // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
   onResizeWindow(event:any){
-    location.reload();
+    window.location.href = window.location.href;
   }
 
   render(){
