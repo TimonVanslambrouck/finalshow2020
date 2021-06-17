@@ -15,7 +15,6 @@ export class ScrollAnimationComponent implements OnInit {
   constructor() { }
 
   scrollInit(renderer:any){
-
     gsap.registerPlugin(ScrollTrigger);
 
         let clouds = document.getElementById('box')!
@@ -23,14 +22,17 @@ export class ScrollAnimationComponent implements OnInit {
         ScrollTrigger.create({
           trigger: renderer.domElement,
           start: "top top",
-          end: "+=3900",
-          onLeave: loading,
+          end: "+=2900",
+         onLeave: loading,
         });
 
         function loading(){
           const rendererContainer = document.getElementById('renderContainer')!
           rendererContainer.style.display = 'none';
           clouds.style.display = "block";
+          setTimeout(() => {
+            window.location.href = "/hub";
+          }, 3000);
         }        
   }
 
@@ -42,8 +44,9 @@ export class ScrollAnimationComponent implements OnInit {
     let drone = scene.getObjectByName("drone");
 
     var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
-      y: 100.1,
-      z: -100,
+      y: 20,
+      x: 5,
+      z: -60,
       ease: 'none'
     });
 

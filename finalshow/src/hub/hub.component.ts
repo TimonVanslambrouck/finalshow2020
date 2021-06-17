@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
+import { SkyboxComponent } from '../animation/skybox/skybox.component';
 import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
@@ -18,6 +19,7 @@ export class HubComponent implements OnInit {
   fontLoader=new THREE.FontLoader();
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
   mouse = new THREE.Vector2();
+  skyBox=new SkyboxComponent();
   lights=new LightsComponent();
   room=new RoomComponent();
 
@@ -68,11 +70,13 @@ export class HubComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.controls.enableZoom = false;
     this.controls.rotateSpeed = 0.5;
     this.camera.position.set(1,0,0);
     this.controls.update();
     this.lights.addLights(this.scene)
     this.room.addHub(this.scene,this.renderer);
+    this.skyBox.skybox(this.scene);
     this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
 	  this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
     this.animate();

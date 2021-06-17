@@ -17,16 +17,7 @@ export class RoomComponent implements OnInit {
   constructor() { }
 
   addHub(scene:any,renderer:any) {
-
-    const texture = this.textureLoader.load('../assets/HUB/testbackground.jpg');
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.repeat.x = -1;
-    const textureRoom = this.textureLoader.load('');
-
-    const material = new THREE.MeshBasicMaterial( {map: texture, side:THREE.DoubleSide} );
-    const sphere = new THREE.Mesh( this.geometry, material );
-    scene.add( sphere );
-
+    
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
