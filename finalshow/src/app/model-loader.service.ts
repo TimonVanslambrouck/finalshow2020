@@ -14,14 +14,16 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string,scale:number,position:any){
+  loadModel(scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[]){
 
     const loader=this.loader;
     const gui=this.gui;
 
     loader.load(url, function ( gltf ) {
       let model = gltf.scene;
-      model.position.set(position[0],position[1],position[2])
+      let radiansArray = rotation.map(x => x*(Math.PI/180));
+      model.rotation.set(radiansArray[0],radiansArray[1],radiansArray[2]);
+      model.position.set(position[0],position[1],position[2]);
       model.scale.set(scale,scale,scale);
       model.name = guiName;
       scene.add(model);

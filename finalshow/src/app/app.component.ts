@@ -52,8 +52,7 @@ export class AppComponent {
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z=550;
-    this.camera.position.y=-100;
+    this.camera.position.set(0,-150,550);
     this.renderer.domElement.style.filter="blur(4px)";
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -63,11 +62,16 @@ export class AppComponent {
   }
 
   loadModels(){
-    //this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[400,0,0]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0]);
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/Terrain/jotunheimen-texture-altered.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[-400,80,80]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
+ //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80]);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-100,400]);
+
   }
 
   loadDrone(scene:any,url:any){
@@ -96,8 +100,15 @@ export class AppComponent {
 
 
  animate() {
-  this.room=this.scene.children[8];
-  this.cloud=this.scene.children[10];
+   let scene = this.scene;
+   let text = scene.children[0];
+  scene.children.forEach((element: any) => {
+    if (element.name == "final show text") {
+      text = element;
+      return;
+    }
+  });
+  text.rotation.y += 0.005;
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.light.sun.position.set(
@@ -109,7 +120,7 @@ export class AppComponent {
 
 fog() {
   const scene = this.scene;
-  const color = 0xFFFFFF;
+  const color = 0x9fa3a6;
   const near = 1;
   const far = 750;
   scene.fog = new THREE.Fog(color, near, far);
