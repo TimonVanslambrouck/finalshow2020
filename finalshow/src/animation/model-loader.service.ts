@@ -31,6 +31,9 @@ export class ModelLoaderService {
         if (guiName == "zeplin") {
           scroll.zeppelinAnim(renderer,scene);
         }
+        if (guiName == "luchtballon") {
+          scroll.luchtballonAnim(renderer,scene);
+        }
       }, 100);
       gui.scale(guiName,model,false,-100,100,0.1);
       gui.position(guiName,model,false,-100,100,0.1);
