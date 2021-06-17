@@ -15,7 +15,6 @@ export class ScrollAnimationComponent implements OnInit {
   constructor() { }
 
   scrollInit(renderer:any){
-
     gsap.registerPlugin(ScrollTrigger);
 
         let clouds = document.getElementById('box')!
@@ -31,6 +30,9 @@ export class ScrollAnimationComponent implements OnInit {
           const rendererContainer = document.getElementById('renderContainer')!
           rendererContainer.style.display = 'none';
           clouds.style.display = "block";
+          setTimeout(() => {
+            window.location.href = "/hub";
+          }, 3000);
         }        
   }
 
