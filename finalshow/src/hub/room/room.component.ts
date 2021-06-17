@@ -17,7 +17,9 @@ export class RoomComponent implements OnInit {
   constructor() { }
 
   addHub(scene:any,renderer:any) {
-    
+
+    const textureRoom = this.textureLoader.load('');
+
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 

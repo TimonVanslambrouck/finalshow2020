@@ -31,6 +31,10 @@ export class ModelLoaderService {
         if (guiName == "luchtballon") {
           scroll.luchtballonAnim(renderer,scene);
         }
+        if(guiName == "drone"){
+          scroll.droneAnim(renderer,scene);
+        } 
+
       }, 100);
       gui.scale(guiName,model,false,-100,100,0.1);
       gui.position(guiName,model,false,-100,100,0.1);
