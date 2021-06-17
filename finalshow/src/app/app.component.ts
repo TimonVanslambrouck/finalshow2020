@@ -310,7 +310,7 @@ export class AppComponent {
       return;
     }
   });
-  text.rotation.y += 0.01;
+  text.rotation.y += 0.005;
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.sun.position.set(
