@@ -22,8 +22,8 @@ export class ScrollAnimationComponent implements OnInit {
         ScrollTrigger.create({
           trigger: renderer.domElement,
           start: "top top",
-          end: "+=3900",
-          onLeave: loading,
+          end: "+=2900",
+         onLeave: loading,
         });
 
         function loading(){
@@ -44,8 +44,9 @@ export class ScrollAnimationComponent implements OnInit {
     let drone = scene.getObjectByName("drone");
 
     var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
-      y: 100.1,
-      z: -100,
+      y: 20,
+      x: 5,
+      z: -60,
       ease: 'none'
     });
 
