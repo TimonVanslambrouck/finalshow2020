@@ -42,7 +42,7 @@ export class ScrollAnimationComponent implements OnInit {
     let drone = scene.getObjectByName("drone");
 
     var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
-      y: 50,
+      y: 100.1,
       z: -100,
       ease: 'none'
     });
@@ -69,10 +69,10 @@ export class ScrollAnimationComponent implements OnInit {
 
     var camera_anim= this.scroll.scrollAnim(renderer.domElement).to(camera.position, {
       x: 90,
-      y: 27,
+      y: 187,
       z: 137,
       ease: 'none'
-    }).to(camera.rotation, { z: 0, y: 0.5 }, 0)
+    }).to(camera.rotation, { x: 0.2, z: 0, y: 0.5 }, 0)
  /*    .to(camera.position, {
       y: 200,
       duration: 1,
@@ -84,7 +84,7 @@ export class ScrollAnimationComponent implements OnInit {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    var intro_anim= this.scroll.scrollAnim(renderer.domElement).to(renderer.domElement, {
+    var intro_anim= this.scroll.scrollAnim(renderer.domElement,1.2, 'top top', '+=1000').to(renderer.domElement, {
        filter:"blur(0px)"
       })
 
@@ -94,13 +94,24 @@ export class ScrollAnimationComponent implements OnInit {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    var text_anim= this.scroll.scrollAnim(renderer.domElement).to(document.getElementById("innerbody"),{
+    var text_anim= this.scroll.scrollAnim(renderer.domElement,1.2, 'top top', '+=1000').to(document.getElementById("innerbody"),{
        opacity:0,
       }).to(document.getElementById("innerbody"), {
         display: 'none',
        })
   }
 
+  luchtballonAnim(renderer:any, scene:any){
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    let luchtballon = scene.getObjectByName("luchtballon");
+
+    var luchtballon_anim= this.scroll.scrollAnim(renderer.domElement).to(luchtballon.position, {
+      y: 130,
+      ease: 'none'
+    });
+  }
 
   ngOnInit(): void {
   }
