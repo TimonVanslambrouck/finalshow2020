@@ -64,9 +64,9 @@ export class AppComponent {
   loadModels(){
     //this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud",1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
-    //this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
-    //this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-130,450]);
+ //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
+     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render, this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
@@ -80,21 +80,12 @@ export class AppComponent {
     let camera=this.camera;
     const scroll =this.scroll;
 
-    this.loader.load(url, function ( gltf ) {
-      gltf.scene.scale.set(2.5,2.5,2.5);
-      gltf.scene.name = "drone";
-      scene.add(gltf.scene);
-      gltf.scene.position.z = 450;
-      gltf.scene.position.y = -130;
-      gltf.scene.scale.set(2.5,2.5,2.5);
-   
+    this.loader.load(url, function ( gltf ) {   
         scroll.scrollInit(renderer);
         scroll.textAnim(renderer);
         scroll.cameraAnim(renderer,camera);
-        scroll.droneAnim(renderer,scene)       
-        scroll.zeppelinAnim(renderer,scene);
+        scroll.droneAnim(renderer,scene);
         scroll.introAnim(renderer); 
-
     });
   }
 
