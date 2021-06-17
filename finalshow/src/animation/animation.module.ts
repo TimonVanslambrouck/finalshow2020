@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AnimationComponent } from './animation.component';
+import { RouterModule } from '@angular/router';
+
 
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { LoadingComponent } from './loading/loading.component';
@@ -14,6 +16,7 @@ import { LightComponent } from './light/light.component';
   imports: [
     CommonModule,
     BrowserModule,
+    RouterModule,
   ],
   declarations: [
     AnimationComponent,

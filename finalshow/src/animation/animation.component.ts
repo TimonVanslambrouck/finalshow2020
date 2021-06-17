@@ -14,6 +14,7 @@ import { LightComponent } from './light/light.component';
 import { ScrollAnimationComponent } from './scroll-animation/scroll-animation.component';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 
+
 @Component({
   selector: 'app-animation',
   templateUrl: './animation.component.html',
