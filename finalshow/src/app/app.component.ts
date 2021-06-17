@@ -139,8 +139,7 @@ export class AppComponent {
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.z=550;
-    this.camera.position.y=-100;
+    this.camera.position.set(0,-150,550);
     this.renderer.domElement.style.filter="blur(4px)";
     document.body.appendChild( this.renderer.domElement );
     console.log(this.renderer.domElement);
@@ -324,7 +323,7 @@ fog() {
   const scene = this.scene;
   const color = 0x9fa3a6;
   const near = 1;
-  const far = 1500;
+  const far = 750;
   scene.fog = new THREE.Fog(color, near, far);
 }
 
@@ -388,7 +387,7 @@ onResizeWindow(event:any){
 }
 
 ngOnInit(): void {
-  this.fog();
+  // this.fog();
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');

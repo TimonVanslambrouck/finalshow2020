@@ -22,7 +22,8 @@ export class ModelLoaderService {
 
     loader.load(url, function ( gltf ) {
       let model = gltf.scene;
-      model.rotation.set(rotation[0],rotation[1],rotation[2]);
+      let radiansArray = rotation.map(x => x*(Math.PI/180));
+      model.rotation.set(radiansArray[0],radiansArray[1],radiansArray[2]);
       model.position.set(position[0],position[1],position[2]);
       model.scale.set(scale,scale,scale);
       model.name = guiName;
