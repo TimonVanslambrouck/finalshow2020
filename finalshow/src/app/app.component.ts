@@ -159,6 +159,10 @@ export class AppComponent {
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
      this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80]);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,Math.PI,0],[150,-100,200]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,Math.PI,0],[-350,-100,100]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-100,400]);
+
   }
 
   loadDrone(scene: any, url: any) {

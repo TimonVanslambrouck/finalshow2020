@@ -40,6 +40,7 @@ body {
 -------------------------------------*/
 
 #logoDiv {
+    margin-top: 20vh;
     overflow: hidden;
     padding: 5vh;
     box-sizing: border-box;
@@ -76,100 +77,6 @@ h2 {
 a {
     color: black;
     text-decoration: none;
-}
-
-/*-------------------------------------
----------------- FORM -----------------
--------------------------------------*/
-
-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-#notify-form {
-    margin: 18px auto;
-    width: 80%;
-    max-width: 550px;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-}
-
-#notify {
-    margin: 1vh 0;
-    padding: 10px 25px;
-    text-align: center;
-    font-size: 1.2em;
-    border: none;
-    border-image: url("../assets/images/line.png") 50 round;
-    border-bottom: 5px solid black;
-    border-width: 100%;
-    background-color: transparent;
-    color: white;
-}
-
-#notify:focus {
-    outline: none;
-}
-
-#notify::placeholder {
-    font-family: "Manrope";
-    text-align: center;
-    font-size: 20px;
-    font-weight: 400;
-    color: white;
-}
-
-#submit {
-    padding: 10px 25px;
-    margin-top: 25px;
-    font-size: 1.2em;
-    font-weight: 600;
-    background-color: transparent;
-    color: white;
-    border: none;
-    text-align: center;
-}
-
-#submit:focus {
-    outline: none;
-}
-
-#submit:active {
-    outline: none;
-    background-color: #60c1ea21;
-}
-
-#notify::-webkit-input-placeholder,
-#notify:-ms-input-placeholder {
-    /* Edge, IE */
-    font-family: "Manrope", sans-serif;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.arrow-right {
-    display: inline-block;
-    padding-left: 15px;
-}
-
-
-/*-------------------------------------
---------------- SOCIALS ---------------
--------------------------------------*/
-
-#socials {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    font-size: 7vw;
-}
-
-.fab {
-    margin: 0.5em;
 }
 
 /*-------------------------------------
@@ -216,7 +123,7 @@ footer {
     width: 40px;
     height: 70px;
     margin-left: -20px;
-    top: 75%;
+    top: 80%;
     margin-top: -35px;
     box-shadow: inset 0 0 0 1px #fff;
     border-radius: 25px;
