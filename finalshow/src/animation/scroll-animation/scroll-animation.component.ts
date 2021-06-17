@@ -32,7 +32,7 @@ export class ScrollAnimationComponent implements OnInit {
           loader.style.display = "block";
           setTimeout(() => {
             window.location.href = "/hub";
-          }, 4500);
+          }, 4000);
         }        
   }
 
