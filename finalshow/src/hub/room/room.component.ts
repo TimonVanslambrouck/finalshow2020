@@ -10,15 +10,15 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 export class RoomComponent implements OnInit {
   
   
-  textureLoader=new THREE.TextureLoader();
-  gltfLoader=new GLTFLoader();
   geometry=new THREE.SphereGeometry( 1000, 32, 32 );
 
   constructor() { }
 
-  addHub(scene:any,renderer:any) {
+  addHub(manager:any, scene:any,renderer:any) {
+    const textureLoader=new THREE.TextureLoader(manager);
+    const gltfLoader=new GLTFLoader(manager);
 
-    const textureRoom = this.textureLoader.load('');
+    const textureRoom = textureLoader.load('');
 
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
@@ -26,7 +26,7 @@ export class RoomComponent implements OnInit {
     var room="../assets/HUB/RoomChamber.glb";
     var group = new THREE.Group();
 
-    this.gltfLoader.load(room, function(gltf){
+    gltfLoader.load(room, function(gltf){
       const car = gltf.scene.children[0];
       gltf.scene.traverse(function(object){
 	        if((<THREE.Mesh> object).isMesh){

@@ -132,7 +132,6 @@ ngOnInit(): void {
   this.manager.onLoad = () => {
     console.log('%cLoading complete!', 'font-weight: bold; color: red;');
     this.fog();
-    console.log("NEXT");
     this.sound.addSound(this.scene,this.camera);
     this.text.loadText(this.scene);
     this.light.addLight(this.scene);

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HubComponent } from './hub.component';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { RoomComponent } from './room/room.component';
     HubComponent,
     LightsComponent,
     RoomComponent,
+    LoadingComponent,
   ]
 })
 export class HubModule { }
