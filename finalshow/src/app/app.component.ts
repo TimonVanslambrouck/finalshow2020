@@ -322,7 +322,7 @@ export class AppComponent {
 
 fog() {
   const scene = this.scene;
-  const color = 0xFFFFFF;
+  const color = 0x9fa3a6;
   const near = 1;
   const far = 750;
   scene.fog = new THREE.Fog(color, near, far);
