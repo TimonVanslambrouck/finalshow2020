@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HubComponent } from './hub.component';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { RoomComponent } from './room/room.component';
   declarations: [
     HubComponent,
     LightsComponent,
-    RoomComponent
+    RoomComponent,
+    PopupComponent
   ]
 })
 export class HubModule { }
