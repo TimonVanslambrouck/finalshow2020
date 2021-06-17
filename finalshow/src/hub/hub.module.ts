@@ -4,6 +4,7 @@ import { HubComponent } from './hub.component';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
 import { LoadingComponent } from './loading/loading.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { LoadingComponent } from './loading/loading.component';
     LightsComponent,
     RoomComponent,
     LoadingComponent,
+    PopupComponent
   ]
 })
 export class HubModule { }

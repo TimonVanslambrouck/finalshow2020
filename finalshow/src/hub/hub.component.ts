@@ -48,6 +48,7 @@ export class HubComponent implements OnInit {
 
   interestPoints(event:any){
     console.log(event);
+    const renderer=this.renderer;
     const rayCaster = new THREE.Raycaster();
     rayCaster.setFromCamera(this.mouse,this.camera);
     let intersects = rayCaster.intersectObjects(this.scene.children);
@@ -60,7 +61,10 @@ export class HubComponent implements OnInit {
         window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
       }
       if(intersect.object.name ==="FAQ"){
-        window.open("https://www.erasmushogeschool.be/nl/faq")
+        console.log(document.getElementById("showPopup"));
+        //window.open("https://www.erasmushogeschool.be/nl/faq")
+        document.getElementById("showPopup")!.style.display="block";
+        renderer.domElement.style.filter="blur(4px)";
       }
     })
   }
