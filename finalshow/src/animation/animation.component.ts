@@ -73,7 +73,7 @@ export class AnimationComponent implements OnInit {
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-100,400]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-150,350]);
 
   }
 
@@ -94,15 +94,9 @@ export class AnimationComponent implements OnInit {
 
 
  animate() {
-   let scene = this.scene;
-   let text = scene.children[0];
-  scene.children.forEach((element: any) => {
-    if (element.name == "final show text") {
-      text = element;
-      return;
-    }
-  });
-  text.rotation.y += 0.005;
+  let scene = this.scene;
+  this.animateText(scene);
+  this.animateBalloons(scene);
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.light.sun.position.set(
@@ -111,6 +105,22 @@ export class AnimationComponent implements OnInit {
     this.camera.position.z + 10
     )
 }
+  animateBalloons(scene: THREE.Scene) {
+    let balloonAndroid = scene.getObjectByName("android");
+    let balloonApple = scene.getObjectByName("apple");
+    if (balloonAndroid !== undefined && balloonApple !== undefined) {
+      balloonAndroid.rotation.y += 0.005;
+      balloonApple.rotation.y += 0.005;
+      balloonAndroid.position.y += Math.random() * 0.01;
+      balloonApple.position.y += Math.random() * 0.01;
+    } 
+  }
+  animateText(scene:THREE.Scene) {
+    let text = scene.getObjectByName("final show text");
+    if (text !== undefined) {
+      text.rotation.y += 0.005;
+    }    
+  }
 
 fog() {
   const scene = this.scene;
