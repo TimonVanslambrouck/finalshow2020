@@ -6,12 +6,12 @@ import { RoomComponent } from './room/room.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   declarations: [
     HubComponent,
     LightsComponent,
-    RoomComponent
+    RoomComponent,
   ]
 })
 export class HubModule { }

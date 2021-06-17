@@ -13,7 +13,7 @@ import { LightComponent } from './light/light.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule
   ],
   declarations: [
     AnimationComponent,
