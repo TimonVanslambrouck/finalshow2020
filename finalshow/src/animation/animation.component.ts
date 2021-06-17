@@ -12,6 +12,7 @@ import { AnimatedTextComponent } from './animated-text/animated-text.component';
 import { SoundComponent } from './sound/sound.component';
 import { LightComponent } from './light/light.component';
 import { ScrollAnimationComponent } from './scroll-animation/scroll-animation.component';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 @Component({
   selector: 'app-animation',
@@ -67,29 +68,23 @@ export class AnimationComponent implements OnInit {
 
   loadModels(){
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450]);
+    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
      this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
     this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-150,350]);
-
   }
 
-  loadDrone(scene:any,url:any){
-
+  scrollAnimations(){
     let renderer=this.renderer;
     let camera=this.camera;
     const scroll =this.scroll;
-
-    this.loader.load(url, function ( gltf ) {
-        scroll.scrollInit(renderer);
-        scroll.textAnim(renderer);
-        scroll.cameraAnim(renderer,camera);
-        scroll.droneAnim(renderer,scene);
-        scroll.introAnim(renderer);
-    });
+    scroll.scrollInit(renderer);
+    scroll.textAnim(renderer);
+    scroll.cameraAnim(renderer,camera);
+    scroll.introAnim(renderer);
   }
 
  animate() {
@@ -135,8 +130,8 @@ ngOnInit(): void {
   this.text.loadText(this.scene);
   this.light.addLight(this.scene);
   this.skyBox.skybox(this.scene);
+  this.scrollAnimations();
   this.loadModels();
-  this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
   this.guiSettings();
   this.render();
   this.animate();
