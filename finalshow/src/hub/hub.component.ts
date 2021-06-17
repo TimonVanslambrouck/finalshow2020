@@ -142,6 +142,7 @@ export class HubComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.controls.enableZoom = false;
     this.controls.rotateSpeed = 0.5;
     this.scene.add(this.hlight);
     this.camera.position.set(1,0,0);
