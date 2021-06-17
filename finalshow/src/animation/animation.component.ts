@@ -2,17 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { ModelLoaderService } from './model-loader.service';
 import { GuiService } from './gui.service';
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import { SkyboxComponent } from './skybox/skybox.component';
 import { AnimatedTextComponent } from './animated-text/animated-text.component';
 import { SoundComponent } from './sound/sound.component';
 import { LightComponent } from './light/light.component';
 import { ScrollAnimationComponent } from './scroll-animation/scroll-animation.component';
-import Stats from 'three/examples/jsm/libs/stats.module.js';
 
 
 @Component({
@@ -44,7 +40,6 @@ export class AnimationComponent implements OnInit {
 
   guiSettings(){
     this.guiService.position("camera",this.camera,true,-1000,1000);
-    //this.guiService.rotate("camera",this.camera,true);
   }
 
   // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
@@ -53,7 +48,6 @@ export class AnimationComponent implements OnInit {
   }
 
   render(){
-    //this.scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0025 );
     this.renderer.shadowMap.enabled = true;
     this.renderer.outputEncoding = THREE.sRGBEncoding;
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
@@ -71,7 +65,6 @@ export class AnimationComponent implements OnInit {
   loadModels(){
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
- //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
      this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
@@ -138,7 +131,7 @@ ngOnInit(): void {
     this.text.loadText(this.scene);
     this.light.addLight(this.scene);
     this.skyBox.skybox(this.scene);
-    this.guiSettings();
+    // this.guiSettings();
     this.render();
     this.animate();
   };

@@ -36,8 +36,8 @@ export class ModelLoaderService {
         } 
 
       }, 100);
-      gui.scale(guiName,model,false,-100,100,0.1);
-      gui.position(guiName,model,false,-100,100,0.1);
+      // gui.scale(guiName,model,false,-100,100,0.1);
+      // gui.position(guiName,model,false,-100,100,0.1);
     });
 
   }
@@ -92,7 +92,4 @@ export class ModelLoaderService {
     plane.rotateY(Math.PI);
     });
   }
-
-
-
 }
