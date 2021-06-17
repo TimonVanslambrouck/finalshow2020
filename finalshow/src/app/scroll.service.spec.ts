@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SkyService } from './sky.service';
+import { ScrollService } from './scroll.service';
 
-describe('SkyService', () => {
-  let service: SkyService;
+describe('ScrollService', () => {
+  let service: ScrollService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SkyService);
+    service = TestBed.inject(ScrollService);
   });
 
   it('should be created', () => {
