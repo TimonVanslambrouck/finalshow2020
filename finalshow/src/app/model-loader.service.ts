@@ -14,7 +14,7 @@ export class ModelLoaderService {
 
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[]){
+  loadModel(scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[],renderer?:any,scroll?:any){
 
     const loader=this.loader;
     const gui=this.gui;
@@ -26,8 +26,12 @@ export class ModelLoaderService {
       model.position.set(position[0],position[1],position[2]);
       model.scale.set(scale,scale,scale);
       model.name = guiName;
-      scene.add(model);
-
+      scene.add(model);       
+      setTimeout(() => {
+        if (guiName == "zeplin") {
+          scroll.zeppelinAnim(renderer,scene);
+        }
+      }, 100);
       gui.scale(guiName,model,false,-100,100,0.1);
       gui.position(guiName,model,false,-100,100,0.1);
     });

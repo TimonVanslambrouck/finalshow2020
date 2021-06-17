@@ -39,16 +39,7 @@ export class ScrollAnimationComponent implements OnInit {
 
     gsap.registerPlugin(ScrollTrigger);
         
-    let drone = scene.children[0];
-
-         scene.children.forEach((element: any) => {
-           if (element.name == "drone") {
-             drone = element;
-             return;
-           }
-         });
-
-         console.log(scene.children);
+    let drone = scene.getObjectByName("drone");
 
     var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
       y: 50,
@@ -60,7 +51,10 @@ export class ScrollAnimationComponent implements OnInit {
 
   zeppelinAnim(renderer:any,scene:any){
     gsap.registerPlugin(ScrollTrigger);
-    var zeppelin_anim= this.scroll.scrollAnim(renderer.domElement).to(scene.children[7].position, {
+
+    let zeplin = scene.getObjectByName("zeplin");
+
+    var zeppelin_anim= this.scroll.scrollAnim(renderer.domElement).to(zeplin.position, {
       y: 90,
       x:800,
       z: 80,
