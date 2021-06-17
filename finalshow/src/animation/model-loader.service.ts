@@ -10,16 +10,13 @@ export class ModelLoaderService {
 
   gui=new GuiService();
 
-  loader=new GLTFLoader();
-
   constructor() { }
 
-  loadModel(scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[],renderer?:any,scroll?:any){
+  loadModel(loader:any, scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[],renderer?:any,scroll?:any){
 
-    const loader=this.loader;
     const gui=this.gui;
 
-    loader.load(url, function ( gltf ) {
+    loader.load(url, function ( gltf:any ) {
       let model = gltf.scene;
       let radiansArray = rotation.map(x => x*(Math.PI/180));
       model.rotation.set(radiansArray[0],radiansArray[1],radiansArray[2]);

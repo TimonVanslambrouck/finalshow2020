@@ -21,13 +21,14 @@ import Stats from 'three/examples/jsm/libs/stats.module.js';
 })
 export class AnimationComponent implements OnInit {
   title = 'finalshow';
+  manager = new THREE.LoadingManager();
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
   guiService=new GuiService();
-  loader=new GLTFLoader();
-  fontLoader=new THREE.FontLoader();
+  loader=new GLTFLoader(this.manager);
+  fontLoader=new THREE.FontLoader(this.manager);
   skyBox=new SkyboxComponent();
   text=new AnimatedTextComponent();
   sound=new SoundComponent();
@@ -67,14 +68,15 @@ export class AnimationComponent implements OnInit {
   }
 
   loadModels(){
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/HUB.glb',"room", 1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
  //   this.modelLoader.loadModel(this.scene,'../assets/3D_models/cloud/scene.gltf',"cloud");
-     this.modelLoader.loadModel(this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
+     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
-    this.modelLoader.loadModel(this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-150,350]);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-150,350]);
+
   }
 
   scrollAnimations(){
@@ -120,21 +122,25 @@ fog() {
   const scene = this.scene;
   const color = 0x9fa3a6;
   const near = 1;
-  const far = 750;
+  const far = 1500;
   scene.fog = new THREE.Fog(color, near, far);
 }
 
 ngOnInit(): void {
-  // this.fog();
-  this.sound.addSound(this.scene,this.camera);
-  this.text.loadText(this.scene);
-  this.light.addLight(this.scene);
-  this.skyBox.skybox(this.scene);
-  this.scrollAnimations();
   this.loadModels();
-  this.guiSettings();
-  this.render();
-  this.animate();
+  this.scrollAnimations();
+  this.manager.onLoad = () => {
+    console.log('%cLoading complete!', 'font-weight: bold; color: red;');
+    this.fog();
+    console.log("NEXT");
+    this.sound.addSound(this.scene,this.camera);
+    this.text.loadText(this.scene);
+    this.light.addLight(this.scene);
+    this.skyBox.skybox(this.scene);
+    this.guiSettings();
+    this.render();
+    this.animate();
+  };
 }
 
 }
