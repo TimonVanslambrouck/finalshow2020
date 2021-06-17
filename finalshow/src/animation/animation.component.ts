@@ -85,20 +85,13 @@ export class AnimationComponent implements OnInit {
     const scroll =this.scroll;
 
     this.loader.load(url, function ( gltf ) {
-      gltf.scene.scale.set(2.5,2.5,2.5);
-      gltf.scene.name = "drone";
-      scene.add(gltf.scene);
-      gltf.scene.position.z = 450;
-      gltf.scene.position.y = -130;
-      gltf.scene.scale.set(2.5,2.5,2.5);
-   
         scroll.scrollInit(renderer);
         scroll.textAnim(renderer);
         scroll.cameraAnim(renderer,camera);
         scroll.droneAnim(renderer,scene)       
         scroll.zeppelinAnim(renderer,scene);
         scroll.introAnim(renderer); 
-
+        scroll.luchtballonAnim(renderer,scene);
     });
   }
 

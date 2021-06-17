@@ -14,9 +14,9 @@ export class ScrollService {
     return gsap.timeline({
       scrollTrigger: {
         trigger: trigger,
-        scrub: 1.2,
-        start: 'top top',
-        end:'+=5000',
+        scrub: scrub,
+        start: start,
+        end:end,
       }
     })
   }
