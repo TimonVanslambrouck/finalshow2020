@@ -324,7 +324,7 @@ fog() {
   const scene = this.scene;
   const color = 0xFFFFFF;
   const near = 1;
-  const far = 750;
+  const far = 1500;
   scene.fog = new THREE.Fog(color, near, far);
 }
 
@@ -388,7 +388,7 @@ onResizeWindow(event:any){
 }
 
 ngOnInit(): void {
-  // this.fog();
+  this.fog();
   this.sound();
   this.loadModels();
   this.loadDrone(this.scene,'../assets/3D_models/drone/DroneAllInOne.glb');
