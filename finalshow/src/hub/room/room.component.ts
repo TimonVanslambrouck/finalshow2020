@@ -12,7 +12,6 @@ export class RoomComponent implements OnInit {
   
   textureLoader=new THREE.TextureLoader();
   gltfLoader=new GLTFLoader();
-  geometry=new THREE.SphereGeometry( 1000, 32, 32 );
 
   constructor() { }
 
