@@ -23,7 +23,7 @@ export class AnimationComponent implements OnInit {
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
   renderer = new THREE.WebGLRenderer();
   modelLoader=new ModelLoaderService();
-  guiService=new GuiService();
+  // guiService=new GuiService();
   loader=new GLTFLoader(this.manager);
   fontLoader=new THREE.FontLoader(this.manager);
   skyBox=new SkyboxComponent();
@@ -35,11 +35,11 @@ export class AnimationComponent implements OnInit {
   room:any;
   cloud:any;
 
-  gui=new dat.GUI();
+  // gui=new dat.GUI();
  //orbit=new ORBIT.OrbitControls(this.camera,this.renderer.domElement);
 
   guiSettings(){
-    this.guiService.position("camera",this.camera,true,-1000,1000);
+    // this.guiService.position("camera",this.camera,true,-1000,1000);
   }
 
   // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
@@ -69,7 +69,7 @@ export class AnimationComponent implements OnInit {
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[150,-150,350]);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[100,-100,350]);
 
   }
 

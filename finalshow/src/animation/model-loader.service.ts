@@ -8,13 +8,13 @@ import { GuiService } from './gui.service';
 })
 export class ModelLoaderService {
 
-  gui=new GuiService();
+  // gui=new GuiService();
 
   constructor() { }
 
   loadModel(loader:any, scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[],renderer?:any,scroll?:any){
 
-    const gui=this.gui;
+    // const gui=this.gui;
 
     loader.load(url, function ( gltf:any ) {
       let model = gltf.scene;
