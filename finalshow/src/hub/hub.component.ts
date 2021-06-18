@@ -5,6 +5,7 @@ import { SkyboxComponent } from '../animation/skybox/skybox.component';
 import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
+import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 
 @Component({
   selector: 'app-hub',
@@ -23,6 +24,8 @@ export class HubComponent implements OnInit {
   skyBox=new SkyboxComponent();
   lights=new LightsComponent();
   room=new RoomComponent();
+  cssscene = new THREE.Scene();
+  renderer2 = new CSS3DRenderer();
 
   constructor() { }
 
@@ -69,17 +72,50 @@ export class HubComponent implements OnInit {
     })
   }
 
+render(){
+  this.renderer.setSize( window.innerWidth, window.innerHeight );
+  let webgl = document.querySelector('#webgl') as HTMLElement;
+  webgl.appendChild( this.renderer.domElement);
+  
+  this.renderer2.setSize( window.innerWidth, window.innerHeight );
+  let css = document.querySelector('#css') as HTMLElement;
+  css.appendChild(this.renderer2.domElement );
+}
+
+  createYoutubeVideo ( id: any, x: any, y: any, z: any, ry: any ) {
+    var div = document.createElement( 'div' );
+    div.style.width = '1028px';
+    div.style.height = '720px';
+    div.style.backgroundColor = '#fff';
+  
+    var iframe = document.createElement( 'iframe' );
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0px';
+    iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
+    div.appendChild( iframe );
+  
+    var cssobject = new CSS3DObject( div );
+    cssobject.position.set( x, y, z );
+    cssobject.rotation.y = ry;
+    cssobject.scale.set(0.048, 0.039, 0.045);
+    this.cssscene.add(cssobject);
+  }
+
   animate() {
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
+   this.renderer2.render( this.cssscene, this.camera );
   }
 
   ngOnInit() {
-    this.controls.enableZoom = false;
+   this.controls.enableZoom = false;
     this.controls.rotateSpeed = 0.5;
     this.camera.position.set(1,0,0);
     this.controls.update();
     this.room.addHub(this.manager, this.scene,this.renderer);
+    this.render();
+    this.createYoutubeVideo('byO-xihstdw', -53, 4.5, 2, Math.PI/2 );
     this.manager.onLoad = () => {
       console.log('%cLoading complete!', 'font-weight: bold; color: red;');
       this.lights.addLights(this.scene);
