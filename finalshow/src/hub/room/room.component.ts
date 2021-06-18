@@ -23,17 +23,10 @@ export class RoomComponent implements OnInit {
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
-    var room="../assets/HUB/RoomChamber.glb";
+    var room="../assets/HUB/FinalRoomPOV.glb";
     var group = new THREE.Group();
 
     gltfLoader.load(room, function(gltf){
-      const car = gltf.scene.children[0];
-      gltf.scene.traverse(function(object){
-	        if((<THREE.Mesh> object).isMesh){
-            //@ts-ignore
-            (<THREE.Mesh> object).material.map= textureRoom;
-		    }
-	    })
       scene.add(gltf.scene);
     });
       scene.add(group);
