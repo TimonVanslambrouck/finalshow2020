@@ -5,6 +5,7 @@ import { SkyboxComponent } from '../animation/skybox/skybox.component';
 import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
 import { RoomComponent } from './room/room.component';
+import { ModelLoaderService } from 'src/animation/model-loader.service';
 
 @Component({
   selector: 'app-hub',
@@ -23,6 +24,7 @@ export class HubComponent implements OnInit {
   skyBox=new SkyboxComponent();
   lights=new LightsComponent();
   room=new RoomComponent();
+  modelLoader=new ModelLoaderService();
 
   constructor() { }
 
@@ -44,6 +46,10 @@ export class HubComponent implements OnInit {
 
   mousePosition( event:any ) {
     this.mouse = new Vector2(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1);
+  }
+
+  loadTerrain(){
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
   }
 
   interestPoints(event:any){
@@ -87,6 +93,7 @@ export class HubComponent implements OnInit {
       this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
 	    this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
       this.animate();
+      this.loadTerrain();
     };
   }
 }
