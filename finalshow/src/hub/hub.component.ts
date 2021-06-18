@@ -76,8 +76,16 @@ export class HubComponent implements OnInit {
   }
 
   animate() {
+    this.animateSky(this.scene);
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
+  }
+
+  animateSky(scene: THREE.Scene) {
+    let skybox = scene.getObjectByName("skybox");
+    if (skybox !== undefined) {
+      skybox.rotation.y += 0.0001;
+    }
   }
 
   ngOnInit() {
