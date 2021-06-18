@@ -87,6 +87,7 @@ export class AnimationComponent implements OnInit {
   let scene = this.scene;
   this.animateText(scene);
   this.animateBalloons(scene);
+  this.animateSky(scene);
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.light.sun.position.set(
@@ -95,6 +96,12 @@ export class AnimationComponent implements OnInit {
     this.camera.position.z + 10
     )
 }
+  animateSky(scene: THREE.Scene) {
+    let skybox = scene.getObjectByName("skybox");
+    if (skybox !== undefined) {
+      skybox.rotation.y += 0.001;
+    }
+  }
   animateBalloons(scene: THREE.Scene) {
     let balloonAndroid = scene.getObjectByName("android");
     let balloonApple = scene.getObjectByName("apple");

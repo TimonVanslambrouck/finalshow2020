@@ -32,6 +32,10 @@ export class RoomComponent implements OnInit {
       scene.add(group);
   }
 
+
+
+  
+
   ngOnInit(): void {
   }
 
