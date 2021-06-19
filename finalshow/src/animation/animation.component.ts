@@ -49,13 +49,10 @@ export class AnimationComponent implements OnInit {
 
   render(){
     this.renderer.shadowMap.enabled = true;
-    this.renderer.outputEncoding = THREE.sRGBEncoding;
-    this.renderer.toneMapping= THREE.ReinhardToneMapping;
-    this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.set(0,-150,550);
     this.renderer.domElement.style.filter="blur(4px)";
-    this.renderer.autoClear=false;
+    // this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
     console.log(this.scene.children);
     const rendererContainer = document.getElementById('renderContainer')!
@@ -65,7 +62,7 @@ export class AnimationComponent implements OnInit {
   loadModels(){
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/RoomProjectsPlatform.glb',"room", 1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
-     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
@@ -84,10 +81,9 @@ export class AnimationComponent implements OnInit {
   }
 
  animate() {
-  let scene = this.scene;
-  this.animateText(scene);
-  this.animateBalloons(scene);
-  this.animateSky(scene);
+  this.animateText(this.scene);
+  this.animateBalloons(this.scene);
+  this.animateSky(this.scene);
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.light.sun.position.set(

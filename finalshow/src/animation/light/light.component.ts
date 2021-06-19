@@ -8,7 +8,7 @@ import * as THREE from 'three';
 })
 export class LightComponent implements OnInit {
 
-  hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 3 );
+  hemiLight = new THREE.HemisphereLight( 0xffeeb1, 0x080820, 3);
   sun = new THREE.SpotLight(0xffa95c, 4)
 
   constructor() { }

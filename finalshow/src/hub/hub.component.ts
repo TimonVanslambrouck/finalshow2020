@@ -1,10 +1,10 @@
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Component, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { SkyboxComponent } from '../animation/skybox/skybox.component';
 import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
-import { RoomComponent } from './room/room.component';
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 import { ModelLoaderService } from 'src/animation/model-loader.service';
 
@@ -24,10 +24,10 @@ export class HubComponent implements OnInit {
   mouse = new THREE.Vector2();
   skyBox=new SkyboxComponent();
   lights=new LightsComponent();
-  room=new RoomComponent();
   cssscene = new THREE.Scene();
   renderer2 = new CSS3DRenderer();
   modelLoader=new ModelLoaderService();
+  loader=new GLTFLoader(this.manager);
 
   constructor() { }
 
@@ -53,6 +53,7 @@ export class HubComponent implements OnInit {
 
   loadTerrain(){
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoomPOV.glb","hub",1,[0,0,0],[0,0,0]);
   }
 
   interestPoints(event:any){
@@ -100,7 +101,7 @@ render(){
     iframe.style.border = '0px';
     iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
     div.appendChild( iframe );
-  
+ 
     var cssobject = new CSS3DObject( div );
     cssobject.position.set( x, y, z );
     cssobject.rotation.y = ry;
@@ -127,7 +128,7 @@ render(){
     this.controls.rotateSpeed = 0.5;
     this.camera.position.set(1,0,0);
     this.controls.update();
-    this.room.addHub(this.manager, this.scene,this.renderer);
+    this.loadTerrain();
     this.render();
     this.createYoutubeVideo('byO-xihstdw', -53, 4.5, 2, Math.PI/2 );
     this.manager.onLoad = () => {
@@ -137,7 +138,6 @@ render(){
       this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
 	    this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
       this.animate();
-      this.loadTerrain();
     };
   }
 }

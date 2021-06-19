@@ -15,7 +15,6 @@ export class ModelLoaderService {
   loadModel(loader:any, scene:any,url:string,guiName:string,scale:number,rotation:number[],position:number[],renderer?:any,scroll?:any){
 
     // const gui=this.gui;
-
     loader.load(url, function ( gltf:any ) {
       let model = gltf.scene;
       let radiansArray = rotation.map(x => x*(Math.PI/180));
