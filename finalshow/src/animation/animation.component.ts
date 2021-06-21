@@ -137,7 +137,7 @@ ngOnInit(): void {
     // this.guiSettings();
     this.render();
     this.animate();
-  };
+  };  
 }
 
 }
