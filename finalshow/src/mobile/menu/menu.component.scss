@@ -1,0 +1,37 @@
+.iconGroup {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+  cursor: pointer;
+}
+
+.icon {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+#navList {
+  text-align: center;
+  margin-top: 15vh;
+}
+
+#navList li {
+  list-style: none;
+  margin-bottom: 12vh;
+}
+
+
+#navList li a {
+  color: black;
+  text-decoration: none;
+}
+
+.current {
+  text-decoration: underline;
+}
+
+.normal {
+  color: black;
+}
