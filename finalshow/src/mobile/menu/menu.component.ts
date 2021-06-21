@@ -13,15 +13,15 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     if (document.URL.includes("mobile")) {
       this.currentPage = "Home";
-    } else if (document.URL.includes("Livestream")) {
+    } else if (document.URL.includes("livestream")) {
       this.currentPage = "Livestream";
-    } else if (document.URL.includes("Timetable")) {
+    } else if (document.URL.includes("timetable")) {
       this.currentPage = "Timetable";
-    } else if (document.URL.includes("FAQ")) {
+    } else if (document.URL.includes("faq")) {
       this.currentPage = "FAQ";
-    } else if (document.URL.includes("ShowcaseRoom")) {
+    } else if (document.URL.includes("showcaseRoom")) {
       this.currentPage = "ShowcaseRoom";
-    } else if (document.URL.includes("NetworkRoom")) {
+    } else if (document.URL.includes("networkRoom")) {
       this.currentPage = "NetworkRoom";
     } 
   }
