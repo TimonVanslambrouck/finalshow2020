@@ -1,6 +1,8 @@
 /*https://www.digitalocean.com/community/tutorials/css-scrollbars*/
 
-html, body {
+
+html,
+body {
   overscroll-behavior: none;
 }
 
@@ -12,13 +14,13 @@ html, body {
 
 canvas {
   position: fixed;
-    top: 0;
+  top: 0;
   z-index: -1;
 }
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  display:none;
+  display: none;
   width: 15px;
 }
 
