@@ -1,0 +1,36 @@
+
+
+<div>
+    <app-background></app-background>
+
+    <div class="clusters">
+        <div class="cluster fade" id="ar" (click)="clusters($event)">
+            AR
+        </div>
+        <div class="cluster fade" id="motion" (click)="clusters($event)">
+            Motion
+        </div>
+        <div class="cluster center" id="web" (click)="clusters($event)">
+            Web
+        </div>
+        <div class="cluster fade" id="digital-making" (click)="clusters($event)">
+            Digital-Making
+        </div>
+        <div class="cluster fade" id="mobile" (click)="clusters($event)">
+            Mobile
+        </div>
+    
+    </div>
+    
+    
+    <div [innerHTML]="web" id="showcase">
+    </div>
+
+
+
+</div>
+
+
+
+
+
