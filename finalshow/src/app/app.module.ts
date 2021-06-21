@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AnimationModule } from 'src/animation/animation.module';
 import { HubModule } from 'src/hub/hub.module';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [	
@@ -15,6 +16,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     AnimationModule,
     HubModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
