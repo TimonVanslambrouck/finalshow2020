@@ -49,10 +49,13 @@ export class AnimationComponent implements OnInit {
 
   render(){
     this.renderer.shadowMap.enabled = true;
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.toneMapping= THREE.ReinhardToneMapping;
+    this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.camera.position.set(0,-150,550);
     this.renderer.domElement.style.filter="blur(4px)";
-    // this.renderer.autoClear=false;
+    this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
     console.log(this.scene.children);
     const rendererContainer = document.getElementById('renderContainer')!
@@ -129,11 +132,11 @@ ngOnInit(): void {
   this.scrollAnimations();
   this.manager.onLoad = () => {
     console.log('%cLoading complete!', 'font-weight: bold; color: red;');
-    this.fog();
     this.sound.addSound(this.scene,this.camera);
     this.text.loadText(this.scene);
     this.light.addLight(this.scene);
     this.skyBox.skybox(this.scene);
+    this.fog();
     // this.guiSettings();
     this.render();
     this.animate();
