@@ -1,8 +1,5 @@
 /*https://www.digitalocean.com/community/tutorials/css-scrollbars*/
 
-* {
-  font-family: 'Manrope', sans-serif;
-}
 
 html,
 body {
@@ -12,6 +9,7 @@ body {
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Manrope','sans-serif';
 }
 
 canvas {
@@ -19,7 +17,6 @@ canvas {
   top: 0;
   z-index: -1;
 }
-
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
@@ -36,3 +33,54 @@ canvas {
   border-radius: 20px;
   border: 3px solid grey;
 }
+
+// Showroom CSS
+
+.image{
+  width:auto;
+  height:auto;
+}
+
+.card-title,.card-subtitle,.card-text,.btn{
+  margin-left:10px;
+  line-height: 1.5;
+  margin-right:10px;
+}
+
+.card-title{
+  margin-top:10px;
+}
+
+.card-subtitle{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+// https://stackoverflow.com/questions/37316308/using-html-css-to-limit-the-length-of-the-sentences
+
+.card-text{
+  margin-bottom:10px;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.card{
+  display:flex;
+  flex-direction: column;
+  margin-bottom:20px;
+  margin-left:10px;
+  margin-right:10px;
+  //background:white;
+}
+
+
+
+
+
+/* Importing Bootstrap SCSS file. */
+
+//@import '~bootstrap/scss/bootstrap';
+

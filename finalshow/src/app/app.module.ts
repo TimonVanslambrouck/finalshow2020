@@ -18,7 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AnimationModule,
     HubModule,
     NgbModule,
-    MobileModule,
+    MobileModule
   ],
   providers: [],
   bootstrap: [AppComponent]
