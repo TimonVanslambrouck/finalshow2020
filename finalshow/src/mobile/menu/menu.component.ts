@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,16 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
   isActive = false;
   currentPage = 'start';
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if (document.URL.includes("mobile")) {
+    console.log(this.router.url)
+    if (this.router.url === '/') {
       this.currentPage = "Home";
-    } else if (document.URL.includes("livestream")) {
+    } else if (this.router.url === '/livestream') {
       this.currentPage = "Livestream";
-    } else if (document.URL.includes("faq")) {
+    } else if (this.router.url === '/faq') {
       this.currentPage = "FAQ";
-    } else if (document.URL.includes("showcaseRoom")) {
+    } else if (this.router.url === '/showcase') {
       this.currentPage = "ShowcaseRoom";
     } 
   }
