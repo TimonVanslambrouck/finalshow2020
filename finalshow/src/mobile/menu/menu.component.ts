@@ -15,14 +15,10 @@ export class MenuComponent implements OnInit {
       this.currentPage = "Home";
     } else if (document.URL.includes("livestream")) {
       this.currentPage = "Livestream";
-    } else if (document.URL.includes("timetable")) {
-      this.currentPage = "Timetable";
     } else if (document.URL.includes("faq")) {
       this.currentPage = "FAQ";
     } else if (document.URL.includes("showcaseRoom")) {
       this.currentPage = "ShowcaseRoom";
-    } else if (document.URL.includes("networkRoom")) {
-      this.currentPage = "NetworkRoom";
     } 
   }
 
