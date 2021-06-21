@@ -7,6 +7,8 @@ import { HubComponent } from 'src/hub/hub.component';
 import { AnimationComponent } from 'src/animation/animation.component';
 import { MobileComponent } from 'src/mobile/mobile.component'; 
 import { ApplicationStateService } from './application-state.service';
+import { LivestreamComponent } from 'src/mobile/livestream/livestream.component';
+import { ShowroomComponent } from 'src/mobile/showroom/showroom.component';
 
 const desktop_routes: Routes = [
   { path: '', component: AnimationComponent },
@@ -16,6 +18,7 @@ const desktop_routes: Routes = [
 
 const mobile_routes: Routes = [
   { path: '', component: MobileComponent },
+  { path: 'showroom', component: ShowroomComponent },
 ];
 
 @NgModule({
