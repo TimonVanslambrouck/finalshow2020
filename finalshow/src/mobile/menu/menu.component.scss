@@ -1,0 +1,44 @@
+nav {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.iconGroup {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+  cursor: pointer;
+}
+
+.icon {
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
+
+#navList {
+  text-align: center;
+  margin-top: 13vh;
+}
+
+#navList li {
+  list-style: none;
+  margin-bottom: 10vh;
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+#navList li:last-of-type {
+  margin-bottom: 0;
+}
+
+
+#navList li a {
+  color: black;
+  text-decoration: none;
+}
+
+.current {
+  text-decoration: underline;
+}
