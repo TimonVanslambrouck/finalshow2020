@@ -1,69 +1,67 @@
-.fade {
-  opacity: 0.75;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 12px;
-}
-
-.cluster {
-  display: inline-block;
-  color: white;
-}
-
-.cluster:hover {
-  cursor: pointer;
-}
-
-#clusters {
-  text-align: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
-}
-
-.center {
-  font-size: 16px;
-  font-weight: bold;
-  border-bottom: 2px white solid;
-}
-
-#title {
-  font-size: 25px;
-  color: white;
-  font-weight: 900;
-  padding-top: 15px;
-}
-
+//HEADER
 .centerText {
   display: inline-block;
   text-align: center;
   width: 100%;
+  margin-top: 10px;
+
+  .title {
+    font-size: 25px;
+    color: white;
+    font-weight: 900;
+    padding-top: 15px;
+  }
 }
 
-#back {
+//CLUSTER NAVIGATION
+.clusters-container {
+  display: flex;
+  box-sizing: border-box;
+  padding: 20px 15px;
+  justify-content: space-evenly;
+
+  .cluster {
+    display: inline-block;
+    color: white;
+    font-size: 15px;
+  }
+
+  .cluster:hover {
+    cursor: pointer;
+  }
+
+  .fade {
+    opacity: 0.65;
+  }
+
+  .center {
+    border-bottom: 2px white solid;
+  }
+}
+
+//BACK BUTTON
+.back {
   display: none;
+  position: absolute;
+  top: 3.7%;
+  align-self: center;
+
+  span .back-icon {
+    stroke: white;
+    stroke-width: 2px;
+  }
+
+  .back-text {
+    display: inline-block;
+    font-size: 16px;
+    color: white;
+    align-items: center;
+    margin-left: 5px;
+  }
 }
 
-#back h3 {
-  display: inline-block;
-  font-size: 16px;
-  color: white;
-  align-items: center;
-  margin-left: 5px;
-}
 
-#back span {
-  display: inline-block;
-}
-
-#back span svg {
-  stroke: white;
-  stroke-width: 2px;
-}
 
 a:hover {
   cursor: pointer;
-}
-
-.image {
-  display: none !important;
 }

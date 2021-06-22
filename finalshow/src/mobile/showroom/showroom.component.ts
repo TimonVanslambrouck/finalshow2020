@@ -36,22 +36,26 @@ export class ShowroomComponent implements OnInit {
 
       switch(project.cluster){
         case "web":
-        this.web += `<div class="card">
-          <img src="${project.images}" class="image" alt="...">
-          <div class="card-body">
-            <h2 class="card-title">${project.name}</h2>
-            <a class="btn">See Project</a>
-            <h3 class="card-subtitle">${project.username}</h3>
-            <p class="card-text">${project.description}</p>
-            <div class="more">
-            <div hidden>${project.email}</div>
-            </div>  
-          </div>
+        this.web += `
+          <div class="card">
+            <div class="card-image-container">
+              <img src="${project.images}" class="card-image" alt="...">
+            </div>
+            <div class="card-body">
+              <div class="card-body-info">
+                <h2 class="card-title">${project.name}</h2>
+                <h3 class="card-subtitle">${project.username}</h3>
+              </div>
+              <div class="card-body-more">
+                <a class="card-btn">BEKIJK PROJECT</a>
+                <div hidden>${project.email}</div>
+              </div>
+            </div>
           </div>`
         break;
         case "motion":
         this.motion +=`<div class="card">
-          <img src="${project.images}" class="image" alt="...">
+          <img src="${project.images}" class="card-image" alt="...">
           <div class="card-body">
             <h2 class="card-title">${project.name}</h2>
             <a class="btn">See Project</a>
@@ -65,7 +69,7 @@ export class ShowroomComponent implements OnInit {
         break;
         case "ar":
         this.ar +=`<div class="card">
-          <img src="${project.images}" class="image" alt="...">
+          <img src="${project.images}" class="card-image" alt="...">
           <div class="card-body">
             <h2 class="card-title">${project.name}</h2>
             <a class="btn">See Project</a>
@@ -79,7 +83,7 @@ export class ShowroomComponent implements OnInit {
         break;
         case "digital-making":
         this.digital_making +=`<div class="card">
-          <img src="${project.images}" class="image" alt="...">
+          <img src="${project.images}" class="card-image" alt="...">
           <div class="card-body">
             <h2 class="card-title">${project.name}</h2>
             <a class="btn">See Project</a>
@@ -93,7 +97,7 @@ export class ShowroomComponent implements OnInit {
         break;
         case "mobile":
         this.mobile +=`<div class="card">
-          <img src="${project.images}" class="image" alt="...">
+          <img src="${project.images}" class="card-image" alt="...">
           <div class="card-body">  
             <h2 class="card-title">${project.name}</h2>
             <a class="btn">See Project</a>
@@ -152,8 +156,7 @@ export class ShowroomComponent implements OnInit {
 
   addEventListeners(){
 
-    const buttons=document.getElementsByClassName("btn");
-
+    const buttons=document.getElementsByClassName("card-btn");
 
       setTimeout(() => {
         for(let i=0;i<buttons.length;i++){
@@ -166,14 +169,13 @@ export class ShowroomComponent implements OnInit {
   page(event:any){
 
     let htmlString="";
-    let clusters=document.getElementById("clusters");
+    let clusters=document.getElementById("clusters-container");
 
     console.log(event.path);
 
-    document.getElementById("clusters")!.style.display="none";
+    clusters!.style.display="none";
     document.getElementById("showcase")!.style.display="none";
-    document.getElementById("back")!.style.display="inline-block";
-    document.getElementById("titleDiv")!.style.width="67.5%";
+    document.getElementById("back")!.style.display="flex";
 
     htmlString+=`<div class="cardDetail">
     <img src="${event.path[2].children[0].attributes[0].nodeValue}" class="image" alt="...">

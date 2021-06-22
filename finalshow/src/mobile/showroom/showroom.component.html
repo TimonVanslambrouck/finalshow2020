@@ -3,17 +3,18 @@
   <app-background></app-background>
   <app-menu></app-menu>
 
-  <div id="back" (click)="back()">
-    <span><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+  <div id="back" class="back" (click)="back()">
+    <span><svg class="back-icon" width="15" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd"
+        clip-rule="evenodd">
         <path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg></span>
-    <h3>Back</h3>
+    <h3 class="back-text">Terug</h3>
   </div>
   <div class="centerText" id="titleDiv">
-    <h2 id="title">Showroom</h2>
+    <h2 id="title" class="title">SHOWROOM</h2>
   </div>
 
 
-  <div id="clusters">
+  <div id="clusters-container" class="clusters-container">
     <div class="cluster fade" id="ar" (click)="clusters($event)">
       AR
     </div>
@@ -24,7 +25,7 @@
       WEB
     </div>
     <div class="cluster fade" id="digital-making" (click)="clusters($event)">
-      DIGITAL-MAKING
+      DIGITAL MAKING
     </div>
     <div class="cluster fade" id="mobile" (click)="clusters($event)">
       MOBILE
