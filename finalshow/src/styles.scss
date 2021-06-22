@@ -112,12 +112,16 @@ canvas {
   font-size:25px;
   font-weight:900;
   margin-bottom:10px;
+  margin-left:10px;
+  color:white;
 }
 
 .detailSubtitle{
+  margin-left:10px;
   margin-bottom:10px;
   font-size:14px;
   font-weight:400;
+  color:white;
 }
 
 .card-body{
@@ -126,25 +130,38 @@ canvas {
 
 
 .mail{
-  text-align:center;
+  text-align:left;
   margin-right:5%;
   margin-left:5%;
-
 }
 
+.cardDetail{
+  display:flex;
+  flex-direction: column;
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:15px;
+  margin-right:15px;
+  background:none;
+  padding-bottom:20px;
+  border-radius:3px;
+}
+
+
+
 .mail #contact svg{
-  stroke:#3AC5FB;
-  fill:#3AC5FB;
+  stroke:#B89CE0;
+  fill:#B89CE0;
   width:24px;
   height:20px;
   margin-right:5px;
 }
 
 #contact{
-  border:2px #3AC5FB solid;
+  border:2px #B89CE0 solid;
   border-radius:3px;
   padding:8px;
-  color:#3AC5FB;
+  color:#B89CE0;
   background-color:white;
   text-decoration:none;
 }
