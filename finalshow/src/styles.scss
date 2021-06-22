@@ -58,16 +58,10 @@ canvas {
 }
 
 .card-subtitle{
-  display:inline-block;
   margin-top:10px;
-  margin-bottom:10px;
   font-size:12px;
 }
 
-.line{
-  font-size:18px;
-  margin-left:5px;
-}
 
 // https://stackoverflow.com/questions/37316308/using-html-css-to-limit-the-length-of-the-sentences
 
@@ -79,6 +73,7 @@ canvas {
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   text-align:left;
+  display:none;
 }
 
 .card{
@@ -99,11 +94,13 @@ canvas {
 }
 
 .btn{
+  display:inline-block;
   text-decoration:none;
   border:2px #3AC5FB solid;
   border-radius:3px;
-  padding:8px;
-  color:#3AC5FB
+  padding:5px;
+  color:#3AC5FB;
+  font-size: 12px;
 }
 
 .btn:visited{
@@ -124,7 +121,7 @@ canvas {
 }
 
 .card-body{
-  text-align:center;
+  text-align:left;
 }
 
 
