@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./livestream.component.scss']
 })
 export class LivestreamComponent implements OnInit {
-  checkedInput!: String;
+  checkedInput: String = 'Start Livestream';
 
   constructor() { }
 
