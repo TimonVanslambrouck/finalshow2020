@@ -7,6 +7,7 @@ import { BackgroundComponent } from './background/background.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { MenuComponent } from './menu/menu.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -17,7 +18,8 @@ import { PreloaderComponent } from './preloader/preloader.component';
     BackgroundComponent,
     LivestreamComponent,
     MenuComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
