@@ -20,11 +20,13 @@ export class FaqComponent implements OnInit {
       description: 'Een stabiele internetconnectie is nodig om de livestream vloeiend te kunnen bekijken. Sluit ook onnodige openstaande tabs af, dit kan uw toestel en dus de stream vertragen.'
     },
     {
-      title: 'Ik zou meer willen weten over de opleiding.',
-      description: 'Meer info hierover kan je op onze website vinden.'},
+      title: 'Waar vind ik meer info over de opleiding?',
+      description: 'Meer info hierover kan je op de website van EHB vinden.'
+    },
     {
-      title: 'Hoe kan ik contact maken met de school?',
-      description: 'Meer info hierover kan je op onze website vinden.'}]
+      title: 'Hoe kan ik de school contacteren?',
+      description: 'Meer info hierover kan je op de website van EHB vinden.'
+    }]
   
 
   constructor() { }
