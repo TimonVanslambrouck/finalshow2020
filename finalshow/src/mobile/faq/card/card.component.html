@@ -1,0 +1,10 @@
+<div class="card">
+  <div (click)="ShowHideCard()" [className]="showCard ? 'titleCardOpen' : 'titleCard'">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+  <div *ngIf="showCard" class="descriptionCard">
+    <p>{{description}}</p>
+  </div>
+</div>

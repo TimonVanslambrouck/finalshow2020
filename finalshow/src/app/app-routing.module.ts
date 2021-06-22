@@ -1,3 +1,4 @@
+import { FaqComponent } from './../mobile/faq/faq.component';
 // https://betterprogramming.pub/creating-angular-webapp-for-multiple-views-and-screen-sizes-50fe8a83c433
 
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ const mobile_routes: Routes = [
   { path: '', component: PreloaderComponent },
   { path: 'livestream', component: MobileComponent },
   { path: 'showroom', component: ShowroomComponent },
+  { path: 'faq', component: FaqComponent }
 ];
 
 @NgModule({
