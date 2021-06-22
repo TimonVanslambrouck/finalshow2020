@@ -1,3 +1,4 @@
+import { FaqComponent } from './../mobile/faq/faq.component';
 // https://betterprogramming.pub/creating-angular-webapp-for-multiple-views-and-screen-sizes-50fe8a83c433
 
 import { NgModule } from '@angular/core';
@@ -9,6 +10,7 @@ import { MobileComponent } from 'src/mobile/mobile.component';
 import { ApplicationStateService } from './application-state.service';
 import { LivestreamComponent } from 'src/mobile/livestream/livestream.component';
 import { ShowroomComponent } from 'src/mobile/showroom/showroom.component';
+import { PreloaderComponent } from 'src/mobile/preloader/preloader.component';
 
 const desktop_routes: Routes = [
   { path: '', component: AnimationComponent },
@@ -17,8 +19,10 @@ const desktop_routes: Routes = [
 ];
 
 const mobile_routes: Routes = [
-  { path: '', component: MobileComponent },
+  { path: '', component: PreloaderComponent },
+  { path: 'livestream', component: MobileComponent },
   { path: 'showroom', component: ShowroomComponent },
+  { path: 'faq', component: FaqComponent }
 ];
 
 @NgModule({
