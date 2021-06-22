@@ -1,22 +1,24 @@
 <nav>
-  <div class="iconGroup" (click)="showOrHideMenu()">
+  <div class="iconGroup" *ngIf="!isActive" (click)="showOrHideMenu()">
     <div class="icon"></div>
     <div class="icon"></div>
     <div class="icon"></div>
   </div>
+  <div class="iconGroup2" *ngIf="isActive" (click)="showOrHideMenu()">
+    <img src="../../assets/images/cross.svg" alt="">
+  </div>
   <div *ngIf="isActive" class="navigation">
+    <app-background></app-background>
+    <div class="background"></div>
     <ul id="navList">
-      <li [className]="currentPage == 'Home' ? 'current' : 'normal'">
-        <a [routerLink]="['/']">Home</a>
-      </li>
       <li [className]="currentPage == 'Livestream' ? 'current' : 'normal'">
         <a [routerLink]="['/']">Livestream</a>
       </li>
       <li [className]="currentPage == 'FAQ' ? 'current' : 'normal'">
         <a [routerLink]="['/faq']">FAQ</a>
       </li>
-      <li [className]="currentPage == 'ShowcaseRoom' ? 'current' : 'normal'">
-        <a [routerLink]="['/showcase']">Showcase Room</a>
+      <li [className]="currentPage == 'Showroom' ? 'current' : 'normal'">
+        <a [routerLink]="['/showcase']">Showroom</a>
       </li>
     </ul>
   </div>
