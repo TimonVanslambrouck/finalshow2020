@@ -7,6 +7,11 @@
 
 .cluster {
   display: inline-block;
+  color:white;
+}
+
+.cluster:hover{
+  cursor: pointer;
 }
 
 #clusters {
@@ -18,6 +23,7 @@
 .center {
   font-size: 16px;
   font-weight: bold;
+  border-bottom: 2px white solid;
 }
 
 #title{
@@ -52,6 +58,10 @@
 #back span svg{
   stroke:white;
   stroke-width:2px;
+}
+
+a:hover{
+  cursor:pointer;
 }
 
 
