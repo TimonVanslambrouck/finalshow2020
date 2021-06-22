@@ -6,6 +6,10 @@ import { ShowroomComponent } from './showroom/showroom.component';
 import { BackgroundComponent } from './background/background.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { MenuComponent } from './menu/menu.component';
+import { PreloaderComponent } from './preloader/preloader.component';
+import { FaqComponent } from './faq/faq.component';
+import { CardComponent } from './faq/card/card.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -15,7 +19,11 @@ import { MenuComponent } from './menu/menu.component';
     ShowroomComponent,
     BackgroundComponent,
     LivestreamComponent,
-    MenuComponent
+    MenuComponent,
+    PreloaderComponent,
+    FaqComponent,
+    CardComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

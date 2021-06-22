@@ -1,16 +1,17 @@
 .background {
-    background: linear-gradient(180deg, rgba(0, 185, 255, 1) 0%, rgba(204, 230, 244, 1) 100%);
-    position:fixed;
-    z-index:-2;
-    width:100vw;
-    height:100vh;
-    overflow:hidden;
-  }
-  
-  .backgroundImg {
-    position: fixed;
-    width: 200vw;
-    height:auto;
-    z-index: -1;
-    margin-left:-50vw;
-  }
+  background: linear-gradient(180deg, rgba(0, 185, 255, 1) 0%, rgba(204, 230, 244, 1) 100%);
+  position: fixed;
+  z-index: -3;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.backgroundImg {
+  position: fixed;
+  width: 240vw;
+  height: auto;
+  z-index: -1;
+  margin-left: -90vw;
+  margin-top: -25vh;
+}
