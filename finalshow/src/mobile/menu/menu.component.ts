@@ -19,8 +19,8 @@ export class MenuComponent implements OnInit {
       this.currentPage = "Livestream";
     } else if (this.router.url === '/faq') {
       this.currentPage = "FAQ";
-    } else if (this.router.url === '/showcase') {
-      this.currentPage = "ShowcaseRoom";
+    } else if (this.router.url === '/showroom') {
+      this.currentPage = "Showroom";
     } 
   }
 

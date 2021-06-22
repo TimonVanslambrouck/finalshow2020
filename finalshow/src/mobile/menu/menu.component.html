@@ -6,17 +6,14 @@
   </div>
   <div *ngIf="isActive" class="navigation">
     <ul id="navList">
-      <li [className]="currentPage == 'Home' ? 'current' : 'normal'">
-        <a [routerLink]="['/']">Home</a>
-      </li>
       <li [className]="currentPage == 'Livestream' ? 'current' : 'normal'">
         <a [routerLink]="['/']">Livestream</a>
       </li>
       <li [className]="currentPage == 'FAQ' ? 'current' : 'normal'">
         <a [routerLink]="['/faq']">FAQ</a>
       </li>
-      <li [className]="currentPage == 'ShowcaseRoom' ? 'current' : 'normal'">
-        <a [routerLink]="['/showcase']">Showcase Room</a>
+      <li [className]="currentPage == 'Showroom' ? 'current' : 'normal'">
+        <a [routerLink]="['/showroom']">Showroom/a>
       </li>
     </ul>
   </div>
