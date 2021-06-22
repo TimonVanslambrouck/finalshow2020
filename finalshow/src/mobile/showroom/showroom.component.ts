@@ -177,7 +177,7 @@ export class ShowroomComponent implements OnInit {
     document.getElementById("back")!.style.display="inline-block";
     document.getElementById("titleDiv")!.style.width="67.5%";
 
-    htmlString+=`<div class="card">
+    htmlString+=`<div class="cardDetail">
     <img src="${event.path[2].children[0].attributes[0].nodeValue}" class="image" alt="...">
       <div class="card-body">
         <h2 class="detailTitle">${event.path[1].children[0].innerHTML}</h2>
