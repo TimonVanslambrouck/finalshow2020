@@ -1,6 +1,5 @@
 <app-background></app-background>
 <app-menu></app-menu>
 <h1 class="title">FAQ</h1>
-<app-card [title]="'Wat is de Final Show?'"
-  [description]="'De Final Show is een evenement waar eindejaarsstudenten van de opleiding Multimedia & Communicatietechnologie aan de Erasmushogeschool Brussel in de spotlight worden gezet. Hier kunnen ze tonen waar ze de voorbije maanden mee bezig zijn geweest. Dit is ook de ideale gelegenheid om contacten te leggen tussen werkgevers en potentiële werknemers'">
+<app-card *ngFor="let item of faqObject" [title]="item.title" [description]="item.description">
 </app-card>
