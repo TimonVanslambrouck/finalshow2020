@@ -7,12 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LivestreamComponent implements OnInit {
   checkedInput: String = 'Start Livestream';
+  clickSwitch: boolean = true;
+
+  checkedStyle: any = {
+    "background-color": "#B89CE0",
+    "color": "#000",
+  }
+
+  checkedMarginStyle: any = {
+    "padding-top": "10px",
+  }
+
 
   constructor() { }
 
   onChange(value:any) {
-    console.log(value);
+    this.clickSwitch = true;
     this.checkedInput = value;
+  }
+
+  onClick(value:any) {
+    if(this.clickSwitch) this.checkedInput = '';
+    else this.checkedInput = value;
+    this.clickSwitch = !this.clickSwitch
   }
 
   timeCheck() {
