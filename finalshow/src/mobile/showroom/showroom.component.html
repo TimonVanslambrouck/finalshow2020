@@ -1,36 +1,35 @@
 <app-menu></app-menu>
 <div>
-    <app-background></app-background>
-    <app-menu></app-menu>
-    
-        <div id="back" (click)="back()">
-            <span><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/></svg></span>
-            <h3>Back</h3>
-        </div>
-        <div class="centerText" id="titleDiv">
-            <h2 id="title">Showroom</h2>
-        </div>
+  <app-background></app-background>
+  <app-menu></app-menu>
 
-    
-    <div id="clusters">
-        <div class="cluster fade" id="ar" (click)="clusters($event)">
-            AR
-        </div>
-        <div class="cluster fade" id="motion" (click)="clusters($event)">
-            MOTION
-        </div>
-        <div class="cluster center" id="web" (click)="clusters($event)">
-            WEB
-        </div>
-        <div class="cluster fade" id="digital-making" (click)="clusters($event)">
-            DIGITAL-MAKING
-        </div>
-        <div class="cluster fade" id="mobile" (click)="clusters($event)">
-            MOBILE
-        </div>
+  <div id="back" (click)="back()">
+    <span><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+        <path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z" /></svg></span>
+    <h3>Back</h3>
+  </div>
+  <div class="centerText" id="titleDiv">
+    <h2 id="title">Showroom</h2>
+  </div>
+
+
+  <div id="clusters">
+    <div class="cluster fade" id="ar" (click)="clusters($event)">
+      AR
     </div>
-    <div [innerHTML]="web" id="showcase">
+    <div class="cluster fade" id="motion" (click)="clusters($event)">
+      MOTION
     </div>
+    <div class="cluster center" id="web" (click)="clusters($event)">
+      WEB
+    </div>
+    <div class="cluster fade" id="digital-making" (click)="clusters($event)">
+      DIGITAL-MAKING
+    </div>
+    <div class="cluster fade" id="mobile" (click)="clusters($event)">
+      MOBILE
+    </div>
+  </div>
+  <div [innerHTML]="web" id="showcase">
+  </div>
 </div>
-
-

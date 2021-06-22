@@ -17,11 +17,9 @@ export class ShowroomComponent implements OnInit {
 
   async fetchProjects(){
 
-    const response=await fetch("https://finalshowcase.herokuapp.com/final-work/get-all");
-
-    const responseJson=await response.json();
-
-    return responseJson;
+    const req = await fetch("https://finalshowcase.herokuapp.com/final-work/get-all");
+    const res = await req.json();
+    return res;
 
   }
 

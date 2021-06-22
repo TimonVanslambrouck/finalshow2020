@@ -9,7 +9,7 @@ body {
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Manrope','sans-serif';
+  font-family: 'Manrope', 'sans-serif';
 }
 
 canvas {
@@ -36,117 +36,118 @@ canvas {
 
 // Showroom CSS
 
-.image{
-  width:auto;
-  height:auto;
-}
 
-.card-title,.card-subtitle,.card-text,.btn{
-  margin-left:10px;
+
+.card-title,
+.card-subtitle,
+.card-text,
+.btn {
+  margin-left: 10px;
   line-height: 1.5;
-  margin-right:10px;
+  margin-right: 10px;
 }
 
-.card-title,.card-subtitle{
-  color:#3AC5FB;
+.card-title,
+.card-subtitle {
+  color: #3AC5FB;
 }
 
-.card-title{
-  display:inline-block;
-  margin-top:10px;
-  font-size:15px;
+.card-title {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 15px;
 }
 
-.card-subtitle{
-  margin-top:10px;
-  font-size:12px;
+.card-subtitle {
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 
 // https://stackoverflow.com/questions/37316308/using-html-css-to-limit-the-length-of-the-sentences
 
-.card-text{
-  margin-bottom:20px;
-  overflow : hidden;
+.card-text {
+  margin-bottom: 20px;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
-  text-align:left;
-  display:none;
+  text-align: left;
+  display: none;
 }
 
-.card{
-  display:flex;
+.card {
+  display: flex;
   flex-direction: column;
-  margin-top:20px;
-  margin-bottom:20px;
-  margin-left:15px;
-  margin-right:15px;
-  background:white;
-  padding-bottom:20px;
-  border-radius:3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  background: white;
+  padding-bottom: 20px;
+  border-radius: 3px;
   box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: 0.16);
 }
 
-.more{
-  text-align:center;
+.more {
+  text-align: center;
 }
 
-.btn{
-  display:inline-block;
-  text-decoration:none;
-  border:2px #3AC5FB solid;
-  border-radius:3px;
-  padding:5px;
-  color:#3AC5FB;
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  border: 2px #3AC5FB solid;
+  border-radius: 3px;
+  padding: 5px;
+  color: #3AC5FB;
   font-size: 12px;
 }
 
-.btn:visited{
-  color:#3AC5FB;
+.btn:visited {
+  color: #3AC5FB;
 }
 
-.detailTitle{
-  margin-top:10px;
-  font-size:25px;
-  font-weight:900;
-  margin-bottom:10px;
+.detailTitle {
+  margin-top: 10px;
+  font-size: 25px;
+  font-weight: 900;
+  margin-bottom: 10px;
 }
 
-.detailSubtitle{
-  margin-bottom:10px;
-  font-size:14px;
-  font-weight:400;
+.detailSubtitle {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.card-body{
-  text-align:left;
+.card-body {
+  text-align: left;
 }
 
 
-.mail{
-  text-align:center;
-  margin-right:5%;
-  margin-left:5%;
+.mail {
+  text-align: center;
+  margin-right: 5%;
+  margin-left: 5%;
 
 }
 
-.mail #contact svg{
-  stroke:#3AC5FB;
-  fill:#3AC5FB;
-  width:24px;
-  height:20px;
-  margin-right:5px;
+.mail #contact svg {
+  stroke: #3AC5FB;
+  fill: #3AC5FB;
+  width: 24px;
+  height: 20px;
+  margin-right: 5px;
 }
 
-#contact{
-  border:2px #3AC5FB solid;
-  border-radius:3px;
-  padding:8px;
-  color:#3AC5FB;
-  background-color:white;
-  text-decoration:none;
+#contact {
+  border: 2px #3AC5FB solid;
+  border-radius: 3px;
+  padding: 8px;
+  color: #3AC5FB;
+  background-color: white;
+  text-decoration: none;
 }
 
 
@@ -157,4 +158,3 @@ canvas {
 /* Importing Bootstrap SCSS file. */
 
 //@import '~bootstrap/scss/bootstrap';
-
