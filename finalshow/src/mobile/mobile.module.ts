@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { FaqComponent } from './faq/faq.component';
 import { CardComponent } from './faq/card/card.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -21,7 +22,8 @@ import { CardComponent } from './faq/card/card.component';
     MenuComponent,
     PreloaderComponent,
     FaqComponent,
-    CardComponent
+    CardComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
