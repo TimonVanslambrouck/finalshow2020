@@ -12,12 +12,11 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.router.url)
-    if (this.router.url === '/') {
+    if (this.router.url === '/livestream') {
       this.currentPage = "Livestream";
     } else if (this.router.url === '/faq') {
       this.currentPage = "FAQ";
-    } else if (this.router.url === '/showcase') {
+    } else if (this.router.url === '/showroom') {
       this.currentPage = "Showroom";
     } 
   }

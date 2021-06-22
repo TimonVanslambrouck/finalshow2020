@@ -12,13 +12,16 @@
     <div class="background"></div>
     <ul id="navList">
       <li [className]="currentPage == 'Livestream' ? 'current' : 'normal'">
-        <a [routerLink]="['/']">Livestream</a>
+        <a [routerLink]="['/livestream']">Livestream</a>
+      </li>
+      <li [className]="currentPage == 'Showcase Room' ? 'current' : 'normal'">
+        <a [routerLink]="['/showcase']">Showcase Room</a>
       </li>
       <li [className]="currentPage == 'FAQ' ? 'current' : 'normal'">
         <a [routerLink]="['/faq']">FAQ</a>
       </li>
       <li [className]="currentPage == 'Showroom' ? 'current' : 'normal'">
-        <a [routerLink]="['/showcase']">Showroom</a>
+        <a [routerLink]="['/showroom']">Showroom</a>
       </li>
     </ul>
   </div>
