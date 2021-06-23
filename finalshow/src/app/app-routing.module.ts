@@ -11,10 +11,12 @@ import { ApplicationStateService } from './application-state.service';
 import { LivestreamComponent } from 'src/mobile/livestream/livestream.component';
 import { ShowroomComponent } from 'src/mobile/showroom/showroom.component';
 import { PreloaderComponent } from 'src/mobile/preloader/preloader.component';
+import { NoWebglComponent } from 'src/no-webgl/no-webgl.component';
 
 const desktop_routes: Routes = [
   { path: '', component: AnimationComponent },
   { path: 'hub', component: HubComponent },
+  { path: 'no-webgl', component: NoWebglComponent },
 ];
 
 const mobile_routes: Routes = [

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  height: 4000px;
+  height: 21000px;
 }
 
 
@@ -31,7 +31,8 @@ body {
 }
 
 #beginscroll {
-  margin-top: 50px;
+  position: absolute;
+  top: 65vh;
 }
 
 /*-------------------------------------
@@ -39,17 +40,16 @@ body {
   -------------------------------------*/
 
 #logoDiv {
-  margin-top: 20vh;
+  margin-top: 5vh;
   overflow: hidden;
   padding: 5vh;
   box-sizing: border-box;
-
+  padding-bottom: 3vh;
 }
 
 #logo {
-  width: 70vw;
-  max-width: 350px;
-  width: 100%;
+  width: 22vw;
+  max-width: 400px;
   margin: auto;
 }
 
@@ -62,7 +62,7 @@ body {
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 1.8vw;
   font-weight: 500;
   width: 100%;
   margin: auto;
@@ -122,8 +122,7 @@ footer {
   width: 40px;
   height: 70px;
   margin-left: -20px;
-  top: 83%;
-  margin-top: -35px;
+  top: 74vh;
   box-shadow: inset 0 0 0 1px #fff;
   border-radius: 25px;
 }
@@ -154,16 +153,21 @@ footer {
 
 }
 
-
-
 .skip {
-  width: 10%;
+  width: 12%;
   position: absolute;
-  left: 45%;
-  top: 90vh;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 88vh;
   text-align: center;
   color: #fff;
   border-radius: 5px;
   border: 1px solid white;
   padding: 5px;
+}
+
+.no-webgl {
+  width: 14%;
+  top: 15px;
+  left: 8.4vw;
 }

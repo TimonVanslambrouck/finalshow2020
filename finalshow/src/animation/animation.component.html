@@ -1,23 +1,23 @@
 <body (window:resize)="onResizeWindow($event)">
-<!-- <div class="bg_img"></div> -->
-<div class="innerbody" id="innerbody">
-  <div id="tsparticles"></div>
-  <div id="logoDiv">
+  <!-- <div class="bg_img"></div> -->
+  <div class="innerbody" id="innerbody">
+    <div id="tsparticles"></div>
+    <a routerLink="/no-webgl" class="skip no-webgl">Klik hier indien u geen 3D-ervaring wenst</a>
+    <div id="logoDiv">
       <img data-tilt id="logo" src="../assets/images/logofinalshow.png" alt="EhackB v7 logo">
-  </div>
-  <div id="contentDiv">
+    </div>
+    <div id="contentDiv">
       <h2>25 juni - 18:00 uur</h2>
       <app-countdown-timer></app-countdown-timer>
-      <h2 id="beginscroll">Scroll to begin</h2>
+      <h2 id="beginscroll">Scroll to take off</h2>
       <div class="icon-scroll"></div>
       <a routerLink="/hub" class="skip">skip scroll animation</a>
-  </div>
-  <footer>
-      <p class="copyright">© Erasmushogeschool Brussel - <a href="https://www.ehb.be"
-              target="_blank">www.ehb.be</a>
+    </div>
+    <footer>
+      <p class="copyright">© Erasmushogeschool Brussel - <a href="https://www.ehb.be" target="_blank">www.ehb.be</a>
       </p>
-  </footer>
-</div>
-<app-loading></app-loading>
-<div id="renderContainer"></div>
+    </footer>
+  </div>
+  <app-loading></app-loading>
+  <div id="renderContainer"></div>
 </body>
