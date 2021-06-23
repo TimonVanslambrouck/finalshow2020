@@ -13,7 +13,7 @@ export class FaqComponent implements OnInit {
     },
     {
       title: 'Hoe zal de Final Show doorgaan?',
-      description: 'Dit jaar zal de Final Show te zien zijn via een livestream. De livestream kan je bekijken zonder een account aan te maken. Enkel wanneer je wilt chatten zullen we je vragen om snel een account aan te maken.'
+      description: 'Dit jaar zal de Final Show te zien zijn via een livestream. De livestream kan je bekijken zonder een account aan te maken.'
     },
     {
       title: 'Waarom hapert de livestream?',
