@@ -22,7 +22,6 @@ export class HubComponent implements OnInit {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 6000 );
   renderer = new THREE.WebGLRenderer({antialias:true});
-  fontLoader=new THREE.FontLoader();
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
   mouse = new THREE.Vector2();
   skyBox=new SkyboxComponent();
