@@ -68,13 +68,15 @@ export class HubComponent implements OnInit {
         console.log(intersect.object.name)
       }
       if(intersect.object.name ==="Youtube"){
-        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
-      }
-      if(intersect.object.name ==="FAQ"){
+        //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
         console.log(document.getElementById("showPopup"));
-        //window.open("https://www.erasmushogeschool.be/nl/faq")
         document.getElementById("showPopup")!.style.display="block";
         renderer.domElement.style.filter="blur(4px)";
+      }
+      if(intersect.object.name ==="FAQ"){
+
+        //window.open("https://www.erasmushogeschool.be/nl/faq")
+
       }
     })
   }
@@ -127,10 +129,12 @@ render(){
    this.controls.enableZoom = false;
     this.controls.rotateSpeed = 0.5;
     this.camera.position.set(1,0,0);
+    this.controls.minPolarAngle=1.5;
+    this.controls.maxPolarAngle=1.5;
     this.controls.update();
     this.loadTerrain();
     this.render();
-    this.createYoutubeVideo('byO-xihstdw', -53, 4.5, 2, Math.PI/2 );
+    this.createYoutubeVideo('5qap5aO4i9A', -53, 4.5, 2, Math.PI/2 );
     this.manager.onLoad = () => {
       console.log('%cLoading complete!', 'font-weight: bold; color: red;');
       this.lights.addLights(this.scene);
