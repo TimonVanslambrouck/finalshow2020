@@ -53,7 +53,7 @@ export class AnimationComponent implements OnInit {
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.set(0,-160,2000);
+    this.camera.position.set(0,-130,2000);
     this.renderer.domElement.style.filter="blur(4px)";
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -63,8 +63,8 @@ export class AnimationComponent implements OnInit {
   }
 
   loadModels(){
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/RoomProjectsPlatform.glb',"room", 1,[0,0,0],[0,0,0]);
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 2.5,[0,0,0],[0,-20,450],this.render,this.scroll);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/RoomProjectsPlatform.glb',"room", 1,[0,-90,0],[0,20,0]);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 1,[0,-90,0],[0,200,1950],this.render,this.scroll);
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(250, 250, 200, 200));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
