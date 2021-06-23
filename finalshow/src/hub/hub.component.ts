@@ -18,7 +18,7 @@ export class HubComponent implements OnInit {
   manager = new THREE.LoadingManager();
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
-  renderer = new THREE.WebGLRenderer();
+  renderer = new THREE.WebGLRenderer({antialias:true});
   fontLoader=new THREE.FontLoader();
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
   mouse = new THREE.Vector2();
@@ -28,6 +28,11 @@ export class HubComponent implements OnInit {
   renderer2 = new CSS3DRenderer();
   modelLoader=new ModelLoaderService();
   loader=new GLTFLoader(this.manager);
+  rayCaster=new THREE.Raycaster();
+  audio=new Audio();
+  playlist=new Array('../assets/sounds/chill-sakura-hz-no-copyright-music.mp3','../assets/sounds/no-copyright-music-funky-groove-funk-music-by-mokka-groove-with-me.mp3','../assets/sounds/5-minutes-of-silence-with-a-black-background.mp3')
+  POI_image="../assets/images/poi.png";
+  animationLaunch=false;
 
   constructor() { }
 
@@ -47,39 +52,81 @@ export class HubComponent implements OnInit {
     this.camera.updateProjectionMatrix();
   }
 
-  mousePosition( event:any ) {
-    this.mouse = new Vector2(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1);
-  }
-
   loadTerrain(){
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoomPOV.glb","hub",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoom.glb","hub",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/showcaseKader.glb","showcaseKader",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/questionMark.glb","question",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/3D_models/drone/drone.glb","droneShowRoom",1,[0,0,0],[0,0,0]);
   }
 
   interestPoints(event:any){
     console.log(event);
     const renderer=this.renderer;
-    const rayCaster = new THREE.Raycaster();
-    rayCaster.setFromCamera(this.mouse,this.camera);
-    let intersects = rayCaster.intersectObjects(this.scene.children);
+    this.rayCaster.setFromCamera(this.mouse,this.camera);
+    let intersects = this.rayCaster.intersectObjects(this.scene.children);
+    let audio=this.audio;
+    let playlist=this.playlist;
+    let animationLaunch=this.animationLaunch;
     // console.log(intersects);
     intersects.forEach(function(intersect:any){
+      // if(intersect.object.name ==="Youtube"){
+      //   //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
+      //   console.log(document.getElementById("showPopup"));
+      //   document.getElementById("showPopup")!.style.display="block";
+      //   renderer.domElement.style.filter="blur(4px)";
+      // }
       if(intersect.object.type ==='Sprite'){
-        console.log(intersect.object.name)
-      }
-      if(intersect.object.name ==="Youtube"){
-        //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
-        console.log(document.getElementById("showPopup"));
-        document.getElementById("showPopup")!.style.display="block";
-        renderer.domElement.style.filter="blur(4px)";
-      }
+        console.log(intersect.object);
+      }		
       if(intersect.object.name ==="FAQ"){
-
-        //window.open("https://www.erasmushogeschool.be/nl/faq")
-
+        window.open("https://www.erasmushogeschool.be/nl/faq");
       }
-    })
+      if(intersect.object.name ==="Bureau"){
+        window.open("https://www.instagram.com/multimedia.ehb/");
+      }
+      if(intersect.object.name ==="Seads"){
+        window.open("https://seads.network/");
+      }
+      if(intersect.object.name ==="Drone"){
+        window.open("https://www.erasmushogeschool.be/nl/faq");
+      }
+      if(intersect.object.name ==="Showcase"){
+        animationLaunch = true;	
+      }
+      if(intersect.object.name ==="Timetable"){
+        window.open("https://www.erasmushogeschool.be/nl/faq");
+      }
+      if(intersect.object.name ==="Music"){			
+        audio.src = playlist[0];
+        audio.play();
+      }      
+    });  
   }
+
+  POIHover(e:any){
+    let POI_image=this.POI_image
+    this.mouse = new Vector2(( e.clientX / window.innerWidth ) * 2 - 1, -( e.clientY / window.innerHeight ) * 2 + 1);
+    this.rayCaster.setFromCamera(this.mouse,this.camera);
+    let intersects = this.rayCaster.intersectObjects(this.scene.children);
+    
+    intersects.forEach(function(intersect){
+      if(intersect.object.type ==="Sprite"){
+        POI_image = "../assets/images/hoverpoi.png";
+        console.log(POI_image);
+      }
+  });
+}
+
+addPOI(spritePosition:any,spriteName:any,scale:number,size:number){
+    let spriteMap=new THREE.TextureLoader().load(this.POI_image);
+    let spriteMaterial=new THREE.SpriteMaterial({map:spriteMap});
+    let sprite=new THREE.Sprite(spriteMaterial);
+    sprite.name=spriteName;
+    sprite.position.copy(spritePosition.clone().normalize().multiplyScalar(scale));
+    sprite.scale.set(size,size,1);
+    this.scene.add(sprite);
+}
 
 render(){
   this.renderer.setSize( window.innerWidth, window.innerHeight );
@@ -112,10 +159,28 @@ render(){
   }
 
   animate() {
+    let showCaseKader=this.scene.getObjectByName("showCaseKader")!;
     this.animateSky(this.scene);
+    //this.animateQuestion();
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
-   this.renderer2.render( this.cssscene, this.camera );
+    this.renderer2.render( this.cssscene, this.camera );
+
+    if(this.animationLaunch&&showCaseKader.position.z>=-40){
+      showCaseKader.position.z -= 0.5;
+    }
+
+  }
+
+  animateQuestion(){
+    let question=this.scene.getObjectByName("question")!;
+    if(question.position.y==0){
+      question.position.y -= 0.05
+    }
+    else if(question.position.y<=-5){
+      question.position.y += 0.05;
+    }
+
   }
 
   animateSky(scene: THREE.Scene) {
@@ -126,7 +191,8 @@ render(){
   }
 
   ngOnInit() {
-   this.controls.enableZoom = false;
+    console.log(this.scene);
+    this.controls.enableZoom = false;
     this.controls.rotateSpeed = 0.5;
     this.camera.position.set(1,0,0);
     this.controls.minPolarAngle=1.5;
@@ -139,8 +205,13 @@ render(){
       console.log('%cLoading complete!', 'font-weight: bold; color: red;');
       this.lights.addLights(this.scene);
       this.skyBox.skybox(this.scene);
-      this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
-	    this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
+      this.addPOI(new THREE.Vector3(774.7400762274917,326.572099348636,500.7788609564836),'FAQ',50,4);
+	    this.addPOI(new THREE.Vector3(-63.1583917551552,278.7872892268489,953.5996996533731),'Showcase',50,3);
+	    this.addPOI(new THREE.Vector3(810.7430156789031,328.28534619230544,-500.7371110857296),'Timetable',50,4);
+	    this.addPOI(new THREE.Vector3(418.48079552211993,122.81732610080732,895.160534807379),'Seads',50,3);
+	    this.addPOI(new THREE.Vector3(-78.02445049463262,-1.723833538445624,-992.2305753975335),'Bureau',50,3);
+	    this.addPOI(new THREE.Vector3(-132.2745331415347,185.16937094922847,-969.2290074149466),'Music',50,3);
+	    this.addPOI(new THREE.Vector3(997.9876318473309,22.079085278233364,-2.419080501679085),'Drone',50,3);
       this.animate();
     };
   }
