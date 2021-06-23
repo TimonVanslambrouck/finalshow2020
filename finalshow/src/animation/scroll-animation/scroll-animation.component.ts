@@ -22,8 +22,8 @@ export class ScrollAnimationComponent implements OnInit {
         ScrollTrigger.create({
           trigger: renderer.domElement,
           start: "top top",
-          end: "+=8900",
-        // onLeave: loading,
+          end: "+=19700",
+         onLeave: loading,
         });
 
         function loading(){
@@ -43,10 +43,10 @@ export class ScrollAnimationComponent implements OnInit {
         
     let drone = scene.getObjectByName("drone");
 
-    var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
-      y: 3,
+    var drone_anim = this.scroll.scrollAnim(renderer.domElement,1.2, 'top top', '+=16500').to(drone.position, {
+      y: 20,
       x: 0,
-      z: 175,
+      z: 0,
       ease: 'none'
     });
 
@@ -72,8 +72,8 @@ export class ScrollAnimationComponent implements OnInit {
 
     var camera_anim= this.scroll.scrollAnim(renderer.domElement).to(camera.position, {
       x: 0,
-      y: 30,
-      z: 337,
+      y: 25,
+      z: 120,
       ease: 'none'
     });//.to(camera.rotation, { x: 0.2, z: 0, y: 0.5 }, 0)
  /*    .to(camera.position, {
