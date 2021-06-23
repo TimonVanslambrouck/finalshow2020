@@ -54,7 +54,7 @@ export class SkyboxComponent implements OnInit {
     materialArray.forEach(element => {
       element.side = THREE.BackSide;
     });
-    let skyboxGeo = new THREE.BoxGeometry(1000, 1000, 1000);
+    let skyboxGeo = new THREE.BoxGeometry(6000, 6000, 6000);
     let skybox = new THREE.Mesh(skyboxGeo, materialArray);
     skybox.name = "skybox";
     skybox.position.set(0,0,0);

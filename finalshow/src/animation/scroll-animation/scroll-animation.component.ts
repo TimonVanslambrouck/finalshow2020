@@ -22,8 +22,8 @@ export class ScrollAnimationComponent implements OnInit {
         ScrollTrigger.create({
           trigger: renderer.domElement,
           start: "top top",
-          end: "+=2900",
-         onLeave: loading,
+          end: "+=8900",
+        // onLeave: loading,
         });
 
         function loading(){
@@ -44,9 +44,9 @@ export class ScrollAnimationComponent implements OnInit {
     let drone = scene.getObjectByName("drone");
 
     var drone_anim = this.scroll.scrollAnim(renderer.domElement).to(drone.position, {
-      y: 20,
-      x: 5,
-      z: -60,
+      y: 3,
+      x: 0,
+      z: 175,
       ease: 'none'
     });
 
@@ -71,11 +71,11 @@ export class ScrollAnimationComponent implements OnInit {
     gsap.registerPlugin(ScrollTrigger);
 
     var camera_anim= this.scroll.scrollAnim(renderer.domElement).to(camera.position, {
-      x: 90,
-      y: 187,
-      z: 137,
+      x: 0,
+      y: 30,
+      z: 337,
       ease: 'none'
-    }).to(camera.rotation, { x: 0.2, z: 0, y: 0.5 }, 0)
+    });//.to(camera.rotation, { x: 0.2, z: 0, y: 0.5 }, 0)
  /*    .to(camera.position, {
       y: 200,
       duration: 1,
