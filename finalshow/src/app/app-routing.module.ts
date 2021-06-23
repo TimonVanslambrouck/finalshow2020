@@ -15,7 +15,6 @@ import { PreloaderComponent } from 'src/mobile/preloader/preloader.component';
 const desktop_routes: Routes = [
   { path: '', component: AnimationComponent },
   { path: 'hub', component: HubComponent },
-  { path: 'mobile', component: MobileComponent },
 ];
 
 const mobile_routes: Routes = [
