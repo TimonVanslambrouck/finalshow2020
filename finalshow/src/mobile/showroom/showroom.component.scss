@@ -24,6 +24,7 @@ $shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   justify-content: space-evenly;
 
   .cluster {
+    letter-spacing: 1px;
     display: inline-block;
     color: white;
     font-size: 15px;
@@ -39,7 +40,7 @@ $shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
 
   .center {
-    border-bottom: 2px white solid;
+    border-bottom: 2px #2FE6DE solid;
   }
 }
 
