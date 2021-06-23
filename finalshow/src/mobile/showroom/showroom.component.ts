@@ -105,7 +105,7 @@ export class ShowroomComponent implements OnInit {
     console.log(event.path[3].children[0].children[0].innerText)
     const projectTitle : String = event.path[3].children[0].children[0].innerText;
 
-    htmlString+=`<div class="cardDetail">
+    htmlString+=`<div id="cardDetail" class="cardDetail">
     <img src="${"jaa"}" class="image" alt="...">
       <div class="card-body">
         <h2 class="detailTitle">${projectTitle}</h2>
@@ -114,7 +114,7 @@ export class ShowroomComponent implements OnInit {
       </div>
     </div>
 
-    <div class="mail">
+    <div id="mail" class="mail">
       <a href="mailto:${event.path[3].children[1].children[1].innerText}" id="contact">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
       <title>mail2</title>
@@ -129,7 +129,13 @@ export class ShowroomComponent implements OnInit {
   }
 
   back(){
-    window.location.href="./showroom";
+    document.getElementById("clusters-container")!.style.display="flex";
+    document.getElementById("back")!.style.display="none";
+    document.getElementById("showcase")!.style.display="block";
+    document.getElementById('fullText')!.style.overflow="invisible";
+    document.getElementById('fullText')!.style.display="none";
+    document.getElementById('cardDetail')!.style.display="none";
+    document.getElementById('mail')!.style.display="none";
   }
 
   ngOnInit(): void {
