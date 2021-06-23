@@ -67,6 +67,7 @@ canvas {
     box-sizing: border-box;
     padding: 5px 10px 8px;
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(2, 1fr);
     color: #B99CE0;
 
