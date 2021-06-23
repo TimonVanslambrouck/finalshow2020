@@ -40,7 +40,7 @@ export class ShowroomComponent implements OnInit {
             <h3 class="card-subtitle">${project.username}</h3>
           </div>
           <div class="card-body-more">
-            <a class="card-btn">BEKIJK PROJECT</a>
+            <a class="card-btn"><img class="arrow" src="../../assets/images/arrow.svg"></a>
             <div hidden>${project.email}</div>
             <div hidden>${project.description}</div>
           </div>

@@ -21,6 +21,7 @@
   justify-content: space-evenly;
 
   .cluster {
+    letter-spacing: 1px;
     display: inline-block;
     color: white;
     font-size: 15px;
@@ -35,7 +36,7 @@
   }
 
   .center {
-    border-bottom: 2px white solid;
+    border-bottom: 2px #2FE6DE solid;
   }
 }
 
@@ -60,8 +61,6 @@
     margin-left: 5px;
   }
 }
-
-
 
 a:hover {
   cursor: pointer;
