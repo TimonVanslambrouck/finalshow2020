@@ -9,155 +9,81 @@ export class ShowroomComponent implements OnInit {
 
   constructor() { }
 
-  web="";
-  motion="";
-  ar="";
-  digital_making="";
-  mobile="";
+  web = "";
+  motion = "";
+  ar = "";
+  dm = "";
+  mobile = "";
 
   async fetchProjects(){
-
     const req = await fetch("https://finalshowcase.herokuapp.com/final-work/get-all");
     const res = await req.json();
     return res;
-
   }
 
   loadProjects(){
-    this.fetchProjects().then((data:any)=>{
-      console.log(data);
-      this.addProjects(data)
+    this.fetchProjects().then((data : any)=>{
+      this.sortProjects(data)
     });
   }
 
-  addProjects(data:any){
+  sortProjects(data : any){
+    data.forEach((project : any) => {
+      const htmlString : String = `
+      <div class="card">
+        <div class="card-image-container">
+          <img src="${project.images}" class="card-image" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="card-body-info">
+            <h2 class="card-title">${project.name}</h2>
+            <h3 class="card-subtitle">${project.username}</h3>
+          </div>
+          <div class="card-body-more">
+            <a class="card-btn">BEKIJK PROJECT</a>
+            <div hidden>${project.email}</div>
+          </div>
+        </div>
+      </div>`;
 
-    data.forEach((project:any) => {
-
-      switch(project.cluster){
-        case "web":
-        this.web += `
-          <div class="card">
-            <div class="card-image-container">
-              <img src="${project.images}" class="card-image" alt="...">
-            </div>
-            <div class="card-body">
-              <div class="card-body-info">
-                <h2 class="card-title">${project.name}</h2>
-                <h3 class="card-subtitle">${project.username}</h3>
-              </div>
-              <div class="card-body-more">
-                <a class="card-btn">BEKIJK PROJECT</a>
-                <div hidden>${project.email}</div>
-              </div>
-            </div>
-          </div>`
-        break;
-        case "motion":
-        this.motion +=`<div class="card">
-          <img src="${project.images}" class="card-image" alt="...">
-          <div class="card-body">
-            <h2 class="card-title">${project.name}</h2>
-            <a class="btn">See Project</a>
-            <h3 class="card-subtitle">${project.username}</h3>
-            <p class="card-text">${project.description}</p>
-            <div class="more">
-            <div hidden>${project.email}</div>
-            </div>          
-          </div>
-          </div>`
-        break;
-        case "ar":
-        this.ar +=`<div class="card">
-          <img src="${project.images}" class="card-image" alt="...">
-          <div class="card-body">
-            <h2 class="card-title">${project.name}</h2>
-            <a class="btn">See Project</a>
-            <h3 class="card-subtitle">${project.username}</h3>
-            <p class="card-text">${project.description}</p>
-            <div class="more">
-            <div hidden>${project.email}</div>
-            </div>  
-          </div>
-          </div>`
-        break;
-        case "digital-making":
-        this.digital_making +=`<div class="card">
-          <img src="${project.images}" class="card-image" alt="...">
-          <div class="card-body">
-            <h2 class="card-title">${project.name}</h2>
-            <a class="btn">See Project</a>
-            <h3 class="card-subtitle">${project.username}</h3>
-            <p class="card-text">${project.description}</p>
-            <div class="more">
-            <div hidden>${project.email}</div>
-            </div>  
-          </div>
-          </div>`
-        break;
-        case "mobile":
-        this.mobile +=`<div class="card">
-          <img src="${project.images}" class="card-image" alt="...">
-          <div class="card-body">  
-            <h2 class="card-title">${project.name}</h2>
-            <a class="btn">See Project</a>
-            <h3 class="card-subtitle">${project.username}</h3>
-            <p class="card-text">${project.description}</p>
-            <div class="more">            
-            <div hidden>${project.email}</div>
-            </div>  
-          </div>
-          </div>`
-        break;
-      }
-    
+      if (project.cluster == "web")
+        this.web += htmlString;
+      else if (project.cluster == "motion")
+        this.motion += htmlString;
+      else if (project.cluster == "ar")
+        this.ar += htmlString;
+      else if (project.cluster == "digital-making")
+        this.dm += htmlString;
+      else
+        this.mobile += htmlString;    
     });
   }
 
-  clusters(event:any){
-    let idAttr=event.target.attributes.id;
-    let id=idAttr.nodeValue;
-    let showcase=document.getElementById("showcase");
-    let center=document.getElementsByClassName("center");
-    console.log(event.target);
-    console.log(id);
+  clusters(event : any){
+    let id = event.target.attributes.id.nodeValue;
+    let showcase = document.getElementById("showcase");
+    let center = document.getElementsByClassName("center")[0];
+    center.classList.add("fade");
+    center.classList.remove("center");
 
-    switch(id){
-      case "motion":
-        center[0].classList.add("fade");
-        center[0].classList.remove("center");
-        showcase!.innerHTML=this.motion;
-      break;
-      case "web":
-        center[0].classList.add("fade");
-        center[0].classList.remove("center");
-        showcase!.innerHTML=this.web;
-      break;
-      case "mobile":
-        center[0].classList.add("fade");
-        center[0].classList.remove("center");
-        showcase!.innerHTML=this.mobile;
-      break;
-      case "ar":
-        center[0].classList.add("fade");
-        center[0].classList.remove("center");
-        showcase!.innerHTML=this.ar;
-      break;
-      case "digital-making":
-        center[0].classList.add("fade");
-        center[0].classList.remove("center");
-        showcase!.innerHTML=this.digital_making;
-      break;
-    }
+    if (id == "web")
+      showcase!.innerHTML = this.web;
+    else if (id == "motion")
+      showcase!.innerHTML = this.motion;
+    else if (id == "ar")
+      showcase!.innerHTML = this.ar;
+    else if (id == "digital-making")
+      showcase!.innerHTML = this.dm;
+    else
+      showcase!.innerHTML = this.mobile;
+
     event.target.classList.remove("fade");
     event.target.classList.add("center");
-    this.addEventListeners();
   }
 
   addEventListeners(){
 
-    const buttons=document.getElementsByClassName("card-btn");
-
+    const buttons = document.getElementsByClassName("card-btn");
       setTimeout(() => {
         for(let i=0;i<buttons.length;i++){
           buttons[i].addEventListener("click",this.page)
