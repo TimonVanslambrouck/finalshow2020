@@ -4,80 +4,80 @@
 
 <div id="timetable">
     <div class="timeslot">
-        <input type="radio" id="livestream" name="timetable" value="Start Livestream" #livestream (change)="onChange(livestream.value)">
+        <input type="radio" id="livestream" name="timetable" value="Start Livestream" #livestream (change)="onChange(livestream.value)" checked>
         <label for="livestream" (click)="onClick(livestream.value)" [ngStyle]="checkedInput == 'Start Livestream' ? checkedStyle : ''">Start Livestream</label>
         <span class="time">18:00</span>
-        <p *ngIf="checkedInput == 'Start Livestream'" [ngStyle]="checkedInput == 'Start Livestream' ? checkedMarginStyle : ''">Om 18u00 gaat de Final Show van Multimedia & Creative technologies van start!</p><br>
+        <p *ngIf="checkedInput == 'Start Livestream'">Om 18u00 gaat de Final Show van Multimedia & Creative technologies van start!</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="mobile" name="timetable" value="Mobile Appliance" #mobile (change)="onChange(mobile.value)">
         <label for="mobile" (click)="onClick(mobile.value)" [ngStyle]="checkedInput == 'Mobile Appliance' ? checkedStyle : ''">Cluster Mobile Appliance</label>
         <span class="time">18:05</span>
-        <p *ngIf="checkedInput == 'Mobile Appliance'" [ngStyle]="checkedInput == 'Mobile Appliance' ? checkedMarginStyle : ''">De projecten van de studenten Mobile Appliance worden geshowcased!</p><br>
+        <p *ngIf="checkedInput == 'Mobile Appliance'">De projecten van de studenten Mobile Appliance worden geshowcased!</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="reality" name="timetable" value="Alternate Reality" #reality (change)="onChange(reality.value)">
         <label for="reality" (click)="onClick(reality.value)" [ngStyle]="checkedInput == 'Alternate Reality' ? checkedStyle : ''">Cluster Alternate Reality</label>
         <span class="time">18:10</span>
-        <p *ngIf="checkedInput == 'Alternate Reality'" [ngStyle]="checkedInput == 'Alternate Reality' ? checkedMarginStyle : ''">De cluster Alternate Reality neemt ons mee naar de wereld van VR en AR.</p><br>
+        <p *ngIf="checkedInput == 'Alternate Reality'">De cluster Alternate Reality neemt ons mee naar de wereld van VR en AR.</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="seads" name="timetable" value="SEADS" #seads (change)="onChange(seads.value)">
         <label for="seads" (click)="onClick(seads.value)" [ngStyle]="checkedInput == 'SEADS' ? checkedStyle : ''">SEADS</label>
         <span class="time">18:15</span>
-        <p *ngIf="checkedInput == 'SEADS'" [ngStyle]="checkedInput == 'SEADS' ? checkedMarginStyle : ''">Live vanuit Brugge nemen we een kijkje naar het werk van onze ehb-studenten bij SEADS (Space Ecologies Art and Design).</p><br>
+        <p *ngIf="checkedInput == 'SEADS'">Live vanuit Brugge nemen we een kijkje naar het werk van onze ehb-studenten bij SEADS (Space Ecologies Art and Design).</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="web" name="timetable" value="Web" #web (change)="onChange(web.value)">
         <label for="web" (click)="onClick(web.value)" [ngStyle]="checkedInput == 'Web' ? checkedStyle : ''">Cluster Web</label>
         <span class="time">18:25</span>
-        <p *ngIf="checkedInput == 'Web'" [ngStyle]="checkedInput == 'Web' ? checkedMarginStyle : ''">Meer dan gewoon websites. De cluster Web toont de mogelijkheden van webdesign -en development.</p><br>
+        <p *ngIf="checkedInput == 'Web'">Meer dan gewoon websites. De cluster Web toont de mogelijkheden van webdesign -en development.</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="motion" name="timetable" value="Motion" #motion (change)="onChange(motion.value)">
         <label for="motion" (click)="onClick(motion.value)" [ngStyle]="checkedInput == 'Motion' ? checkedStyle : ''">Motion</label>
         <span class="time">18:30</span>
-        <p *ngIf="checkedInput == 'Motion'" [ngStyle]="checkedInput == 'Motion' ? checkedMarginStyle : ''">Geen final show zonder spectaculaire visuals. De cluster Motion weet raad.</p><br>
+        <p *ngIf="checkedInput == 'Motion'">Geen final show zonder spectaculaire visuals. De cluster Motion weet raad.</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="manneken" name="timetable" value="Manneken pis" #manneken (change)="onChange(manneken.value)">
         <label for="manneken" (click)="onClick(manneken.value)" [ngStyle]="checkedInput == 'Manneken pis' ? checkedStyle : ''">Waar is manneken pis?</label>
         <span class="time">18:35</span>
-        <p *ngIf="checkedInput == 'Manneken pis'" [ngStyle]="checkedInput == 'Manneken pis' ? checkedMarginStyle : ''">De conclusie van de epische saga...</p><br>
+        <p *ngIf="checkedInput == 'Manneken pis'">De conclusie van de epische saga...</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="digital" name="timetable" value="Digital Making" #digital (change)="onChange(digital.value)">
         <label for="digital" (click)="onClick(digital.value)" [ngStyle]="checkedInput == 'Digital Making' ? checkedStyle : ''">Cluster Digital Making</label>
         <span class="time">18:40</span>
-        <p *ngIf="checkedInput == 'Digital Making'" [ngStyle]="checkedInput == 'Digital Making' ? checkedMarginStyle : ''">De artistieke kant van de opleiding. De cluster Digital Making.</p><br>
+        <p *ngIf="checkedInput == 'Digital Making'">De artistieke kant van de opleiding. De cluster Digital Making.</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="fresh" name="timetable" value="Fresh Awards" #fresh (change)="onChange(fresh.value)">
         <label for="fresh" (click)="onClick(fresh.value)" [ngStyle]="checkedInput == 'Fresh Awards' ? checkedStyle : ''">Fresh Awards</label>
         <span class="time">18:45</span>
-        <p *ngIf="checkedInput == 'Fresh Awards'" [ngStyle]="checkedInput == 'Fresh Awards' ? checkedMarginStyle : ''">Elk succesverhaal heeft een begin. Een award voor het beste van onze eerstejaars!</p><br>
+        <p *ngIf="checkedInput == 'Fresh Awards'">Elk succesverhaal heeft een begin. Een award voor het beste van onze eerstejaars!</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="jurgen" name="timetable" value="Speech Jurgen Dedeckere" #jurgen (change)="onChange(jurgen.value)">
         <label for="jurgen" (click)="onClick(jurgen.value)" [ngStyle]="checkedInput == 'Speech Jurgen Dedeckere' ? checkedStyle : ''">Speech Jurgen Dedeckere</label>
         <span class="time">18:50</span>
-        <p *ngIf="checkedInput == 'Speech Jurgen Dedeckere'" [ngStyle]="checkedInput == 'Speech Jurgen Dedeckere' ? checkedMarginStyle : ''">Speech door ons opleidingshoofd Jurgen Dedeckere.</p><br>
+        <p *ngIf="checkedInput == 'Speech Jurgen Dedeckere'">Speech door ons opleidingshoofd Jurgen Dedeckere.</p><br>
     </div>
 
     <div class="timeslot">
         <input type="radio" id="super" name="timetable" value="Super Awards" #super (change)="onChange(super.value)">
         <label for="super" (click)="onClick(super.value)" [ngStyle]="checkedInput == 'Super Awards' ? checkedStyle : ''">Super Awards</label>
         <span class="time">18:55</span>
-        <p *ngIf="checkedInput == 'Super Awards'" [ngStyle]="checkedInput == 'Super Awards' ? checkedMarginStyle : ''">Het beste van het beste. Eén project wordt bekroond met de Super Award!</p><br>
+        <p *ngIf="checkedInput == 'Super Awards'">Het beste van het beste. Eén project wordt bekroond met de Super Award!</p><br>
     </div>
 
     <div class="timeslot">

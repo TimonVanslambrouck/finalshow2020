@@ -14,11 +14,6 @@ export class LivestreamComponent implements OnInit {
     "color": "#000",
   }
 
-  checkedMarginStyle: any = {
-    "padding-top": "10px",
-  }
-
-
   constructor() { }
 
   onChange(value:any) {
@@ -29,7 +24,7 @@ export class LivestreamComponent implements OnInit {
   onClick(value:any) {
     if(this.clickSwitch) this.checkedInput = '';
     else this.checkedInput = value;
-    this.clickSwitch = !this.clickSwitch
+    this.clickSwitch = !this.clickSwitch;
   }
 
   timeCheck() {
@@ -37,18 +32,18 @@ export class LivestreamComponent implements OnInit {
     const hour = Number(currentTime.slice(0,2));
     const minutes = Number(currentTime.slice(3,5));
     if(hour == 18) {
-      if(minutes < 55) this.checkedInput = 'Speech Jurgen Dedeckere';
-      if(minutes < 50) this.checkedInput = 'Fresh Awards';
-      if(minutes < 45) this.checkedInput = 'Digital Making';
-      if(minutes < 40) this.checkedInput = 'Manneken pis';
-      if(minutes < 35) this.checkedInput = 'Motion';
-      if(minutes < 30) this.checkedInput = 'Web';
-      if(minutes < 25) this.checkedInput = 'SEADS';
-      if(minutes < 15) this.checkedInput = 'Alternate Reality';
-      if(minutes < 10) this.checkedInput = 'Mobile Appliance';
-      if(minutes < 5) this.checkedInput = 'Start Livestream';
+      if(minutes < 55) this.onChange('Speech Jurgen Dedeckere');
+      if(minutes < 50) this.onChange('Fresh Awards');
+      if(minutes < 45) this.onChange('Digital Making');
+      if(minutes < 40) this.onChange('Manneken pis');
+      if(minutes < 35) this.onChange('Motion');
+      if(minutes < 30) this.onChange('Web');
+      if(minutes < 25) this.onChange('SEADS');
+      if(minutes < 15) this.onChange('Alternate Reality');
+      if(minutes < 10) this.onChange('Mobile Appliance');
+      if(minutes < 5) this.onChange('Start Livestream');
     } else if(hour == 19) {
-      if(minutes < 5) this.checkedInput = 'Super Awards';
+      if(minutes < 5) this.onChange('Super Awards');
     }
   }
 
