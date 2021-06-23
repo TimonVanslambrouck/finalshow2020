@@ -80,12 +80,14 @@ export class ShowroomComponent implements OnInit {
 
     event.target.classList.remove("fade");
     event.target.classList.add("center");
+    this.addEventListeners();
   }
 
   addEventListeners(){
     const buttons = document.getElementsByClassName("card-btn");
       setTimeout(() => {
         for(let i = 0;i < buttons.length;i++){
+          console.log(buttons[i]);
           buttons[i].addEventListener("click", this.page)
         }
       }, 400);
