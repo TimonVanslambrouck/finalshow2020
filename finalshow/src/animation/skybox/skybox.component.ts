@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as THREE from 'three';
+import { BackSide, BoxGeometry, Mesh, MeshBasicMaterial, TextureLoader } from 'three';
 
 @Component({
   selector: 'app-skybox',
@@ -11,7 +11,7 @@ export class SkyboxComponent implements OnInit {
   constructor() { }
 
   skybox(scene:any){
-    let loader = new THREE.TextureLoader;
+    let loader = new TextureLoader;
     let materialArray = [];
     let path = "../assets/images/skyBox/";
     let fileName = "yonder";
@@ -21,41 +21,41 @@ export class SkyboxComponent implements OnInit {
     let texture_dn = loader.load(`${path}${fileName}_dn.jpg`);
     let texture_rt = loader.load(`${path}${fileName}_rt.jpg`);
     let texture_lf = loader.load(`${path}${fileName}_lf.jpg`);
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "front",
       map: texture_ft,
-      side: THREE.BackSide
+      side: BackSide
     }));
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "back",
       map: texture_bk,
-      side: THREE.BackSide
+      side: BackSide
     }));
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "top",
       map: texture_up,
-      side: THREE.BackSide
+      side: BackSide
     }));
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "bottom",
       map: texture_dn,
-      side: THREE.BackSide
+      side: BackSide
     }));
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "right",
       map: texture_rt,
-      side: THREE.BackSide
+      side: BackSide
     }));
-    materialArray.push(new THREE.MeshBasicMaterial({
+    materialArray.push(new MeshBasicMaterial({
       name: "left",
       map: texture_lf,
-      side: THREE.BackSide
+      side: BackSide
     }));
     materialArray.forEach(element => {
-      element.side = THREE.BackSide;
+      element.side = BackSide;
     });
-    let skyboxGeo = new THREE.BoxGeometry(6000, 6000, 6000);
-    let skybox = new THREE.Mesh(skyboxGeo, materialArray);
+    let skyboxGeo = new BoxGeometry(6000, 6000, 6000);
+    let skybox = new Mesh(skyboxGeo, materialArray);
     skybox.name = "skybox";
     skybox.position.set(0,0,0);
     scene.add(skybox);

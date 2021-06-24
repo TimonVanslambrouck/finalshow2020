@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as THREE from 'three';
-import { GuiService } from './gui.service';
+import { Vector3,BufferAttribute,TextureLoader,RepeatWrapping,MeshPhongMaterial,Mesh } from 'three';
 
 @Injectable({
   providedIn: 'root'
@@ -62,7 +61,8 @@ export class ModelLoaderService {
     var geometry = planeGeometry;
 
     const position = geometry.attributes.position;
-    const vector = new THREE.Vector3();
+    console.log(geometry.attributes.position);
+    const vector = new Vector3();
     let positions: any = [];
    
     for ( let i = 0, l = position.count; i < l; i ++ ) {
@@ -73,17 +73,17 @@ export class ModelLoaderService {
         positions.push(vector.z);
     }
     const typedArray = Float32Array.from(positions);
-    geometry.setAttribute('position', new THREE.BufferAttribute(typedArray, 3));
+    geometry.setAttribute('position', new BufferAttribute(typedArray, 3));
 
-    let stone = new THREE.TextureLoader().load(textureFile);
-    stone.wrapS = THREE.RepeatWrapping;
-    stone.wrapT = THREE.RepeatWrapping;
+    let stone = new TextureLoader().load(textureFile);
+    stone.wrapS = RepeatWrapping;
+    stone.wrapT = RepeatWrapping;
     stone.repeat.set(5,5);
-    var material = new THREE.MeshPhongMaterial({
+    var material = new MeshPhongMaterial({
       map: stone
     });
 
-    var plane = new THREE.Mesh(geometry, material);
+    var plane = new Mesh(geometry, material);
     plane.position.setY(-255);
     scene.add(plane);
     plane.scale.set(20,20,20);

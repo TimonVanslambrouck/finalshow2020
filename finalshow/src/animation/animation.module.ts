@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 import { SkyboxComponent } from './skybox/skybox.component';
 import { AnimatedTextComponent } from './animated-text/animated-text.component';
-import { SoundComponent } from './sound/sound.component';
 import { LightComponent } from './light/light.component';
 import { LoadingComponent } from './loading/loading.component';
 
@@ -23,7 +22,6 @@ import { LoadingComponent } from './loading/loading.component';
     CountdownTimerComponent,
     SkyboxComponent,
     AnimatedTextComponent,
-    SoundComponent,
     LightComponent,
     LoadingComponent,
   ]
