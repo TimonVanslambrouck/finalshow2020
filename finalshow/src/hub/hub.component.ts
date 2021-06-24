@@ -7,6 +7,9 @@ import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 import { ModelLoaderService } from 'src/animation/model-loader.service';
+import { LivestreamComponent } from './livestream/livestream.component';
+import { PoiComponent } from './poi/poi.component';
+import { AnimationsComponent } from './animations/animations.component';
 
 @Component({
   selector: 'app-hub',
@@ -17,28 +20,34 @@ export class HubComponent implements OnInit {
   title = 'finalshow';
   manager = new THREE.LoadingManager();
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 2000 );
-  renderer = new THREE.WebGLRenderer();
-  fontLoader=new THREE.FontLoader();
+  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 6000 );
+  renderer = new THREE.WebGLRenderer({antialias:true});
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
   mouse = new THREE.Vector2();
   skyBox=new SkyboxComponent();
   lights=new LightsComponent();
+  livestream=new LivestreamComponent();
   cssscene = new THREE.Scene();
   renderer2 = new CSS3DRenderer();
   modelLoader=new ModelLoaderService();
   loader=new GLTFLoader(this.manager);
+  rayCaster=new THREE.Raycaster();
+  audio=new Audio();
+  poi=new PoiComponent();
+  playlist=new Array('../assets/sounds/chill-sakura-hz-no-copyright-music.mp3','../assets/sounds/no-copyright-music-funky-groove-funk-music-by-mokka-groove-with-me.mp3','../assets/sounds/5-minutes-of-silence-with-a-black-background.mp3');
+  animationLaunch=false;
+  animations=new AnimationsComponent();
 
   constructor() { }
 
-  addTooltip(positionsprite:any,namesprite:any){
-    let spritemap = new THREE.TextureLoader().load( '../assets/HUB/pintrest.png' );
-    let spritematerial = new THREE.SpriteMaterial( { map: spritemap } );
-    let sprite = new THREE.Sprite( spritematerial );
-    sprite.name=namesprite;
-    sprite.position.copy(positionsprite.clone().normalize().multiplyScalar(30));
-    sprite.scale.multiplyScalar(3)
-    this.scene.add( sprite );
+
+  orbitControls(){
+    this.controls.enableZoom = false;
+    this.controls.rotateSpeed = 0.5;
+    this.camera.position.set(1,0,0);
+    this.controls.minPolarAngle=1.5;
+    this.controls.maxPolarAngle=1.5;
+    this.controls.update();
   }
 
   onResize(){
@@ -47,38 +56,30 @@ export class HubComponent implements OnInit {
     this.camera.updateProjectionMatrix();
   }
 
-  mousePosition( event:any ) {
-    this.mouse = new Vector2(( event.clientX / window.innerWidth ) * 2 - 1, -( event.clientY / window.innerHeight ) * 2 + 1);
-  }
-
   loadTerrain(){
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
-    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoomPOV.glb","hub",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoom.glb","hub",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/showcaseKader.glb","showcaseKader",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/questionMark.glb","question",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/3D_models/drone/drone.glb","droneShowRoom",1,[0,0,0],[0,0,0]);
   }
 
   interestPoints(event:any){
-    console.log(event);
-    const renderer=this.renderer;
-    const rayCaster = new THREE.Raycaster();
-    rayCaster.setFromCamera(this.mouse,this.camera);
-    let intersects = rayCaster.intersectObjects(this.scene.children);
-    // console.log(intersects);
-    intersects.forEach(function(intersect:any){
-      if(intersect.object.type ==='Sprite'){
-        console.log(intersect.object.name)
-      }
-      if(intersect.object.name ==="Youtube"){
-        //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
-        console.log(document.getElementById("showPopup"));
-        document.getElementById("showPopup")!.style.display="block";
-        renderer.domElement.style.filter="blur(4px)";
-      }
-      if(intersect.object.name ==="FAQ"){
+      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene);
+  }
 
-        //window.open("https://www.erasmushogeschool.be/nl/faq")
+  POIHover(e:any){
+    this.poi.hover(e,this.mouse,this.rayCaster,this.scene,this.camera);
+  }
 
-      }
-    })
+  addPOIS(){
+    this.poi.addPOI(774.7400762274917,326.572099348636,500.7788609564836,'FAQ',50,4,this.scene);
+    this.poi.addPOI(63.1583917551552,278.7872892268489,953.5996996533731,'Showcase',50,3,this.scene);
+    this.poi.addPOI(810.7430156789031,328.28534619230544,-500.7371110857296,'Timetable',50,4,this.scene);
+    this.poi.addPOI(418.48079552211993,122.81732610080732,895.160534807379,'Seads',50,3,this.scene);
+    this.poi.addPOI(-78.02445049463262,-1.723833538445624,-992.2305753975335,'Bureau',50,3,this.scene);
+    this.poi.addPOI(-132.2745331415347,185.16937094922847,-969.2290074149466,'Music',50,3,this.scene);
+    this.poi.addPOI(997.9876318473309,22.079085278233364,-2.419080501679085,'Drone',50,3,this.scene);
   }
 
 render(){
@@ -91,56 +92,29 @@ render(){
   css.appendChild(this.renderer2.domElement );
 }
 
-  createYoutubeVideo ( id: any, x: any, y: any, z: any, ry: any ) {
-    var div = document.createElement( 'div' );
-    div.style.width = '1028px';
-    div.style.height = '720px';
-    div.style.backgroundColor = '#fff';
-  
-    var iframe = document.createElement( 'iframe' );
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = '0px';
-    iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
-    div.appendChild( iframe );
- 
-    var cssobject = new CSS3DObject( div );
-    cssobject.position.set( x, y, z );
-    cssobject.rotation.y = ry;
-    cssobject.scale.set(0.048, 0.039, 0.045);
-    this.cssscene.add(cssobject);
-  }
-
   animate() {
-    this.animateSky(this.scene);
+    let showCaseKader=this.scene.getObjectByName("showCaseKader")!;
+    this.animations.animateSky(this.scene);
+    //this.animations.animateQuestion(this.scene);
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
-   this.renderer2.render( this.cssscene, this.camera );
-  }
-
-  animateSky(scene: THREE.Scene) {
-    let skybox = scene.getObjectByName("skybox");
-    if (skybox !== undefined) {
-      skybox.rotation.y += 0.0001;
+    this.renderer2.render( this.cssscene, this.camera );
+    if(this.animationLaunch&&showCaseKader.position.z>=-40){
+      showCaseKader.position.z -= 0.5;
     }
   }
 
   ngOnInit() {
-   this.controls.enableZoom = false;
-    this.controls.rotateSpeed = 0.5;
-    this.camera.position.set(1,0,0);
-    this.controls.minPolarAngle=1.5;
-    this.controls.maxPolarAngle=1.5;
-    this.controls.update();
+    console.log(this.scene);
+    this.orbitControls();
     this.loadTerrain();
     this.render();
-    this.createYoutubeVideo('5qap5aO4i9A', -53, 4.5, 2, Math.PI/2 );
+    this.livestream.youtubeStream('5qap5aO4i9A', -53, 4.5, -0.75, Math.PI/2,this.cssscene);
     this.manager.onLoad = () => {
       console.log('%cLoading complete!', 'font-weight: bold; color: red;');
       this.lights.addLights(this.scene);
       this.skyBox.skybox(this.scene);
-      this.addTooltip(new THREE.Vector3(25.212410522229515,161.51335637049593,983.2827550052176),'Youtube')
-	    this.addTooltip(new THREE.Vector3(-975.4083649911996,212.62820916428637,-9.989659863282293),'FAQ')
+      this.addPOIS();
       this.animate();
     };
   }

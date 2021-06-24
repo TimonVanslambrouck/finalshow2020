@@ -53,7 +53,7 @@ export class AnimatedTextComponent implements OnInit {
       textGroup.name = "final show text"
       scene.add(textGroup);
 
-      addText('Web',scene,font,5,black,[-10,-150,1800],[0,0,0]);
+      addText('Web',scene,font,5,black,[-50,-100,300],[0,0,0]);
       addText('Alternate Reality',scene,font,5,black,[50,-50,250],[0,0,0]);
       addText('Mobile Appliance',scene,font,5,black,[-150,50,200],[0,0,0]);
       addText('Interactive Motion',scene,font,5,black,[0,150,100],[0,0,0]);

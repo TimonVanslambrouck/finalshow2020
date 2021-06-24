@@ -9,7 +9,7 @@ import * as THREE from 'three';
 export class LightsComponent implements OnInit {
 
 
-  hlight = new THREE.AmbientLight(0x404040,3);
+  alight = new THREE.AmbientLight(0x404040,3.5);
   dLight = new THREE.DirectionalLight( 0xffffff, 0.1 );
   pLight = new THREE.PointLight(0xc4c4c4,1);
 
@@ -32,7 +32,7 @@ export class LightsComponent implements OnInit {
      scene.add(light3);
      scene.add(light4);
      scene.add(this.dLight);
-    scene.add(this.hlight);
+    scene.add(this.alight);
   }
 
   ngOnInit(): void {
