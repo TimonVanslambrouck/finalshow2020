@@ -89,12 +89,10 @@ export class ShowroomComponent implements OnInit {
             <img class="coverphoto" src="${project.images}">`;
             if(false){
                 htmlString += `
-                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
-                <h5 class="showroomflag-winner">Winnaar</h5>`
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">`
               }else if(true){
                 htmlString += `
-                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
-                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">`
               }; 
               htmlString += `   
             <h2>${project.name}</h2>
@@ -115,12 +113,10 @@ export class ShowroomComponent implements OnInit {
             <img class="coverphoto" src="${project.images}">`;
             if(false){
                 htmlString += `
-                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
-                <h5 class="showroomflag-winner">Winnaar</h5>`
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">`
               }else if(true){
                 htmlString += `
-                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
-                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">`
               }; 
               htmlString +=   `
             <h2>${project.name}</h2>
@@ -137,12 +133,10 @@ export class ShowroomComponent implements OnInit {
             <img class="coverphoto" src="${project.images}">`;
             if(true){
                 htmlString += `
-                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
-                <h5 class="showroomflag-winner">Winnaar</h5>`
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">`
               }else if(false){
                 htmlString += `
-                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
-                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">`
               }; 
               htmlString += `   
             <h2>${project.name}</h2>
