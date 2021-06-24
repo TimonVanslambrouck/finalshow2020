@@ -21,6 +21,11 @@ export class ShowroomComponent implements OnInit {
     return res;
   }
 
+  async fetchProject(project : String){
+    const req = await fetch(`http://193.191.183.48:3000/search/project/{${project}}`);
+    return await req.json();
+  }
+
   loadProjects(){
     this.fetchProjects().then((data : any)=>{
       this.sortProjects(data)
@@ -92,18 +97,20 @@ export class ShowroomComponent implements OnInit {
       }, 400);
   }
 
-  page(event:any){
+  async page(event:any){
 
     let htmlString = "";
     let clusters = document.getElementById("clusters-container");
-
-    
     clusters!.style.display="none";
     document.getElementById("showcase")!.style.display="none";
     document.getElementById("back")!.style.display="flex";
     
-    console.log(event.path[3].children[0].children[0].innerText)
     const projectTitle : String = event.path[3].children[0].children[0].innerText;
+    console.log(projectTitle);
+    this.fetchProjects().then((data : any)=>{
+      console.log(data)
+    });
+
 
     htmlString+=`<div class="cardDetail">
     <img src="${"jaa"}" class="image" alt="...">
