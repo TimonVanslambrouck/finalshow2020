@@ -110,6 +110,12 @@ render(){
     }
   }
 
+  goTo2D(){
+    document.getElementById('linkTo2D')?.addEventListener('click', function(){
+      window.location.href = '/no-webgl';
+    })
+  }
+
   ngOnInit() {
     this.orbitControls();
     this.loadTerrain();
@@ -127,6 +133,7 @@ render(){
         confirmButtonColor: '#CD9DC8',
         confirmButtonText: 'Ik ben er klaar voor!'
       })
+      this.goTo2D()
     };
   }
 }

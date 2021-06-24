@@ -10,7 +10,14 @@ export class ShowroomComponent implements OnInit {
 
   constructor() { }
 
+  goTo2D(){
+    document.getElementById('linkTo2D')?.addEventListener('click', function(){
+      window.location.href = '/hub';
+    })
+  }
+
   ngOnInit() {
+    this.goTo2D();
     var menubuttons = document.querySelectorAll("button");
     var menucluster = "web";
     menubuttons.forEach(button => {
