@@ -85,13 +85,24 @@ export class ShowroomComponent implements OnInit {
 
             document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
             console.log("text");
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
+            let htmlString =`
+            <img class="coverphoto" src="${project.images}">`;
+            if(false){
+                htmlString += `
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
+                <h5 class="showroomflag-winner">Winnaar</h5>`
+              }else if(true){
+                htmlString += `
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
+                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+              }; 
+              htmlString += `   
             <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
             <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
+            document.querySelector(".projecten").innerHTML = htmlString;
         });
         previousProject.addEventListener("click", function(){
             if (projecten.current == 0){
@@ -100,25 +111,46 @@ export class ShowroomComponent implements OnInit {
             project = projecten.prev();
             document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
             console.log("text");
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
+            let htmlString =`
+            <img class="coverphoto" src="${project.images}">`;
+            if(false){
+                htmlString += `
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
+                <h5 class="showroomflag-winner">Winnaar</h5>`
+              }else if(true){
+                htmlString += `
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
+                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+              }; 
+              htmlString +=   `
             <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
             <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
-
+            document.querySelector(".projecten").innerHTML = htmlString;
         });
       
       
         if(!started) {
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
+            let htmlString =`
+            <img class="coverphoto" src="${project.images}">`;
+            if(true){
+                htmlString += `
+                <img src="../../assets/images/flagwinner.svg" class="showroomflag-winner" alt="...">
+                <h5 class="showroomflag-winner">Winnaar</h5>`
+              }else if(false){
+                htmlString += `
+                <img src="../../assets/images/flagnominee.svg" class="showroomflag-nominee" alt="...">
+                <h5 class="showroomflag-nominee-text">genomineerd</h5>`
+              }; 
+              htmlString += `   
             <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
             <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
+            document.querySelector(".projecten").innerHTML = htmlString;
             started = true;
         }
     }

@@ -44,7 +44,7 @@ export class AnimationComponent implements OnInit {
     this.renderer.toneMapping= ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.set(0,-40,1000);
+    this.camera.position.set(0,-40,700);
     this.renderer.domElement.style.filter="blur(4px)";
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
