@@ -51,9 +51,7 @@ export class HubComponent implements OnInit {
   }
 
   onResize(){
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.camera.aspect=window.innerWidth/window.innerHeight;
-    this.camera.updateProjectionMatrix();
+    window.location.href = window.location.href;
   }
 
   loadTerrain(){
