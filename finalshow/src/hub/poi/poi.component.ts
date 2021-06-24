@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as THREE from 'three';
-import { Vector2 } from 'three';
+import { Raycaster, Vector2 } from 'three';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-poi',
@@ -10,17 +11,21 @@ import { Vector2 } from 'three';
 export class PoiComponent implements OnInit {
 
   POI_image="../assets/images/poi.png";
+  popupComponent=new PopupComponent();
+  musicPlaying = false;
 
 
   constructor() { }
 
 
-  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any){
-    
-    console.log(event);
+  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any,controls:any){
+    let musicPlaying = this.musicPlaying;
+    let popupComponent=this.popupComponent;
     rayCaster.setFromCamera(mouse,camera);
+    console.log(scene);
+    console.log(rayCaster.ray);
     let intersects = rayCaster.intersectObjects(scene.children);
-    // console.log(intersects);
+    console.log(intersects);
     intersects.forEach(function(intersect:any){
       // if(intersect.object.name ==="Youtube"){
       //   //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
@@ -32,32 +37,42 @@ export class PoiComponent implements OnInit {
         console.log(intersect.object);
       }		
       if(intersect.object.name ==="FAQ"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
+        //window.open("https://www.erasmushogeschool.be/nl/faq");
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Bureau"){
-        window.open("https://www.instagram.com/multimedia.ehb/");
+        //window.open("https://www.instagram.com/multimedia.ehb/");
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Seads"){
-        window.open("https://seads.network/");
+        //window.open("https://seads.network/");
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Drone"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
+        //window.open("https://www.erasmushogeschool.be/nl/faq");
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Showcase"){
-        animationLaunch = true;	
+        animationLaunch = true;
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Timetable"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
+        //window.open("https://www.erasmushogeschool.be/nl/faq");
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
-      if(intersect.object.name ==="Music"){			
-        audio.src = playlist[0];
-        audio.play();
+      if(intersect.object.name ==="Music"){
+        musicPlaying = !musicPlaying;
+        audio.volume = 0.1;
+        audio.src = playlist[0];  
+        console.log(musicPlaying);     
+        if (musicPlaying) {
+          audio.play();
+        } else{
+          audio.pause();
+        }
       }      
     });  
-
-
-
-
+    this.musicPlaying = musicPlaying;
   }
 
   hover(e:any,mouse:any,rayCaster:any,scene:any,camera:any){
