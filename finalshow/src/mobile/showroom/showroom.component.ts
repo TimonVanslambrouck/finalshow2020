@@ -40,11 +40,22 @@ export class ShowroomComponent implements OnInit {
 
   sortProjects(data : any){
     data.forEach((project : any) => {
-      const htmlString : String = `
+      let htmlString : String = `
       <div class="card">
         <div class="card-image-container">
-          <img src="${project.images}" class="card-image" alt="...">
-        </div>
+        `;
+         if(false){
+          htmlString += `
+          <img src="../../assets/images/flagwinner.svg" class="flag" alt="...">
+          <h5 class="flag-text">Winnaar</h5>`
+        }else if(true){
+          htmlString += `
+          <img src="../../assets/images/flagnominee.svg" class="flag flag" alt="...">
+          <h5 class="flag-text nominee">genomineerd</h5>`
+        };
+        htmlString += `
+        <img src="${project.images}" class="card-image" alt="...">
+        </div>        
         <div class="card-body">
           <div class="card-body-info">
             <h2 class="card-title">${project.name}</h2>
