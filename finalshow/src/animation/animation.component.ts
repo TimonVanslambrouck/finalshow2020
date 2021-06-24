@@ -32,7 +32,6 @@ export class AnimationComponent implements OnInit {
   room:any;
   cloud:any;
   
-
   // Source: https://stackoverflow.com/questions/20290402/three-js-resizing-canvas
   onResizeWindow(event:any){
     window.location.href = window.location.href;
