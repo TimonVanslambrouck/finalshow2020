@@ -195,11 +195,11 @@ export class PopupComponent implements OnInit {
       </div>
       <div class=" results vraag4">
       <h5 id="titel">Waar vind ik meer info over de opleiding?</h5><br>
-      <p id="info">Meer info hierover kan je op de website van EHB vinden.</p>
+      <p id="info">Meer info hierover kan je op <a href="https://www.erasmushogeschool.be/nl/opleidingen/multimedia-creative-technologies" style="border-bottom: 2px solid #2FE6DE; color: black;"  target="_blank"> de website van EHB </a> vinden.</p>
       </div>
       <div class="results vraag5">
       <h5 id="titel">Hoe kan ik de school contacteren?</h5><br>
-      <p id="info">Meer info hierover kan je op de website van EHB vinden.</p>
+      <p id="info">Meer info hierover kan je op <a href="https://www.erasmushogeschool.be/nl/" target="_blank" style="border-bottom: 2px solid #2FE6DE; color: black;">de website van EHB</a> vinden.</p>
       </div>
       </div>
       </div>`;
