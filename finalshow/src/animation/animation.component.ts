@@ -53,7 +53,7 @@ export class AnimationComponent implements OnInit {
     this.renderer.toneMapping= THREE.ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.set(0,-130,2000);
+    this.camera.position.set(0,-40,1000);
     this.renderer.domElement.style.filter="blur(4px)";
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -64,12 +64,15 @@ export class AnimationComponent implements OnInit {
 
   loadModels(){
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/RoomProjectsPlatform.glb',"room", 1,[0,-90,0],[0,20,0]);
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 1,[0,-90,0],[0,200,1950],this.render,this.scroll);
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(250, 250, 200, 200));
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/DroneAllInOne.glb',"drone", 1,[0,-90,0],[0,-110,600],this.render,this.scroll);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(240, 240, 200, 200));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
-  //  this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/apple.glb',"apple",7,[0,180,0],[-350,-100,100]);
-  // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/android.glb',"android",7,[0,0,0],[100,-100,350]);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/clusters/arduino.glb',"arduino", 330,[0,0,0],[-634.1,-800,301]);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/clusters/Camera.glb',"camera", 10,[0,90,0],[39.8,148.3,100]);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/clusters/iphonelight1.glb',"ihpone", 170,[0,-90,0],[-141.6,-94.4,83.9]);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/clusters/laptop.glb',"laptop", 10,[0,90,0],[-47,-112,300]);
+    // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/clusters/VRheadset.glb',"vrHeadset", 15,[0,-90,0],[83,-70.5,225]);
 
   }
 
@@ -87,6 +90,7 @@ export class AnimationComponent implements OnInit {
   this.animateText(this.scene);
   this.animateBalloons(this.scene);
   this.animateSky(this.scene);
+  // this.animateClusters(this.scene);
 	requestAnimationFrame( this.animate.bind(this) );
 	this.renderer.render( this.scene, this.camera );
   this.light.sun.position.set(
@@ -95,6 +99,21 @@ export class AnimationComponent implements OnInit {
     this.camera.position.z + 10
     )
 }
+  animateClusters(scene: THREE.Scene) {
+    let camera = scene.getObjectByName("camera");
+    let laptop = scene.getObjectByName("laptop");
+    let vrHeadset = scene.getObjectByName("vrHeadset");
+    let ihpone = scene.getObjectByName("ihpone");
+    let arduino = scene.getObjectByName("arduino");
+
+    // if (camera !== undefined && laptop !== undefined && ihpone !== undefined && vrHeadset !== undefined && arduino !== undefined) {
+    //   camera.rotation.y += 0.001;
+    //   laptop.rotation.y += 0.001;
+    //   ihpone.rotation.y += 0.001;
+    //   vrHeadset.rotation.y += 0.001;
+    //   arduino.rotation.y += 0.001;
+    // }
+  }
   animateSky(scene: THREE.Scene) {
     let skybox = scene.getObjectByName("skybox");
     if (skybox !== undefined) {
@@ -140,6 +159,7 @@ ngOnInit(): void {
     // this.guiSettings();
     this.render();
     this.animate();
+    console.log(this.scene.children);
   };  
 }
 
