@@ -358,18 +358,18 @@ ul {
 }
 
 /* BUTTON */
-button {
-  display: block;
-  width: 90%;
-  height: 120px;
-  border: 0px;
-  background-color: white;
-  border-radius: 15px;
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  box-shadow: 2px 2px 2px rgb(102, 102, 102);
-}
+// button {
+//   display: block;
+//   width: 90%;
+//   height: 120px;
+//   border: 0px;
+//   background-color: white;
+//   border-radius: 15px;
+//   margin-top: 2%;
+//   margin-left: 5%;
+//   margin-right: 5%;
+//   box-shadow: 2px 2px 2px rgb(102, 102, 102);
+// }
 
 button div {
   display: inline-block;
@@ -713,4 +713,31 @@ h2.uur {
   padding-top: 100px;
   justify-content: center;
   align-items: center;
+}
+
+.back {
+  cursor: pointer;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 14vw;
+  color: white;
+  font-size: 20px;
+
+}
+
+.back2 {
+  cursor: pointer;
+  font-weight: bold;
+  position: absolute;
+  top: -5vh;
+  right: 14vw;
+  color: white;
+  font-size: 20px;
+
+}
+
+.close {
+  padding-left: 5px;
+  font-size: 15px;
 }
