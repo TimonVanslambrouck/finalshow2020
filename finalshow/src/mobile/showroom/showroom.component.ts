@@ -46,22 +46,34 @@ export class ShowroomComponent implements OnInit {
   }
 
   sortProjects(data: any, nominees: any){
-    console.log(nominees);
+    let nomineesID : number[] = [];
+    for (const [key, value] of Object.entries(nominees)) {
+      //@ts-ignore
+      for (let project of value) {
+        nomineesID.push(project.projectid);
+      }
+      //@ts-check
+    }
+    
     data.forEach((project: any) => {
       let htmlString: String = `
-      <div class="card">
+        <div class="card">
         <div class="card-image-container">
         `;
-         if(false){
-          htmlString += `
-          <img src="../../assets/images/flagwinner.svg" class="flag" alt="...">
-          <h5 class="flag-text">Winnaar</h5>`
-        }else if(true){
-          htmlString += `
-          <img src="../../assets/images/flagnominee.svg" class="flag flagnominee" alt="...">
-          <h5 class="flag-text nominee">genomineerd</h5>`
-        };
+      if(project.winner){
         htmlString += `
+        <img src="../../assets/images/flagwinner.svg" class="flag" alt="...">
+        <h5 class="flag-text">Winnaar</h5>`
+      }else {
+        for (let id of nomineesID) {
+          if (id == project.projectid){
+          htmlString += `
+            <img src="../../assets/images/flagnominee.svg" class="flag flagnominee" alt="...">
+            <h5 class="flag-text nominee">genomineerd</h5>`
+          }
+        };
+      }
+      htmlString += `
         <img src="${project.images}" class="card-image" alt="...">
         </div>        
         <div class="card-body">
@@ -119,6 +131,7 @@ export class ShowroomComponent implements OnInit {
             //@ts-ignore
             const projectName: String = event.path[3].children[0].children[0].innerText;
             this.loadSingleProject(projectName);
+            //@ts-check
           })
         }
       }, 400);
@@ -133,7 +146,7 @@ export class ShowroomComponent implements OnInit {
     document.getElementById("back")!.style.display="flex";
     const userFirstName : String = project.username.split(' ')[0];
 
-    htmlString+=`<div class="card card-detail">
+    htmlString+=`<div class="card card-detail" id="card-detail">
         <div class="card-image-container">
           <img src="${project.images}" class="card-image" alt="...">
         </div>
@@ -143,12 +156,12 @@ export class ShowroomComponent implements OnInit {
             <h3 class="card-subtitle">${project.username}</h3>
           </div>
           <div class="card-body-more">
-            <a class="card-mail" href="mailto:${project.email}">Contacteer ${userFirstName}</a>
+            <a class="card-mail" id="card-mail" href="mailto:${project.email}">Contacteer ${userFirstName}</a>
           </div>
         </div>
         <p class="detail-desc">
           ${project.description} <br><br>
-          <a class="card-video" href="${project.url}">Bekijk de projectvideo</a>
+          <a class="card-video" href="${project.url}" target= "_blank">Bekijk de projectvideo</a>
         </p>
       </div>`
 
@@ -156,13 +169,10 @@ export class ShowroomComponent implements OnInit {
   }
 
   back(){
-    document.getElementById("clusters-container")!.style.display="flex";
-    document.getElementById("back")!.style.display="none";
-    document.getElementById("showcase")!.style.display="block";
-    document.getElementById('fullText')!.style.overflow="invisible";
-    document.getElementById('fullText')!.style.display="none";
-    document.getElementById('card-detail')!.style.display="none";
-    document.getElementById('mail')!.style.display="none";
+    document.getElementById('card-detail')!.remove();
+    document.getElementById('back')!.style.display="none";
+    document.getElementById('showcase')!.style.display="block";
+    document.getElementById('clusters-container')!.style.display="flex";
   }
 
   ngOnInit(): void {
