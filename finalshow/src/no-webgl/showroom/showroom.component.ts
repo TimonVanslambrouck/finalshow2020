@@ -90,7 +90,7 @@ export class ShowroomComponent implements OnInit {
             <a href="${project.url}"><h2>${project.name}</h2></a>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}<br><a class="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
         });
         previousProject.addEventListener("click", function(){
@@ -105,7 +105,7 @@ export class ShowroomComponent implements OnInit {
             <a href="${project.url}"><h2>${project.name}</h2></a>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}<br><a class="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
 
         });
@@ -117,7 +117,7 @@ export class ShowroomComponent implements OnInit {
             <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}<br><a class="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
             started = true;
         }
