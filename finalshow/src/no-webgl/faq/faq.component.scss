@@ -607,8 +607,7 @@ h2.uur {
 }
 .livestreamiframe
  {
-     display: flex;
-     padding-top: 100px;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -715,7 +714,7 @@ button .image-web, button .image-ar, button .image-mobile,button .image-motion, 
 
 .pop-up {
     width: 80%;
-    height: 60vh;
+    height: 50vh;
 }
 button {
     display: block;
@@ -770,7 +769,7 @@ button .image-web, button .image-ar, button .image-mobile,button .image-motion, 
 
     /*FAQ*/
     .hideInfo {
-        height: 700px;
+        height: 50vh;
         width: 55%;
 
     }
