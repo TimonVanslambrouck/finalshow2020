@@ -72,7 +72,6 @@ a h3.sluiten {
 /* POP UP */
 .pop-up {
     position: relative;
-    background-color: #E4DFEB;
     border-radius: 29px;
     width: 65vw;
     height: 80vh;
@@ -611,6 +610,10 @@ h2.uur {
 }
 .livestreamiframe
  {
-    width: 58vw;
-    height: 75vh;
+    width: 64vw;
+    height: 76vh;
+}
+iframe {
+    border: none;
+    outline: none;
 }
