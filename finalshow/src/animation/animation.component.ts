@@ -41,7 +41,7 @@ export class AnimationComponent implements OnInit {
     this.renderer.toneMapping= ReinhardToneMapping;
     this.renderer.toneMappingExposure = 0.6;
     this.renderer.setSize( window.innerWidth, window.innerHeight );
-    this.camera.position.set(0,-40,1000);
+    this.camera.position.set(0,-40,700);
     this.renderer.domElement.style.filter="blur(4px)";
     this.renderer.autoClear=false;
     this.scene.autoUpdate=true;
@@ -51,7 +51,7 @@ export class AnimationComponent implements OnInit {
 
   loadModels(){
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/roomprojects/RoomProjectsPlatform.glb',"room", 1,[0,-90,0],[0,20,0]);
-    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/drone.glb',"drone", 1,[0,-90,0],[0,-110,600],this.render,this.scroll);
+    this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/drone/drone.glb',"drone", 1,[0,-90,0],[0,-110,350],this.render,this.scroll);
     // this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/zeplin/AIrShip.glb',"zeplin",10,[0,0,0],[-400,80,80], this.render,this.scroll);
     this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new PlaneGeometry(240, 240, 200, 200));
     this.modelLoader.loadModel(this.loader, this.scene,'../assets/3D_models/balloon/luchtballon.glb',"luchtballon",10,[0,180,0],[150,-100,200], this.render,this.scroll);
