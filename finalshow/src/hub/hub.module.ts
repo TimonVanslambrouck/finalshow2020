@@ -7,6 +7,7 @@ import { PopupComponent } from './popup/popup.component';
 import { LivestreamComponent } from './livestream/livestream.component';
 import { PoiComponent } from './poi/poi.component';
 import { AnimationsComponent } from './animations/animations.component';
+import { ShowroomComponent } from './showroom/showroom.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { AnimationsComponent } from './animations/animations.component';
     PopupComponent,
     LivestreamComponent,
     PoiComponent,
-    AnimationsComponent
+    AnimationsComponent,
+    ShowroomComponent
   ]
 })
 export class HubModule { }

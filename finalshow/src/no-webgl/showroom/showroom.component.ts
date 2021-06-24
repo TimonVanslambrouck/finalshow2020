@@ -87,10 +87,10 @@ export class ShowroomComponent implements OnInit {
             console.log("text");
             document.querySelector(".projecten").innerHTML = `
             <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
+            <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}</p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
         });
         previousProject.addEventListener("click", function(){
@@ -102,10 +102,10 @@ export class ShowroomComponent implements OnInit {
             console.log("text");
             document.querySelector(".projecten").innerHTML = `
             <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
+            <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}</p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
 
         });
@@ -114,10 +114,10 @@ export class ShowroomComponent implements OnInit {
         if(!started) {
             document.querySelector(".projecten").innerHTML = `
             <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
+            <h2>${project.name}</h2>
             <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
             <h4>Beschrijving</h4>
-            <p>${project.description}</p>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
             `;
             started = true;
         }

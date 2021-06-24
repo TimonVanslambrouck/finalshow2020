@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
-
 * {
     font-family: 'Manrope', sans-serif;
     margin: 0;
@@ -34,13 +32,12 @@ h1 {
     font-size: 40px;
     font-weight: 1000;
     color: white;
+    text-shadow: 2px 2px 2px rgb(110, 109, 109);
 }
 
 #active {
     color: white;
     opacity: 100%;
-    border-bottom: 4px solid #2FE6DE;
-    padding-bottom: 10px;
 }
 
 a {
@@ -73,12 +70,13 @@ a h3.sluiten {
     position: relative;
     background-color: #E4DFEB;
     border-radius: 29px;
-    width: 65vw;
+    width: 1000px;
     height: 80vh;
     z-index: 0;
     align-items: center;
     justify-content: center;
     margin: auto;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 .pop-up img.coverphoto {
     border-radius:29px 29px 0px 0px;
@@ -209,7 +207,7 @@ a h3.sluiten {
     border-radius: 0px 0px 29px 29px;
     height: 60px;
     width: 100%;
-    top: 715px;
+    bottom: 0;
     position: absolute;
     
 }
@@ -235,15 +233,13 @@ a h3.sluiten {
 
 }
 .bottom-menu a {
-    
     display: inline-block;
     text-decoration: none;
     padding-left: 25px;
     margin: 1px;
     color: black;
-    
-
 }
+
 .bottom-menu a:first-child {
     padding-left: 0px;
 }
@@ -261,6 +257,7 @@ a h3.sluiten {
 }
 .bottom-menu a:hover {
     color: white;
+    cursor: pointer;
 }
 .projecten h3 {
     color: black;
@@ -268,6 +265,9 @@ a h3.sluiten {
 
 
 /* WEBGL/STANDAARDMENU */
+h1.live {
+    padding-left: 55px;
+}
 
 .webglmenu img {
     position: absolute;
@@ -311,12 +311,12 @@ ul {
 .standaardmenu h1 {
     display: inline-block;
     text-decoration: none;
+    margin: 1px;
+    padding-right: 155px;
     color: white;
     opacity: 75%;
+    text-shadow: 2px 2px 2px rgb(110, 109, 109);
     font-size: 2vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-bottom: 1.5vh;
 }
 
 .standaardmenu h1:hover {
@@ -335,6 +335,7 @@ button {
     margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 button div {
     display: inline-block;
@@ -441,7 +442,7 @@ button:hover img {
 /*TIMETABLE*/
 .chooseTime {
     height: 120px;
-    width: 65vw;
+    width: 998px;
     border: 1px solid #ddd;
     display: flex;
     flex-direction: row;
@@ -457,7 +458,7 @@ button:hover img {
     background-color:#E4DFEB ;
     height: 120px;
     border-top: 1px solid #B89BE0;
-    min-width: 28%;
+    min-width: 33%;
     padding-top: 1%;
     padding-left: 1%;
 }
@@ -531,7 +532,9 @@ button:hover img {
     height: 500px;
     object-fit: cover;
 }
-
+.timetablepu {
+    height: 500px;
+}
 h2.uur {
     position: absolute;
     right: 0;
@@ -578,6 +581,7 @@ h2.uur {
     width: 60%;
     height: 600px;
     margin-left: 175px;
+    box-shadow: 2px 2px 2px #ccc;
     font-size: 17px;
     line-height: 30px;
 }
@@ -610,4 +614,184 @@ h2.uur {
      padding-top: 100px;
     justify-content: center;
     align-items: center;
+}
+
+
+/* MEDIA QUERIES/RESPONSIVE */
+@media screen and (max-width: 1024px) {
+.pop-up {
+    width: 80%;
+}
+
+.bottom-menu {
+    bottom: 0;
+    position: absolute;
+}
+
+.projecten p {
+    font-size: 13px;
+}
+.projecten h4 {
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-top: 75px;
+
+}
+.projecten h2 {
+    font-size: 25px;
+}
+
+.projecten h3 {
+    font-size: 18px;
+    margin-top: 38px;
+   
+}
+.left {
+    left: 30px;
+    top: 433px;
+}
+
+.right {
+    right: 30px;
+    top: 433px;
+}
+.upper-nav {
+    width: 80%;
+}
+
+.standaardmenu h1 {
+    padding-right: 30px;
+    font-size: 35px;
+}
+
+h1.live {
+    padding-left: 30px;
+}
+
+/*TIMETABLE*/
+button {
+    display: block;
+    width: 90%;
+    height: 110px;
+    border: 0px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
+    width: 70px;
+    height: 70px;
+    }
+    a h3.sluiten {
+        padding-left:690px ;
+        margin-bottom: 5px;
+    }
+
+    .chooseTime {
+        width: 820px;
+    }
+
+    /* FAQ */
+    .hideInfo {
+        height: 700px;
+        width: 85%;
+
+    }
+    .hideInfo h5 {
+        margin-left: 40px;
+    }
+    a h3.sluiten.faqsluiten {
+        padding-left: 700px;
+    
+    }
+
+    /* MENU */
+    .menuopties {
+        padding-top: 50px;
+    }
+    .menupu {
+        height: 500px;
+    }
+}
+@media screen and (max-width: 1440px) {
+.standaardmenu h1{
+    padding-right: 45px;
+}
+h1.live {
+    padding-left: 40px;
+}
+.pop-up {
+    width: 80%;
+    height: 70vh;
+}
+button {
+    display: block;
+    width: 90%;
+    height: 100px;
+    border: 0px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
+    width: 80px;
+    height: 80px;
+    }
+
+    /*SHOWROOM*/
+    .upper-nav {
+        width: 80%;
+    }
+    .bottom-menu {
+        position: absolute;
+        bottom: 0;
+    }
+    .projecten h4 {
+        margin-top: 80px;
+        margin-bottom: 10px;
+    
+    }
+    .left {
+        left: 35px;
+    }
+    .right {
+        right: 35px;
+    }
+
+    /*TIMETABLE*/
+    .chooseTime {
+        width: 1151px;
+    }
+    a h3.sluiten {
+        padding-left:1000px ;
+    }
+
+    /*MENU*/
+    .menuopties {
+        padding-top: 50px;
+    }
+    .menupu {
+        height: 500px;
+    }
+
+    /*FAQ*/
+    .hideInfo {
+        height: 700px;
+        width: 55%;
+
+    }
+    .hideInfo h5 {
+        margin-left: 60px;
+    }
+    a h3.sluiten.faqsluiten {
+        padding-left: 1000px;
+    
+    }
+
 }
