@@ -74,7 +74,7 @@ a h3.sluiten {
     position: relative;
     background-color: #E4DFEB;
     border-radius: 29px;
-    width: 1000px;
+    width: 65vw;
     height: 80vh;
     z-index: 0;
     align-items: center;
@@ -605,12 +605,12 @@ h2.uur {
 /*LIVESTREAM*/
 .livestreampu {
     height: 85vh;
-    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .livestreamiframe
  {
-    display: flex;
-    padding-top: 8vh;
-    justify-content: center;
-    align-items: center;
+    width: 58vw;
+    height: 75vh;
 }
