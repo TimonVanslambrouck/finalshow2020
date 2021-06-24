@@ -153,12 +153,11 @@ canvas {
   overflow: hidden;
 }
 
-.pop-up h2,
-h4,
-p {
-  margin-left: 10%;
+.pop-up {
+  h2, h4, p {
+    margin-left: 10%;
+  }
 }
-
 .pop-up p {
   margin-right: 10%;
   font-size: 14px;
