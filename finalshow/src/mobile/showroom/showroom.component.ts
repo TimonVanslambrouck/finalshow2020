@@ -16,31 +16,39 @@ export class ShowroomComponent implements OnInit {
   dm = "";
   mobile = "";
 
-  async fetchProjects() : Promise<Response>{
+  async fetchProjects(): Promise<Response>{
     const req = await fetch("https://finalshowcase.herokuapp.com/final-work/get-all");
     return await req.json();
   }
 
-  async fetchSingleProject(project : String) : Promise<Response>{
+  async fetchSingleProject(project: String): Promise<Response>{
     const req = await fetch(`http://193.191.183.48:3000/final-work/search-name/${project}`);
     return await req.json();
   }
 
+  async fetchNominees(): Promise<Response> {
+    const req = await fetch('http://193.191.183.48:3000/admin/get-nominations');
+    return await req.json();
+  }
+
   loadProjects(){
-    this.fetchProjects().then((data : any)=>{
-      this.sortProjects(data)
+    this.fetchProjects().then((data: any)=>{
+      this.fetchNominees().then((nominees) => {
+      this.sortProjects(data, nominees);
+      })
     });
   }
 
-  loadSingleProject(project : String) {
+  loadSingleProject(project: String) {
     this.fetchSingleProject(project).then((data: any) => {
       this.page(data[0])
     })
   }
 
-  sortProjects(data : any){
-    data.forEach((project : any) => {
-      let htmlString : String = `
+  sortProjects(data: any, nominees: any){
+    console.log(nominees);
+    data.forEach((project: any) => {
+      let htmlString: String = `
       <div class="card">
         <div class="card-image-container">
         `;
@@ -62,7 +70,7 @@ export class ShowroomComponent implements OnInit {
             <h3 class="card-subtitle">${project.username}</h3>
           </div>
           <div class="card-body-more">
-            <a class="card-btn"><img class="arrow" src="../../assets/images/arrow.svg"></a>
+            <a class="card-btn"><img class="arrow" src="../../src/assets/images/arrow.svg"></a>
           </div>
         </div>
       </div>`;
@@ -80,7 +88,7 @@ export class ShowroomComponent implements OnInit {
     });
   }
 
-  clusters(event : any){
+  clusters(event: any){
     let id = event.target.attributes.id.nodeValue;
     let showcase = document.getElementById("showcase");
     let center = document.getElementsByClassName("center")[0];
@@ -109,15 +117,12 @@ export class ShowroomComponent implements OnInit {
         for(let i = 0;i < buttons.length;i++){
           buttons[i].addEventListener("click", (event) => {
             //@ts-ignore
-            const projectName : String = event.path[3].children[0].children[0].innerText;
+            const projectName: String = event.path[3].children[0].children[0].innerText;
             this.loadSingleProject(projectName);
           })
         }
       }, 400);
   }
-
-  
-
 
   page(project: any){
     console.log(project);
@@ -128,7 +133,7 @@ export class ShowroomComponent implements OnInit {
     document.getElementById("back")!.style.display="flex";
     const userFirstName : String = project.username.split(' ')[0];
 
-    htmlString+=`<div class="card">
+    htmlString+=`<div class="card card-detail">
         <div class="card-image-container">
           <img src="${project.images}" class="card-image" alt="...">
         </div>
@@ -138,12 +143,12 @@ export class ShowroomComponent implements OnInit {
             <h3 class="card-subtitle">${project.username}</h3>
           </div>
           <div class="card-body-more">
-            <a class="card-btn"><img class="arrow" src="../../assets/images/arrow.svg"></a>
-            <div>Contacteer ${userFirstName}</div>
+            <a class="card-mail" href="mailto:${project.email}">Contacteer ${userFirstName}</a>
           </div>
         </div>
         <p class="detail-desc">
-          ${project.description}
+          ${project.description} <br><br>
+          <a class="card-video" href="${project.url}">Bekijk de projectvideo</a>
         </p>
       </div>`
 
@@ -156,7 +161,7 @@ export class ShowroomComponent implements OnInit {
     document.getElementById("showcase")!.style.display="block";
     document.getElementById('fullText')!.style.overflow="invisible";
     document.getElementById('fullText')!.style.display="none";
-    document.getElementById('cardDetail')!.style.display="none";
+    document.getElementById('card-detail')!.style.display="none";
     document.getElementById('mail')!.style.display="none";
   }
 

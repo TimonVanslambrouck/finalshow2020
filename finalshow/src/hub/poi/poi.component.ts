@@ -31,25 +31,22 @@ export class PoiComponent implements OnInit {
       if(intersect.object.type ==='Sprite'){
       }		
       if(intersect.object.name ==="FAQ"){
-        //window.open("https://www.erasmushogeschool.be/nl/faq");
         popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Bureau"){
-        window.open("https://www.instagram.com/multimedia.ehb/");
+        window.open("https://linktr.ee/ehbmultimedia");
       }
       if(intersect.object.name ==="Seads"){
         window.open("https://seads.network/");
       }
       if(intersect.object.name ==="Drone"){
-        //window.open("https://www.erasmushogeschool.be/nl/faq");
-        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
+        window.location.href = '/';
       }
       if(intersect.object.name ==="Showcase"){
         animationLaunch = true;
         popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Timetable"){
-        //window.open("https://www.erasmushogeschool.be/nl/faq");
         popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Music"){
