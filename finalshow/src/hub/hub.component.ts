@@ -64,7 +64,7 @@ export class HubComponent implements OnInit {
   }
 
   interestPoints(event:any){
-      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene,this.renderer2);
+      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene,this.renderer2,this.controls);
   }
 
   // POIHover(e:any){
