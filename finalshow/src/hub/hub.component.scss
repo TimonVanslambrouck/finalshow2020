@@ -20,3 +20,14 @@
   z-index: 99;
   pointer-events: none;
 }
+
+.linkTo2D {
+  cursor: pointer;
+  z-index: 100;
+  position: absolute;
+  right: 0;
+  top: 0%;
+  padding: 15px;
+  color: white;
+  background-color: #CD9DC8;
+}

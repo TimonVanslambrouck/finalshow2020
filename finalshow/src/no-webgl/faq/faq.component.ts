@@ -10,6 +10,10 @@ export class FaqComponent implements OnInit {
 
   constructor() { }
 
+  goTo2D(){
+      window.location.href = '/hub';
+  }
+
   ngOnInit() {
     //Script voor divs te doen verschijnen doormiddel van het klikken van één van de FAQ vragen in FAQ.html
     var faqButtons = document.querySelectorAll(".items");
