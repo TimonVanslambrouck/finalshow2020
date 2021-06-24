@@ -11,7 +11,6 @@ import { ShowroomComponent } from '../showroom/showroom.component';
 })
 export class PopupComponent implements OnInit {
 
-
   showPopup(renderer:THREE.WebGLRenderer,cssrenderer:any,controls:ORBIT.OrbitControls,poiName:any){
 
     let popup=document.getElementById("popup");
@@ -22,7 +21,11 @@ export class PopupComponent implements OnInit {
 
     if(poiName=="Showcase"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
         </div>
             <div class="wrapper">
@@ -44,6 +47,7 @@ export class PopupComponent implements OnInit {
                 </div>
             </div>`;
             this.initFunctionShowroom();
+            this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
     if(poiName=="Drone"){
@@ -55,7 +59,11 @@ export class PopupComponent implements OnInit {
     }
     if(poiName=="FAQ"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back2">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
       </div>
       
@@ -94,6 +102,7 @@ export class PopupComponent implements OnInit {
       </div>`;
 
       this.initFunctionFaq();
+      this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
     if(poiName=="Bureau"){
@@ -105,7 +114,11 @@ export class PopupComponent implements OnInit {
     }
     if(poiName=="Timetable"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back2">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
         </div>
       <div class="pop-up timetablepu">
@@ -196,6 +209,7 @@ export class PopupComponent implements OnInit {
       </div>`;
 
       this.initFunctionTimetable();
+      this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
   }
@@ -374,6 +388,15 @@ initFunctionFaq() {
             started = true;
         }
     }
+  }
+
+  removeInnerhtml(controls:any, renderer:any, cssrenderer:any){
+    document.getElementById("back")?.addEventListener('click', function(){
+        document.getElementById('showPopup')?.style.display = 'none';
+        renderer.domElement.style.filter="blur(0px)";
+        cssrenderer.domElement.style.filter="blur(0px)";
+        controls.enabled=true;
+    })
   }
 
   ngOnInit(): void {
