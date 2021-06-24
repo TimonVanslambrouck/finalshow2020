@@ -57,6 +57,7 @@ export class PoiComponent implements OnInit {
       }
       if(intersect.object.name ==="Music"){
         musicPlaying = !musicPlaying;
+        audio.volume = 0.1;
         audio.src = playlist[0];  
         console.log(musicPlaying);     
         if (musicPlaying) {
