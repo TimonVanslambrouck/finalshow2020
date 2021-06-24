@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 #popup {
-  height: 75vh;
+  height: 90vh;
   width: 80vw;
   margin-left: 10vw;
-  margin-top: 12.5vh;
+  margin-top: 5vh;
   background-color: transparent;
   position: absolute;
   z-index: 100;
@@ -242,14 +242,14 @@ p {
   transform: rotate(180deg);
   position: absolute;
   top: 50vh;
-  left: 3vh;
+  left: 5vw;
 }
 
 .right {
   float: right;
   position: absolute;
   top: 50vh;
-  right: 3vh;
+  right: 5vw;
 
 }
 
@@ -623,6 +623,7 @@ button:hover img {
 
 .timetablepu {
   height: 500px;
+  margin-top: 100px;
 }
 
 h2.uur {
@@ -690,7 +691,7 @@ h2.uur {
   display: flex;
   align-items: flex-start;
   height: 600px;
-
+  margin-top: 100px;
 }
 
 .logobackgroundFaq {
@@ -720,7 +721,7 @@ h2.uur {
   font-weight: bold;
   position: absolute;
   top: 0;
-  right: 14vw;
+  right: 20vw;
   color: white;
   font-size: 20px;
 
@@ -730,8 +731,8 @@ h2.uur {
   cursor: pointer;
   font-weight: bold;
   position: absolute;
-  top: -5vh;
-  right: 14vw;
+  top: 70px;
+  right: 20vw;
   color: white;
   font-size: 20px;
 

@@ -79,7 +79,7 @@ export class HubComponent implements OnInit {
 
   addPOIS(){
     this.poi.addPOI(774.7400762274917,326.572099348636,500.7788609564836,'FAQ',50,4,this.scene);
-    this.poi.addPOI(63.1583917551552,278.7872892268489,953.5996996533731,'Showcase',50,3,this.scene);
+    this.poi.addPOI(-50,40,953.5996996533731,'Showcase',50,3,this.scene);
     this.poi.addPOI(810.7430156789031,328.28534619230544,-500.7371110857296,'Timetable',50,4,this.scene);
     this.poi.addPOI(418.48079552211993,122.81732610080732,895.160534807379,'Seads',50,3,this.scene);
     this.poi.addPOI(-78.02445049463262,-1.723833538445624,-992.2305753975335,'Bureau',50,3,this.scene);
