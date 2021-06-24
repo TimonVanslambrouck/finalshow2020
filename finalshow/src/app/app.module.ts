@@ -7,6 +7,7 @@ import { AnimationModule } from 'src/animation/animation.module';
 import { HubModule } from 'src/hub/hub.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NoWebglModule } from 'src/no-webgl/no-webgl.module';
 
 @NgModule({
   declarations: [	
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AnimationModule,
     HubModule,
     NgbModule,
-    MobileModule
+    MobileModule,
+    NoWebglModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
