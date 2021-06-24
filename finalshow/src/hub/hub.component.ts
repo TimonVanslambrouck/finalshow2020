@@ -66,8 +66,13 @@ export class HubComponent implements OnInit {
       this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene);
   }
 
-  POIHover(e:any){
-    this.poi.hover(e,this.mouse,this.rayCaster,this.scene,this.camera);
+  // POIHover(e:any){
+  //   this.poi.hover(e,this.mouse,this.rayCaster,this.scene,this.camera);
+  // }
+
+  mousePosition(event:any){
+    this.mouse.x=( event.clientX / window.innerWidth ) * 2 - 1;
+    this.mouse.y= - ( event.clientY / window.innerHeight ) * 2 + 1;
   }
 
   addPOIS(){
@@ -88,12 +93,13 @@ render(){
   this.renderer2.setSize( window.innerWidth, window.innerHeight );
   let css = document.querySelector('#css') as HTMLElement;
   css.appendChild(this.renderer2.domElement );
+
 }
 
   animate() {
     let showCaseKader=this.scene.getObjectByName("showCaseKader")!;
     this.animations.animateSky(this.scene);
-    //this.animations.animateQuestion(this.scene);
+    this.animations.animateQuestion(this.scene);
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
     this.renderer2.render( this.cssscene, this.camera );
@@ -103,7 +109,6 @@ render(){
   }
 
   ngOnInit() {
-    console.log(this.scene);
     this.orbitControls();
     this.loadTerrain();
     this.render();
