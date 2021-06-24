@@ -107,6 +107,7 @@ canvas {
       margin-top: 5px;
       width: 20px;
       height: 24px;
+      fill: #00B9FF;
     }
   }
 }
@@ -115,6 +116,20 @@ canvas {
 //---------Showroom Detail----------//
 //----------------------------------//
 
+.detail-desc {
+  padding-bottom: 20px;
+}
+
+.card-mail {
+  text-decoration: none;
+  color: #00B9FF;
+}
+
+.card-video {
+  text-decoration: none;
+  border-bottom: 2px solid #2FE6DE;
+  color: black;
+}
 
 //----------------------------------//
 //---------Showroom NO-WEBGL----------//
@@ -163,7 +178,7 @@ p {
 }
 
 
-#projectvideo{
+#projectvideo {
   color: black !important;
   text-decoration: none !important;
   border-bottom: 2px solid #2FE6DE !important;
