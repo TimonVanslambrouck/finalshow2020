@@ -12,13 +12,14 @@ export class PoiComponent implements OnInit {
 
   POI_image="../assets/images/poi.png";
   popupComponent=new PopupComponent();
+  musicPlaying = false;
 
 
   constructor() { }
 
 
   popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any,controls:any){
-     
+    let musicPlaying = this.musicPlaying;
     let popupComponent=this.popupComponent;
     rayCaster.setFromCamera(mouse,camera);
     console.log(scene);
@@ -55,12 +56,18 @@ export class PoiComponent implements OnInit {
         window.open("https://www.erasmushogeschool.be/nl/faq");
       }
       if(intersect.object.name ==="Music"){
-        console.log(audio);
-        audio.src = playlist[0];
-        audio.play();
+        musicPlaying = !musicPlaying;
+        audio.volume = 0.1;
+        audio.src = playlist[0];  
+        console.log(musicPlaying);     
+        if (musicPlaying) {
+          audio.play();
+        } else{
+          audio.pause();
+        }
       }      
     });  
-
+    this.musicPlaying = musicPlaying;
   }
 
   hover(e:any,mouse:any,rayCaster:any,scene:any,camera:any){
