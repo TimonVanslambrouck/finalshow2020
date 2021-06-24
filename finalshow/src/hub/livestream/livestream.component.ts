@@ -22,6 +22,7 @@ export class LivestreamComponent implements OnInit {
       iframe.style.height = '100%';
       iframe.style.border = '0px';
       iframe.src = [ 'https://www.youtube.com/embed/', id, '?rel=0' ].join( '' );
+      iframe.setAttribute("allowfullscreen", "");
       div.appendChild( iframe );
    
       var cssobject = new CSS3DObject( div );
