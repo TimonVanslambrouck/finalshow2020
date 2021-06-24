@@ -14,6 +14,7 @@ import { AnimationsComponent } from './animations/animations.component';
   selector: 'app-hub',
   templateUrl: './hub.component.html',
   styleUrls: ['./hub.component.scss']
+  
 })
 export class HubComponent implements OnInit {
   title = 'finalshow';
@@ -59,7 +60,7 @@ export class HubComponent implements OnInit {
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoom.glb","hub",1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/showcaseKader.glb","showcaseKader",1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/questionMark.glb","question",1,[0,0,0],[0,0,0]);
-    this.modelLoader.loadModel(this.loader,this.scene,"../assets/3D_models/drone/drone.glb","droneShowRoom",1,[0,0,0],[0,0,0]);
+    this.modelLoader.loadModel(this.loader,this.scene,"../assets/3D_models/drone/DroneAllInOne.glb","droneShowRoom",1,[0,0,0],[0,0,0]);
   }
 
   interestPoints(event:any){
