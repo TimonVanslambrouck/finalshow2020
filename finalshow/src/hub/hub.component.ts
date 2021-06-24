@@ -65,50 +65,7 @@ export class HubComponent implements OnInit {
   }
 
   interestPoints(event:any){
-      //this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene);
-      console.log(event);
-      this.rayCaster.setFromCamera(this.mouse,this.camera);
-    console.log(this.scene);
-    console.log(this.rayCaster.ray);
-    let intersects = this.rayCaster.intersectObjects(this.scene.children);
-    console.log(intersects);
-    intersects.forEach(function(intersect:any){
-      // if(intersect.object.name ==="Youtube"){
-      //   //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
-      //   console.log(document.getElementById("showPopup"));
-      //   document.getElementById("showPopup")!.style.display="block";
-      //   renderer.domElement.style.filter="blur(4px)";
-      // }
-      if(intersect.object.type ==='Sprite'){
-        console.log(intersect.object);
-      }		
-      if(intersect.object.name ==="FAQ"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
-        // console.log(document.getElementById("showPopup"));
-        // document.getElementById("showPopup")!.style.display="block";
-        // renderer.domElement.style.filter="blur(4px)";
-      }
-      if(intersect.object.name ==="Bureau"){
-        window.open("https://www.instagram.com/multimedia.ehb/");
-      }
-      if(intersect.object.name ==="Seads"){
-        window.open("https://seads.network/");
-      }
-      if(intersect.object.name ==="Drone"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
-      }
-      // if(intersect.object.name ==="Showcase"){
-      //   animationLaunch = true;	
-      // }
-      if(intersect.object.name ==="Timetable"){
-        window.open("https://www.erasmushogeschool.be/nl/faq");
-      }
-      // if(intersect.object.name ==="Music"){
-      //   console.log(audio);
-      //   audio.src = playlist[0];
-      //   audio.play();
-      // }      
-    });  
+      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene);
   }
 
   // POIHover(e:any){
@@ -139,16 +96,15 @@ render(){
   let css = document.querySelector('#css') as HTMLElement;
   css.appendChild(this.renderer2.domElement );
 
-  //this.renderer.autoClear=true;
 }
 
   animate() {
     let showCaseKader=this.scene.getObjectByName("showCaseKader")!;
-    //this.animations.animateSky(this.scene);
-    //this.animations.animateQuestion(this.scene);
+    this.animations.animateSky(this.scene);
+    this.animations.animateQuestion(this.scene);
 	  requestAnimationFrame( this.animate.bind(this) );
   	this.renderer.render( this.scene, this.camera );
-    //this.renderer2.render( this.cssscene, this.camera );
+    this.renderer2.render( this.cssscene, this.camera );
     if(this.animationLaunch&&showCaseKader.position.z>=-40){
       showCaseKader.position.z -= 0.5;
     }
@@ -158,8 +114,7 @@ render(){
     this.orbitControls();
     this.loadTerrain();
     this.render();
-    //this.livestream.youtubeStream('5qap5aO4i9A', -53, 4.5, -0.75, Math.PI/2,this.cssscene);
-
+    this.livestream.youtubeStream('5qap5aO4i9A', -53, 4.5, -0.75, Math.PI/2,this.cssscene);
     this.manager.onLoad = () => {
       console.log('%cLoading complete!', 'font-weight: bold; color: red;');
       this.lights.addLights(this.scene);
