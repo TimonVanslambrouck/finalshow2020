@@ -13,7 +13,7 @@ export class PopupComponent implements OnInit {
 
   api_url='https://finalshowcase.herokuapp.com/final-work/get-all';
 
-  buttons = document.querySelectorAll(".bottom-menu a");
+  //buttons = document.querySelectorAll(".bottom-menu a");
 
   cluster=localStorage.getItem("cluster")||"web";
 
@@ -25,6 +25,32 @@ export class PopupComponent implements OnInit {
     var data = await response.json();
     console.log(data);
     this.showContent(data);
+  }
+
+  timetableButtons(){
+    console.log(this.timetablebuttons);
+    let timetablebuttons=document.querySelectorAll(".item");
+    timetablebuttons.forEach(button => {
+      button.addEventListener("click",function(){
+          var showEvent = button.classList[1];  
+          var children = [].slice.call(button.parentNode.children);
+          children.forEach(child => {
+              if(child.classList[0] != showEvent) {
+                  child.classList.remove("active");
+                  button.classList.add("active");
+              }
+          });
+          var siblings = document.querySelectorAll(".timetableevent");
+          siblings.forEach(sibling => {
+              if(sibling.classList[0] != showEvent) {
+                  sibling.style.display ='none';  
+              }
+              else {
+                  sibling.style.display ='block';
+              }
+          });   
+      })
+    })
   }
 
   menuButtons(){
@@ -41,11 +67,13 @@ export class PopupComponent implements OnInit {
   }
 
   showroom(){
+    let buttons=document.querySelectorAll(".bottom-menu a");
     let cluster=this.cluster;
+    console.log(cluster)
     let api_url=this.api_url;
     let getapi=this.getApi(api_url);
     document.querySelector(`a.${this.cluster}`)!.classList.add("active");
-    this.buttons.forEach(button => {
+    buttons.forEach(button => {
         button.addEventListener("click", function(){
             cluster = button.classList[0];
             button.classList.add("active");
@@ -153,8 +181,10 @@ export class PopupComponent implements OnInit {
                 </div>
             </div>`;
 
+        setTimeout(() => {
           this.menuButtons();
           this.showroom();
+        }, 500);
 
     }
     if(poiName=="Drone"){
@@ -303,6 +333,10 @@ export class PopupComponent implements OnInit {
       <div class="item event12"><h5>19u00</h5><h6>Slot</h6></div>
       </div>
       </div>`;
+
+      setTimeout(() => {
+        this.timetableButtons();
+      }, 500);
 
     }
   }
