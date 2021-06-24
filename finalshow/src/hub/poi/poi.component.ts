@@ -1,6 +1,5 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import * as THREE from 'three';
-import { Raycaster, Vector2 } from 'three';
+import { Component, OnInit} from '@angular/core';
+import { Sprite, SpriteMaterial, TextureLoader, Vector2, Vector3 } from 'three';
 import { PopupComponent } from '../popup/popup.component';
 
 @Component({
@@ -16,7 +15,6 @@ export class PoiComponent implements OnInit {
 
 
   constructor() { }
-
 
   popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any,controls:any){
     let musicPlaying = this.musicPlaying;
@@ -81,13 +79,13 @@ export class PoiComponent implements OnInit {
   }
 
   addPOI(positionX:number,positionY:number,positionZ:number,spriteName:any,scale:number,size:number,scene:any){
-    let spriteMap=new THREE.TextureLoader().load(this.POI_image);
-    let spriteMaterial=new THREE.SpriteMaterial({map:spriteMap});
+    let spriteMap=new TextureLoader().load(this.POI_image);
+    let spriteMaterial=new SpriteMaterial({map:spriteMap});
     spriteMaterial.alphaTest=0.5;
-    let sprite=new THREE.Sprite(spriteMaterial);
+    let sprite=new Sprite(spriteMaterial);
 
     sprite.name=spriteName;
-    sprite.position.copy(new THREE.Vector3(positionX,positionY,positionZ).clone().normalize().multiplyScalar(scale));
+    sprite.position.copy(new Vector3(positionX,positionY,positionZ).clone().normalize().multiplyScalar(scale));
     sprite.scale.set(size,size,1);
     scene.add(sprite);
 }

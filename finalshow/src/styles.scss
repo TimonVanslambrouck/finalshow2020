@@ -70,7 +70,6 @@ canvas {
       margin-left: 5px;
     }
   }
-
   //BODY
   .card-body {
     box-sizing: border-box;
@@ -184,4 +183,35 @@ p {
   border-bottom: 2px solid #2FE6DE !important;
   font-size: 20px;
   padding-bottom: 3px;
+}
+
+.showroomflag-nominee{
+  position: absolute;
+  z-index: 99;
+  top:4.5vh;
+  width: 20%;
+  left: 0;
+}
+.showroomflag-nominee-text{
+  position: absolute;
+  z-index: 99;
+  top:5.3vh;
+font-size:175%;
+  left: 2%;
+}
+
+.showroomflag-winner{
+  position: absolute;
+  z-index: 99;
+  top:4.5vh;
+  width: 20%;
+  left: 0;
+}
+.showroomflag-winner-text{
+  position: absolute;
+  z-index: 99;
+  color: white !important;
+  top:5.3vh;
+font-size:175%;
+  left: 2%;
 }
