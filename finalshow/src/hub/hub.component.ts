@@ -34,6 +34,7 @@ export class HubComponent implements OnInit {
   rayCaster=new THREE.Raycaster();
   audio=new Audio();
   poi=new PoiComponent();
+  popupActive=false;
   playlist=new Array('../assets/sounds/chill-sakura-hz-no-copyright-music.mp3','../assets/sounds/no-copyright-music-funky-groove-funk-music-by-mokka-groove-with-me.mp3','../assets/sounds/5-minutes-of-silence-with-a-black-background.mp3');
   animationLaunch=false;
   animations=new AnimationsComponent();
@@ -65,7 +66,7 @@ export class HubComponent implements OnInit {
   }
 
   interestPoints(event:any){
-      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene);
+      this.poi.popup(event,this.renderer,this.rayCaster,this.mouse,this.camera,this.audio,this.playlist,this.animationLaunch,this.scene,this.renderer2);
   }
 
   // POIHover(e:any){

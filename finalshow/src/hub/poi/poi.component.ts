@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as THREE from 'three';
 import { Raycaster, Vector2 } from 'three';
 
@@ -15,7 +15,7 @@ export class PoiComponent implements OnInit {
   constructor() { }
 
 
-  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any){
+  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any){
      
     rayCaster.setFromCamera(mouse,camera);
     console.log(scene);
@@ -34,9 +34,6 @@ export class PoiComponent implements OnInit {
       }		
       if(intersect.object.name ==="FAQ"){
         window.open("https://www.erasmushogeschool.be/nl/faq");
-        // console.log(document.getElementById("showPopup"));
-        // document.getElementById("showPopup")!.style.display="block";
-        // renderer.domElement.style.filter="blur(4px)";
       }
       if(intersect.object.name ==="Bureau"){
         window.open("https://www.instagram.com/multimedia.ehb/");
@@ -48,7 +45,11 @@ export class PoiComponent implements OnInit {
         window.open("https://www.erasmushogeschool.be/nl/faq");
       }
       if(intersect.object.name ==="Showcase"){
-        animationLaunch = true;	
+        animationLaunch = true;
+        console.log(document.getElementById("showPopup"));
+        document.getElementById("showPopup")!.style.display="block";
+        renderer.domElement.style.filter="blur(4px)";
+        cssrenderer.domElement.style.filter="blur(4px)"
       }
       if(intersect.object.name ==="Timetable"){
         window.open("https://www.erasmushogeschool.be/nl/faq");
