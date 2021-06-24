@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as THREE from 'three';
 import { Raycaster, Vector2 } from 'three';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-poi',
@@ -10,13 +11,15 @@ import { Raycaster, Vector2 } from 'three';
 export class PoiComponent implements OnInit {
 
   POI_image="../assets/images/poi.png";
+  popupComponent=new PopupComponent();
 
 
   constructor() { }
 
 
-  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any){
+  popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any,controls:any){
      
+    let popupComponent=this.popupComponent;
     rayCaster.setFromCamera(mouse,camera);
     console.log(scene);
     console.log(rayCaster.ray);
@@ -46,10 +49,7 @@ export class PoiComponent implements OnInit {
       }
       if(intersect.object.name ==="Showcase"){
         animationLaunch = true;
-        console.log(document.getElementById("showPopup"));
-        document.getElementById("showPopup")!.style.display="block";
-        renderer.domElement.style.filter="blur(4px)";
-        cssrenderer.domElement.style.filter="blur(4px)"
+        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Timetable"){
         window.open("https://www.erasmushogeschool.be/nl/faq");
