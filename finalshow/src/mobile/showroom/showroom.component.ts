@@ -50,7 +50,7 @@ export class ShowroomComponent implements OnInit {
           <h5 class="flag-text">Winnaar</h5>`
         }else if(true){
           htmlString += `
-          <img src="../../assets/images/flagnominee.svg" class="flag flag" alt="...">
+          <img src="../../assets/images/flagnominee.svg" class="flag flagnominee" alt="...">
           <h5 class="flag-text nominee">genomineerd</h5>`
         };
         htmlString += `
