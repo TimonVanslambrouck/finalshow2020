@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
 #popup {
-  height: 75vh;
+  height: 90vh;
   width: 80vw;
   margin-left: 10vw;
-  margin-top: 12.5vh;
+  margin-top: 5vh;
   background-color: transparent;
   position: absolute;
   z-index: 100;
@@ -241,16 +241,15 @@ p {
   float: left;
   transform: rotate(180deg);
   position: absolute;
-  top: 500px;
-  left: 350px;
-  ;
+  top: 50vh;
+  left: 1vw;
 }
 
 .right {
   float: right;
   position: absolute;
-  top: 500px;
-  right: 350px;
+  top: 50vh;
+  right: 1vw;
 
 }
 
@@ -359,18 +358,18 @@ ul {
 }
 
 /* BUTTON */
-button {
-  display: block;
-  width: 90%;
-  height: 120px;
-  border: 0px;
-  background-color: white;
-  border-radius: 15px;
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  box-shadow: 2px 2px 2px rgb(102, 102, 102);
-}
+// button {
+//   display: block;
+//   width: 90%;
+//   height: 120px;
+//   border: 0px;
+//   background-color: white;
+//   border-radius: 15px;
+//   margin-top: 2%;
+//   margin-left: 5%;
+//   margin-right: 5%;
+//   box-shadow: 2px 2px 2px rgb(102, 102, 102);
+// }
 
 button div {
   display: inline-block;
@@ -624,6 +623,7 @@ button:hover img {
 
 .timetablepu {
   height: 500px;
+  margin-top: 100px;
 }
 
 h2.uur {
@@ -691,7 +691,7 @@ h2.uur {
   display: flex;
   align-items: flex-start;
   height: 600px;
-
+  margin-top: 100px;
 }
 
 .logobackgroundFaq {
@@ -716,222 +716,12 @@ h2.uur {
   align-items: center;
 }
 
-
-/* MEDIA QUERIES/RESPONSIVE */
-@media screen and (max-width: 1024px) {
-  .pop-up {
-    width: 80%;
-  }
-
-  .bottom-menu {
-    bottom: 0;
-    position: absolute;
-  }
-
-  .projecten p {
-    font-size: 13px;
-  }
-
-  .projecten h4 {
-    font-size: 14px;
-    padding-bottom: 10px;
-    margin-top: 75px;
-
-  }
-
-  .projecten h2 {
-    font-size: 25px;
-  }
-
-  .projecten h3 {
-    font-size: 18px;
-    margin-top: 38px;
-
-  }
-
-  .left {
-    left: 30px;
-    top: 433px;
-  }
-
-  .right {
-    right: 30px;
-    top: 433px;
-  }
-
-  .upper-nav {
-    width: 80%;
-  }
-
-  .standaardmenu h1 {
-    padding-right: 30px;
-    font-size: 35px;
-  }
-
-  h1.live {
-    padding-left: 30px;
-  }
-
-  /*TIMETABLE*/
-  button {
-    display: block;
-    width: 90%;
-    height: 110px;
-    border: 0px;
-    background-color: white;
-    border-radius: 15px;
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
-  }
-
-  button .image-web,
-  button .image-ar,
-  button .image-mobile,
-  button .image-motion,
-  button .image-dm {
-    width: 70px;
-    height: 70px;
-  }
-
-  a h3.sluiten {
-    padding-left: 690px;
-    margin-bottom: 5px;
-  }
-
-  .chooseTime {
-    width: 820px;
-  }
-
-  /* FAQ */
-  .hideInfo {
-    height: 700px;
-    width: 85%;
-
-  }
-
-  .hideInfo h5 {
-    margin-left: 40px;
-  }
-
-  a h3.sluiten.faqsluiten {
-    padding-left: 700px;
-
-  }
-
-  /* MENU */
-  .menuopties {
-    padding-top: 50px;
-  }
-
-  .menupu {
-    height: 500px;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .standaardmenu h1 {
-    padding-right: 45px;
-  }
-
-  h1.live {
-    padding-left: 40px;
-  }
-
-  .pop-up {
-    width: 80%;
-    height: 70vh;
-  }
-
-  button {
-    display: block;
-    width: 90%;
-    height: 100px;
-    border: 0px;
-    background-color: white;
-    border-radius: 15px;
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
-  }
-
-  button .image-web,
-  button .image-ar,
-  button .image-mobile,
-  button .image-motion,
-  button .image-dm {
-    width: 80px;
-    height: 80px;
-  }
-
-  /*SHOWROOM*/
-  .upper-nav {
-    width: 80%;
-  }
-
-  .bottom-menu {
-    position: absolute;
-    bottom: 0;
-  }
-
-  .projecten h4 {
-    margin-top: 80px;
-    margin-bottom: 10px;
-
-  }
-
-  .left {
-    left: 35px;
-  }
-
-  .right {
-    right: 35px;
-  }
-
-  /*TIMETABLE*/
-  .chooseTime {
-    width: 1151px;
-  }
-
-  a h3.sluiten {
-    padding-left: 1000px;
-  }
-
-  /*MENU*/
-  .menuopties {
-    padding-top: 50px;
-  }
-
-  .menupu {
-    height: 500px;
-  }
-
-  /*FAQ*/
-  .hideInfo {
-    height: 700px;
-    width: 55%;
-
-  }
-
-  .hideInfo h5 {
-    margin-left: 60px;
-  }
-
-  a h3.sluiten.faqsluiten {
-    padding-left: 1000px;
-
-  }
-
-}
-
 .back {
   cursor: pointer;
   font-weight: bold;
   position: absolute;
   top: 0;
-  right: 14vw;
+  right: 20vw;
   color: white;
   font-size: 20px;
 
@@ -941,8 +731,8 @@ h2.uur {
   cursor: pointer;
   font-weight: bold;
   position: absolute;
-  top: -5vh;
-  right: 14vw;
+  top: 70px;
+  right: 20vw;
   color: white;
   font-size: 20px;
 

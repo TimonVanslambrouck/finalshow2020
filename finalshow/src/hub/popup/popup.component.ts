@@ -50,13 +50,6 @@ export class PopupComponent implements OnInit {
             this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
-    if(poiName=="Drone"){
-
-      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
-      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
-
-    }
     if(poiName=="FAQ"){
 
       popup!.innerHTML=`
@@ -103,13 +96,6 @@ export class PopupComponent implements OnInit {
 
       this.initFunctionFaq();
       this.removeInnerhtml(controls, renderer, cssrenderer);
-
-    }
-    if(poiName=="Bureau"){
-
-      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
-      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
 
     }
     if(poiName=="Timetable"){
