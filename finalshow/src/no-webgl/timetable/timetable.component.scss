@@ -39,9 +39,8 @@ h1 {
 #active {
     color: white;
     opacity: 100%;
+    border-bottom: 4px solid #2FE6DE;
     padding-bottom: 10px;
-    border-bottom: 4px solid white;
-
 }
 
 a {
@@ -442,7 +441,7 @@ button:hover img {
 /*TIMETABLE*/
 .chooseTime {
     height: 120px;
-    width: 998px;
+    width: 65vw;
     border: 1px solid #ddd;
     display: flex;
     flex-direction: row;
@@ -458,7 +457,7 @@ button:hover img {
     background-color:#E4DFEB ;
     height: 120px;
     border-top: 1px solid #B89BE0;
-    min-width: 33%;
+    min-width: 28%;
     padding-top: 1%;
     padding-left: 1%;
 }
