@@ -34,13 +34,13 @@ h1 {
     font-size: 40px;
     font-weight: 1000;
     color: white;
-    text-shadow: 2px 2px 2px rgb(110, 109, 109);
 }
 
 
 #active {
     color: white;
     opacity: 100%;
+    border-bottom: 4px solid white;
 }
 
 a {
@@ -79,7 +79,6 @@ a h3.sluiten {
     align-items: center;
     justify-content: center;
     margin: auto;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 .pop-up img.coverphoto {
     border-radius:29px 29px 0px 0px;
@@ -256,9 +255,7 @@ a h3.sluiten {
     
 }
 .bottom-menu a.active {
-    color: white;
-    
-    
+    color: white;    
 }
 .bottom-menu a:hover {
     color: white;
@@ -269,9 +266,7 @@ a h3.sluiten {
 
 
 /* WEBGL/STANDAARDMENU */
-h1.live {
-    padding-left: 55px;
-}
+
 
 .webglmenu img {
     position: absolute;
@@ -315,12 +310,12 @@ ul {
 .standaardmenu h1 {
     display: inline-block;
     text-decoration: none;
-    margin: 1px;
-    padding-right: 155px;
     color: white;
     opacity: 75%;
-    text-shadow: 2px 2px 2px rgb(110, 109, 109);
+    margin-left: 5vw;
+margin-right: 5vw;
     font-size: 2vw;
+    margin-bottom: 5vh;
 }
 
 .standaardmenu h1:hover {
@@ -339,7 +334,6 @@ button {
     margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 button div {
     display: inline-block;
@@ -585,7 +579,6 @@ h2.uur {
     width: 60%;
     height: 600px;
     margin-left: 175px;
-    box-shadow: 2px 2px 2px #ccc;
     font-size: 17px;
     line-height: 30px;
 }
@@ -682,7 +675,6 @@ button {
     margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
     width: 70px;
@@ -720,12 +712,7 @@ button .image-web, button .image-ar, button .image-mobile,button .image-motion, 
     }
 }
 @media screen and (max-width: 1440px) {
-.standaardmenu h1{
-    padding-right: 45px;
-}
-h1.live {
-    padding-left: 40px;
-}
+
 .pop-up {
     width: 80%;
     height: 50vh;
@@ -740,7 +727,6 @@ button {
     margin-top: 2%;
     margin-left: 5%;
     margin-right: 5%;
-    box-shadow: 2px 2px 2px rgb(102, 102, 102);
 }
 button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
     width: 80px;

@@ -41,12 +41,10 @@ export class PoiComponent implements OnInit {
         popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Bureau"){
-        //window.open("https://www.instagram.com/multimedia.ehb/");
-        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
+        window.open("https://www.instagram.com/multimedia.ehb/");
       }
       if(intersect.object.name ==="Seads"){
-        //window.open("https://seads.network/");
-        popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
+        window.open("https://seads.network/");
       }
       if(intersect.object.name ==="Drone"){
         //window.open("https://www.erasmushogeschool.be/nl/faq");
