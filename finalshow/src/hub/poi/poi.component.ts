@@ -22,10 +22,7 @@ export class PoiComponent implements OnInit {
     let musicPlaying = this.musicPlaying;
     let popupComponent=this.popupComponent;
     rayCaster.setFromCamera(mouse,camera);
-    console.log(scene);
-    console.log(rayCaster.ray);
     let intersects = rayCaster.intersectObjects(scene.children);
-    console.log(intersects);
     intersects.forEach(function(intersect:any){
       // if(intersect.object.name ==="Youtube"){
       //   //window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=OfficialRickAstleyOfficialRickAstley")
@@ -34,7 +31,6 @@ export class PoiComponent implements OnInit {
       //   renderer.domElement.style.filter="blur(4px)";
       // }
       if(intersect.object.type ==='Sprite'){
-        console.log(intersect.object);
       }		
       if(intersect.object.name ==="FAQ"){
         //window.open("https://www.erasmushogeschool.be/nl/faq");

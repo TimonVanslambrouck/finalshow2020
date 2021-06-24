@@ -1,0 +1,797 @@
+* {
+    font-family: 'Manrope', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: transparent;
+}
+
+.background {
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/images/achtergrond.png');
+    background-position: center;
+    background-size: cover;
+    filter: blur(7px);
+    -webkit-filter: blur(7px);
+    position: absolute;
+    z-index: -1;
+}
+
+/* FONTS/LETTERTYPES/H1....6 */
+
+h1 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 1000;
+    color: white;
+    text-shadow: 2px 2px 2px rgb(110, 109, 109);
+}
+
+#active {
+    color: white;
+    opacity: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+a h3.sluiten.faqsluiten {
+    justify-content: center;
+    text-align: center;
+    padding-left: 870px;
+    width: auto;
+    margin-bottom: 10px;
+
+}
+
+a h3.sluiten {
+    justify-content: center;
+    text-align: center;
+    padding-left: 870px;
+    color: white;
+    width: auto;
+    margin-bottom: 10px;
+
+}
+
+
+/* POP UP */
+.pop-up {
+    position: relative;
+    background-color: #E4DFEB;
+    border-radius: 29px;
+    width: 1000px;
+    height: 80vh;
+    z-index: 0;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+.pop-up img.coverphoto {
+    border-radius:29px 29px 0px 0px;
+    width: 100%;
+    height: 325px;
+    object-fit: cover;
+}
+
+.pop-up p {
+    padding-bottom: 50px;
+}
+
+.pop-up img.logobackground  {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    bottom: 80px;
+    height: 250px;
+    transform:rotate(150deg) ;
+
+}
+.pop-up img.logobackground2  {
+    position: absolute;
+    z-index: -1;
+    right: 150px;
+    height: 250px;
+    transform:rotate(0deg) ;
+
+}
+.pop-up img.logobackground3  {
+    position: absolute;
+    z-index: -1;
+    left: 50px;
+    height: 250px;
+    transform:rotate(180deg) ;
+
+}
+.pop-up img.logobackground4  {
+    position: absolute;
+    z-index: -1;
+    bottom: 30px;
+    left: 350px;
+    height: 250px;
+    transform:rotate(190deg) ;
+
+}
+.pop-up img.logobackground5  {
+    position: absolute;
+    z-index: -1;
+    left: 650px;
+    height: 250px;
+    transform:rotate(90deg) ;
+
+}
+.pop-up img.logobackground6  {
+    position: absolute;
+    z-index: -1;
+    left: 50px;
+    height: 250px;
+
+}
+.pop-up h2 {
+    padding-top: 30px;
+    font-weight: bold;
+    font-size: 35px;
+    color: #766889;
+    float: left;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.pop-up h2, h4, p {
+    margin-left: 10%;
+}
+
+.pop-up p {
+    margin-right: 10%;
+}
+
+.pop-up h3 {
+    float: right;
+    margin-top: 45px;
+    margin-right: 10%;
+    font-size: 20px;
+
+}
+.pop-up h4 {
+    margin-top: 110px;
+}
+
+/* SHOWROOM */
+.hoeveelheid {
+    color: white;
+    width: auto;
+}
+.upper-nav {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width: 980px;
+    padding: 0px 5px;
+
+    
+}
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: calc(100vw - 20px);
+}
+.upper-nav h3 {
+    justify-content: center;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+
+}
+.upper-nav .hoeveelheid {
+    padding-left: 20px;
+}
+.upper-nav h3.sluiten {
+    margin: 0;
+    padding: 0;
+}
+.bottom-menu {
+    text-align: center;
+    background-color: #B89BE0;
+    border-radius: 0px 0px 29px 29px;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    
+}
+.left, .right {
+    justify-content: center;
+    text-align: center;
+    display: inline;
+    width: 30px;
+    cursor: pointer;
+}
+.left {
+    float: left;
+    transform: rotate(180deg);
+    position: absolute;
+    top: 500px;
+    left: 350px;;
+}
+.right {
+    float: right;
+    position: absolute;
+    top: 500px;
+    right: 350px;
+
+}
+.bottom-menu a {
+    display: inline-block;
+    text-decoration: none;
+    padding-left: 25px;
+    margin: 1px;
+    color: black;
+}
+
+.bottom-menu a:first-child {
+    padding-left: 0px;
+}
+.bottom-menu h5 {
+    font-size: 18px;
+    padding: 0px;
+    margin: 1px;
+    padding: 15px 0;
+    
+}
+.bottom-menu a.active {
+    color: white;
+    
+    
+}
+.bottom-menu a:hover {
+    color: white;
+    cursor: pointer;
+}
+.projecten h3 {
+    color: black;
+}
+
+
+/* WEBGL/STANDAARDMENU */
+h1.live {
+    padding-left: 55px;
+}
+
+.webglmenu img {
+    position: absolute;
+    width: 40px;
+    right: 0;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.menuopties {
+    display: flex;
+    justify-content: center;
+}
+.menuopties h2 {
+    transform: translate(-50%, -50%);
+}
+.menupu {
+    height: 500px;
+}
+.menuopties h2:hover {
+    color: white;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    margin-left: 55%;
+    margin-right: 40%;
+    margin-top: 6%;
+    padding: 0;
+
+  }
+.menu {
+    justify-content: center;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.standaardmenu {
+    justify-content: center;
+    text-align: center;
+
+}
+.standaardmenu h1 {
+    display: inline-block;
+    text-decoration: none;
+    margin: 1px;
+    padding-right: 155px;
+    color: white;
+    opacity: 75%;
+    text-shadow: 2px 2px 2px rgb(110, 109, 109);
+    font-size: 2vw;
+}
+
+.standaardmenu h1:hover {
+    color: white;
+    opacity: 100%;
+}
+
+/* BUTTON */
+button {
+    display: block;
+    width: 90%;
+    height: 120px;
+    border: 0px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+button div {
+    display: inline-block;
+    float: left;
+}
+button .image-web {
+background: url("../../assets/images/web-idle.svg") no-repeat;
+width: 50px;
+height: 50px;
+padding: 10px;
+margin: 10px;
+margin-left: 50px;
+}
+button .image-ar {
+    background: url("../../assets/images/ar-idle.svg") no-repeat;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 50px;
+    }
+button .image-mobile {
+        background: url("../../assets/images/mobile-idle.svg") no-repeat;
+        width: 50px;
+        height: 50px;
+        padding: 10px;
+        margin: 10px;
+        margin-left: 50px;
+        }
+        button .image-motion {
+            background: url("../../assets/images/motion-idle.svg") no-repeat;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 10px;
+            margin-left: 50px;
+            }
+            button .image-dm {
+                background: url("../../assets/images/digital-making-idle.svg") no-repeat;
+                width: 50px;
+                height: 50px;
+                padding: 10px;
+                margin: 10px;
+                margin-left: 50px;
+                }
+button:hover .image-web {
+    background: url("../../assets/images/web.svg") no-repeat;
+}
+button:hover .image-ar {
+    background: url("../../assets/images/ar.svg") no-repeat;
+}
+button:hover .image-mobile {
+    background: url("../../assets/images/mobile.svg") no-repeat;
+}
+button:hover .image-motion {
+    background: url("../../assets/images/motion.svg") no-repeat;
+}
+button:hover .image-dm {
+    background: url("../../assets/images/digital-making.svg") no-repeat;
+}
+.btntekst p, .btntekst h2 {
+    
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    text-align: left;
+}
+.btntekst {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+.btntekst h2 {
+    margin-top: 0px;
+}
+
+.btntekst p {
+    margin-top: 30px;
+}
+
+.btntekst h2 {
+    font-size: 20px;
+}
+button:hover {
+    cursor: pointer;
+}
+button:hover h2 {
+    color:black;
+}
+button:hover p {
+    color: white;
+}
+button:hover {
+    background-color: #B89BE0;
+}
+button:hover img {
+    background-image: url('../../assets/images/mobile.svg');
+}
+.event1, .event2, .event3,.event4,.event5,.event6,.event7,.event8,.event9,.event10,.event11, .event12 {
+    display:none;
+}
+
+
+/*TIMETABLE*/
+.chooseTime {
+    height: 120px;
+    width: 998px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow-y:hidden;
+    overflow-x: scroll;
+    bottom: 0;
+    position: absolute;
+    border-radius: 0px 0px 29px 29px;
+}
+.chooseTime .item {
+    background-color:#E4DFEB ;
+    height: 120px;
+    border-top: 1px solid #B89BE0;
+    min-width: 33%;
+    padding-top: 1%;
+    padding-left: 1%;
+}
+.chooseTime h6, .chooseTime h5 {
+    padding: 0px;
+    margin: 0px;
+    padding-left: 30px;
+}
+
+.chooseTime h5 {
+    color: #766889;
+    padding-top: 15px;
+}
+
+.chooseTime h6 {
+    padding-top: 5px;
+    font-size: 12px;
+}
+
+.chooseTime .active {
+    background-color: #B89BE0;
+    
+
+}
+.chooseTime .active h5 {
+    color: black;
+}
+
+.chooseTime .item:hover {
+    background-color: #B89BE0;
+    cursor: pointer;
+}
+.chooseTime::-webkit-scrollbar {
+    width: 100px;
+    height: 5px;
+    background: transparent;
+
+}
+.chooseTime::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.chooseTime::-webkit-scrollbar-thumb {
+    background: #766889;
+    border-radius: 10px;
+}
+
+.chooseTime::-webkit-scrollbar-thumb:active {
+    background: (68,68,68);
+    border-radius: 10px;
+}
+.chooseTime .item:hover h5 {
+    color: black;
+}
+.chooseTime .event1, .chooseTime .event2,.chooseTime .event3,.chooseTime .event4,.chooseTime .event5,.chooseTime .event6,.chooseTime .event7,.chooseTime .event8,.chooseTime .event9,.chooseTime .event10,.chooseTime .event11,.chooseTime .event12 {
+    display: block;
+}
+.event1 {
+    display: block;
+}
+.timetableevent h2 {
+    display: block;
+    margin-top: 80px;
+    margin-left: 10%;
+}
+.timetableevent p {
+    padding-top: 200px;
+}
+.timetableevent img {
+    width: 250px;
+    height: 500px;
+    object-fit: cover;
+}
+.timetablepu {
+    height: 500px;
+}
+h2.uur {
+    position: absolute;
+    right: 0;
+    padding-right: 10%;
+}
+
+
+
+/*FAQ*/
+.titelBtn h5 {
+    margin-top: 60px;
+    margin-left: 25px;
+    font-size: 17px;
+    text-align: left;
+    line-height: 30px;
+    cursor: pointer;
+
+}
+.titelBtn {
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+.active {
+    color: white;
+}
+.results {
+    display: none;
+}
+.results:first-child{
+    display: block;
+}
+.hideInfo h5 {
+    align-items: flex-start;
+    font-size: 20px;
+    margin-left: 50px;
+    color: #766889;
+    padding-top: 55px;
+}
+.hideInfo {
+    padding-top: 15px;
+    background-color: white;
+    border-radius: 0px 29px 29px 0px;
+    width: 60%;
+    height: 600px;
+    margin-left: 175px;
+    box-shadow: 2px 2px 2px #ccc;
+    font-size: 17px;
+    line-height: 30px;
+}
+.items:hover {
+    color: white;
+}
+.faq {
+    display: flex;
+    align-items: flex-start;
+    height: 600px;
+
+}
+.logobackgroundFaq {
+    position: absolute;
+    z-index: 0;
+    right: 20px;
+    bottom: 25px;
+    height: 250px;
+    transform: rotate(100deg);
+}
+
+
+/*LIVESTREAM*/
+.livestreampu {
+    height: 725px;
+}
+.livestreamiframe
+ {
+     display: flex;
+     padding-top: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* MEDIA QUERIES/RESPONSIVE */
+@media screen and (max-width: 1024px) {
+.pop-up {
+    width: 80%;
+}
+
+.bottom-menu {
+    bottom: 0;
+    position: absolute;
+}
+
+.projecten p {
+    font-size: 13px;
+}
+.projecten h4 {
+    font-size: 14px;
+    padding-bottom: 10px;
+    margin-top: 75px;
+
+}
+.projecten h2 {
+    font-size: 25px;
+}
+
+.projecten h3 {
+    font-size: 18px;
+    margin-top: 38px;
+   
+}
+.left {
+    left: 30px;
+    top: 433px;
+}
+
+.right {
+    right: 30px;
+    top: 433px;
+}
+.upper-nav {
+    width: 80%;
+}
+
+.standaardmenu h1 {
+    padding-right: 30px;
+    font-size: 35px;
+}
+
+h1.live {
+    padding-left: 30px;
+}
+
+/*TIMETABLE*/
+button {
+    display: block;
+    width: 90%;
+    height: 110px;
+    border: 0px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
+    width: 70px;
+    height: 70px;
+    }
+    a h3.sluiten {
+        padding-left:690px ;
+        margin-bottom: 5px;
+    }
+
+    .chooseTime {
+        width: 820px;
+    }
+
+    /* FAQ */
+    .hideInfo {
+        height: 700px;
+        width: 85%;
+
+    }
+    .hideInfo h5 {
+        margin-left: 40px;
+    }
+    a h3.sluiten.faqsluiten {
+        padding-left: 700px;
+    
+    }
+
+    /* MENU */
+    .menuopties {
+        padding-top: 50px;
+    }
+    .menupu {
+        height: 500px;
+    }
+}
+@media screen and (max-width: 1440px) {
+.standaardmenu h1{
+    padding-right: 45px;
+}
+h1.live {
+    padding-left: 40px;
+}
+.pop-up {
+    width: 80%;
+    height: 70vh;
+}
+button {
+    display: block;
+    width: 90%;
+    height: 100px;
+    border: 0px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    box-shadow: 2px 2px 2px rgb(102, 102, 102);
+}
+button .image-web, button .image-ar, button .image-mobile,button .image-motion, button .image-dm{
+    width: 80px;
+    height: 80px;
+    }
+
+    /*SHOWROOM*/
+    .upper-nav {
+        width: 80%;
+    }
+    .bottom-menu {
+        position: absolute;
+        bottom: 0;
+    }
+    .projecten h4 {
+        margin-top: 80px;
+        margin-bottom: 10px;
+    
+    }
+    .left {
+        left: 35px;
+    }
+    .right {
+        right: 35px;
+    }
+
+    /*TIMETABLE*/
+    .chooseTime {
+        width: 1151px;
+    }
+    a h3.sluiten {
+        padding-left:1000px ;
+    }
+
+    /*MENU*/
+    .menuopties {
+        padding-top: 50px;
+    }
+    .menupu {
+        height: 500px;
+    }
+
+    /*FAQ*/
+    .hideInfo {
+        height: 700px;
+        width: 55%;
+
+    }
+    .hideInfo h5 {
+        margin-left: 60px;
+    }
+    a h3.sluiten.faqsluiten {
+        padding-left: 1000px;
+    
+    }
+
+}
