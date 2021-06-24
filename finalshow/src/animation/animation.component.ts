@@ -105,6 +105,22 @@ export class AnimationComponent implements OnInit {
     }    
   }
 
+  onLoad(){
+    //Source: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Detect_WebGL
+    // Create canvas element. The canvas is not added to the
+    // document itself, so it is never displayed in the
+    // browser window.
+    var canvas = document.createElement("canvas");
+    // Get WebGLRenderingContext from canvas element.
+    var gl = canvas.getContext("webgl")
+      || canvas.getContext("experimental-webgl");
+    if (gl && gl instanceof WebGLRenderingContext) {
+        // webgl enabled
+    } else {
+        window.location.href = '/no-webgl';
+    }
+  }
+
 ngOnInit(): void {
   window.onbeforeunload = function() {window.scrollTo(0,0);}
   this.loadModels();
