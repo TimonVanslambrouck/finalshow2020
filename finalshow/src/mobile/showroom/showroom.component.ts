@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Audio } from 'three';
 
 @Component({
   selector: 'app-showroom',
@@ -15,16 +16,26 @@ export class ShowroomComponent implements OnInit {
   dm = "";
   mobile = "";
 
-  async fetchProjects(){
+  async fetchProjects() : Promise<Response>{
     const req = await fetch("https://finalshowcase.herokuapp.com/final-work/get-all");
-    const res = await req.json();
-    return res;
+    return await req.json();
+  }
+
+  async fetchSingleProject(project : String) : Promise<Response>{
+    const req = await fetch(`http://193.191.183.48:3000/final-work/search-name/${project}`);
+    return await req.json();
   }
 
   loadProjects(){
     this.fetchProjects().then((data : any)=>{
       this.sortProjects(data)
     });
+  }
+
+  loadSingleProject(project : String) {
+    this.fetchSingleProject(project).then((data: any) => {
+      this.page(data[0])
+    })
   }
 
   sortProjects(data : any){
@@ -41,8 +52,6 @@ export class ShowroomComponent implements OnInit {
           </div>
           <div class="card-body-more">
             <a class="card-btn"><img class="arrow" src="../../assets/images/arrow.svg"></a>
-            <div hidden>${project.email}</div>
-            <div hidden>${project.description}</div>
           </div>
         </div>
       </div>`;
@@ -87,45 +96,47 @@ export class ShowroomComponent implements OnInit {
     const buttons = document.getElementsByClassName("card-btn");
       setTimeout(() => {
         for(let i = 0;i < buttons.length;i++){
-          buttons[i].addEventListener("click", this.page)
+          buttons[i].addEventListener("click", (event) => {
+            //@ts-ignore
+            const projectName : String = event.path[3].children[0].children[0].innerText;
+            this.loadSingleProject(projectName);
+          })
         }
       }, 400);
   }
 
-  page(event:any){
+  
+
+
+  page(project: any){
+    console.log(project);
 
     let htmlString = "";
-    let clusters = document.getElementById("clusters-container");
-
-    
-    clusters!.style.display="none";
+    document.getElementById("clusters-container")!.style.display="none";
     document.getElementById("showcase")!.style.display="none";
     document.getElementById("back")!.style.display="flex";
-    
-    console.log(event.path[3].children[0].children[0].innerText)
-    const projectTitle : String = event.path[3].children[0].children[0].innerText;
+    const userFirstName : String = project.username.split(' ')[0];
 
-    htmlString+=`<div id="cardDetail" class="cardDetail">
-    <img src="${"jaa"}" class="image" alt="...">
-      <div class="card-body">
-        <h2 class="detailTitle">${projectTitle}</h2>
-        <h3 class="detailSubtitle">${"jaa"}</h3>
-        <p class="card-text" id="fullText">${"jaa"}</p>
-      </div>
-    </div>
+    htmlString+=`<div class="card">
+        <div class="card-image-container">
+          <img src="${project.images}" class="card-image" alt="...">
+        </div>
+        <div class="card-body">
+          <div class="card-body-info">
+            <h2 class="card-title">${project.name}</h2>
+            <h3 class="card-subtitle">${project.username}</h3>
+          </div>
+          <div class="card-body-more">
+            <a class="card-btn"><img class="arrow" src="../../assets/images/arrow.svg"></a>
+            <div>Contacteer ${userFirstName}</div>
+          </div>
+        </div>
+        <p class="detail-desc">
+          ${project.description}
+        </p>
+      </div>`
 
-    <div id="mail" class="mail">
-      <a href="mailto:${event.path[3].children[1].children[1].innerText}" id="contact">
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-      <title>mail2</title>
-      <path d="M26.667 0h-21.333c-2.934 0-5.334 2.4-5.334 5.334v21.332c0 2.936 2.4 5.334 5.334 5.334h21.333c2.934 0 5.333-2.398 5.333-5.334v-21.332c0-2.934-2.399-5.334-5.333-5.334zM26.667 4c0.25 0 0.486 0.073 0.688 0.198l-11.355 9.388-11.355-9.387c0.202-0.125 0.439-0.198 0.689-0.198h21.333zM5.334 28c-0.060 0-0.119-0.005-0.178-0.013l7.051-9.78-0.914-0.914-7.293 7.293v-19.098l12 14.512 12-14.512v19.098l-7.293-7.293-0.914 0.914 7.051 9.78c-0.058 0.008-0.117 0.013-0.177 0.013h-21.333z"></path>
-      </svg>
-      Contacteer ${name}</a>
-    </div>`
-
-    clusters!.insertAdjacentHTML("afterend",htmlString);
-    document.getElementById('fullText')!.style.overflow="visible";
-    document.getElementById('fullText')!.style.display="block";
+    document.getElementById("clusters-container")!.insertAdjacentHTML("afterend",htmlString);
   }
 
   back(){
