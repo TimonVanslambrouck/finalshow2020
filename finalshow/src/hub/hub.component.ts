@@ -1,9 +1,8 @@
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Component, OnInit } from '@angular/core';
-import * as THREE from 'three';
+import { LoadingManager, PerspectiveCamera, PlaneGeometry, Raycaster, Scene, Vector2, WebGLRenderer } from 'three';
 import * as ORBIT from 'three/examples/jsm/controls/OrbitControls';
 import { SkyboxComponent } from '../animation/skybox/skybox.component';
-import { Vector2 } from 'three';
 import { LightsComponent } from './lights/lights.component';
 import { CSS3DRenderer, CSS3DObject } from 'three/examples/jsm/renderers/CSS3DRenderer.js';
 import { ModelLoaderService } from 'src/animation/model-loader.service';
@@ -18,20 +17,20 @@ import { AnimationsComponent } from './animations/animations.component';
 })
 export class HubComponent implements OnInit {
   title = 'finalshow';
-  manager = new THREE.LoadingManager();
-  scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 6000 );
-  renderer = new THREE.WebGLRenderer({antialias:true});
+  manager = new LoadingManager();
+  scene = new Scene();
+  camera = new PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 6000 );
+  renderer = new WebGLRenderer({antialias:true});
   controls = new ORBIT.OrbitControls( this.camera, this.renderer.domElement);
-  mouse = new THREE.Vector2();
+  mouse = new Vector2();
   skyBox=new SkyboxComponent();
   lights=new LightsComponent();
   livestream=new LivestreamComponent();
-  cssscene = new THREE.Scene();
+  cssscene = new Scene();
   renderer2 = new CSS3DRenderer();
   modelLoader=new ModelLoaderService();
   loader=new GLTFLoader(this.manager);
-  rayCaster=new THREE.Raycaster();
+  rayCaster=new Raycaster();
   audio=new Audio();
   poi=new PoiComponent();
   popupActive=false;
@@ -56,7 +55,7 @@ export class HubComponent implements OnInit {
   }
 
   loadTerrain(){
-    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new THREE.PlaneGeometry(60, 60, 199, 199));
+    this.modelLoader.initTerrain(this.scene,'../assets/Terrain/jotunheimen.bin','../assets/images/rock.jpg',new PlaneGeometry(60, 60, 199, 199));
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/FinalRoom.glb","hub",1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/showcaseKader.glb","showcaseKader",1,[0,0,0],[0,0,0]);
     this.modelLoader.loadModel(this.loader,this.scene,"../assets/HUB/questionMark.glb","question",1,[0,0,0],[0,0,0]);
