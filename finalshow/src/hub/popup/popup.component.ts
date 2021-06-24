@@ -28,7 +28,41 @@ export class PopupComponent implements OnInit {
       ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
 
     }
+    if(poiName=="Drone"){
 
+      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
+      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
+
+    }
+    if(poiName=="FAQ"){
+
+      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
+      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
+
+    }
+    if(poiName=="Bureau"){
+
+      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
+      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
+
+    }
+    if(poiName=="Seads"){
+
+      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
+      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
+
+    }
+    if(poiName=="Timetable"){
+
+      popup!.innerHTML=`Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+      Excepturi officiis, fuga perferendis nulla dicta, sunt tempore hic cumque dolorum quis nam ea, 
+      ipsum expedita corporis laudantium quaerat suscipit ducimus harum!`;
+
+    }
   }
 
 
