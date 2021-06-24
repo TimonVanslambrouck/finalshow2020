@@ -10,13 +10,14 @@ import { Raycaster, Vector2 } from 'three';
 export class PoiComponent implements OnInit {
 
   POI_image="../assets/images/poi.png";
+  musicPlaying = false;
 
 
   constructor() { }
 
 
   popup(event:any,renderer:any,rayCaster:any,mouse:any,camera:any,audio:any,playlist:any,animationLaunch:boolean,scene:any,cssrenderer:any){
-     
+    let musicPlaying = this.musicPlaying;
     rayCaster.setFromCamera(mouse,camera);
     console.log(scene);
     console.log(rayCaster.ray);
@@ -55,12 +56,17 @@ export class PoiComponent implements OnInit {
         window.open("https://www.erasmushogeschool.be/nl/faq");
       }
       if(intersect.object.name ==="Music"){
-        console.log(audio);
-        audio.src = playlist[0];
-        audio.play();
+        musicPlaying = !musicPlaying;
+        audio.src = playlist[0];  
+        console.log(musicPlaying);     
+        if (musicPlaying) {
+          audio.play();
+        } else{
+          audio.pause();
+        }
       }      
     });  
-
+    this.musicPlaying = musicPlaying;
   }
 
   hover(e:any,mouse:any,rayCaster:any,scene:any,camera:any){
