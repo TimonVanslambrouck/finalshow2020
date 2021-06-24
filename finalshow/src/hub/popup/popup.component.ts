@@ -11,116 +11,6 @@ import { ShowroomComponent } from '../showroom/showroom.component';
 })
 export class PopupComponent implements OnInit {
 
-  api_url='https://finalshowcase.herokuapp.com/final-work/get-all';
-
-  buttons = document.querySelectorAll(".bottom-menu a");
-
-  cluster=localStorage.getItem("cluster")||"web";
-
-  constructor() { }
-
-
-  async getApi(url:string){
-    const response = await fetch(url);
-    var data = await response.json();
-    console.log(data);
-    this.showContent(data);
-  }
-
-  menuButtons(){
-    var menubuttons = document.querySelectorAll("button");
-    var menucluster = "web";
-    menubuttons.forEach(button => {
-      button.addEventListener("click", function(){
-          menucluster = button.classList[0];
-          console.log(menucluster);
-          localStorage.setItem("cluster", menucluster);
-          window.location.href = "/no-webgl";
-      })
-    });
-  }
-
-  showroom(){
-    let cluster=this.cluster;
-    let api_url=this.api_url;
-    let getapi=this.getApi(api_url);
-    document.querySelector(`a.${this.cluster}`)!.classList.add("active");
-    this.buttons.forEach(button => {
-        button.addEventListener("click", function(){
-            cluster = button.classList[0];
-            button.classList.add("active");
-            var children = [].slice.call(button.parentNode!.children);
-            children.forEach(child => {
-                if(child.classList[0] != cluster) {
-                    child.classList.remove("active");
-                }
-            });
-            getapi;
-        })
-    });
-
-  }
-
-  showContent(data:any){
-        var started = false;
-        var projecten = data.filter(p => p.cluster == this.cluster);
-        Array.prototype.next = function() {
-            return this[++this.current];
-        };
-        Array.prototype.prev = function() {
-            return this[--this.current];
-        };
-        Array.prototype.current = 0;
-        document.querySelector(".hoeveelheid")!.innerHTML = `${projecten.current+1}/${projecten.length}`;
-        var project = projecten[0];
-        var nextProject = document.querySelector(".right");
-        var previousProject = document.querySelector(".left");
-        nextProject.addEventListener("click", function(){        
-            if (projecten.length-1 == projecten.current){
-                projecten.current = -1;
-            }
-            project = projecten.next();
-
-            document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
-            console.log("text");
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
-            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
-            <h4>Beschrijving</h4>
-            <p>${project.description}</p>
-            `;
-        });
-        previousProject.addEventListener("click", function(){
-            if (projecten.current == 0){
-                projecten.current = projecten.length;
-            }
-            project = projecten.prev();
-            document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
-            console.log("text");
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
-            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
-            <h4>Beschrijving</h4>
-            <p>${project.description}</p>
-            `;
-
-        });
-      
-        if(!started) {
-            document.querySelector(".projecten").innerHTML = `
-            <img class="coverphoto" src="${project.images}">
-            <a href="${project.url}"><h2>${project.name}</h2></a>
-            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
-            <h4>Beschrijving</h4>
-            <p>${project.description}</p>
-            `;
-            started = true;
-        }
-  }
-
-
   showPopup(renderer:THREE.WebGLRenderer,cssrenderer:any,controls:ORBIT.OrbitControls,poiName:any){
 
     let popup=document.getElementById("popup");
@@ -131,7 +21,11 @@ export class PopupComponent implements OnInit {
 
     if(poiName=="Showcase"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
         </div>
             <div class="wrapper">
@@ -152,9 +46,8 @@ export class PopupComponent implements OnInit {
                     <a class="digital-making"><h5>Digital Making</h5></a>
                 </div>
             </div>`;
-
-          this.menuButtons();
-          this.showroom();
+            this.initFunctionShowroom();
+            this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
     if(poiName=="Drone"){
@@ -166,7 +59,11 @@ export class PopupComponent implements OnInit {
     }
     if(poiName=="FAQ"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back2">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
       </div>
       
@@ -195,14 +92,17 @@ export class PopupComponent implements OnInit {
       </div>
       <div class=" results vraag4">
       <h5 id="titel">Waar vind ik meer info over de opleiding?</h5><br>
-      <p id="info">Meer info hierover kan je op de website van EHB vinden.</p>
+      <p id="info">Meer info hierover kan je op <a href="https://www.erasmushogeschool.be/nl/opleidingen/multimedia-creative-technologies" style="border-bottom: 2px solid #2FE6DE; color: black;"  target="_blank"> de website van EHB </a> vinden.</p>
       </div>
       <div class="results vraag5">
       <h5 id="titel">Hoe kan ik de school contacteren?</h5><br>
-      <p id="info">Meer info hierover kan je op de website van EHB vinden.</p>
+      <p id="info">Meer info hierover kan je op <a href="https://www.erasmushogeschool.be/nl/" target="_blank" style="border-bottom: 2px solid #2FE6DE; color: black;">de website van EHB</a> vinden.</p>
       </div>
       </div>
       </div>`;
+
+      this.initFunctionFaq();
+      this.removeInnerhtml(controls, renderer, cssrenderer);
 
     }
     if(poiName=="Bureau"){
@@ -214,7 +114,11 @@ export class PopupComponent implements OnInit {
     }
     if(poiName=="Timetable"){
 
-      popup!.innerHTML=`<div class="background"></div>
+      popup!.innerHTML=`
+      <div id="back" class="back2">
+        <p>X<span class="close">Sluiten</span></p>
+        </div>
+      <div class="background"></div>
       <div class="standaardmenu">
         </div>
       <div class="pop-up timetablepu">
@@ -304,10 +208,196 @@ export class PopupComponent implements OnInit {
       </div>
       </div>`;
 
+      this.initFunctionTimetable();
+      this.removeInnerhtml(controls, renderer, cssrenderer);
+
     }
   }
 
+initFunctionFaq() {
+  console.log('test');
+    //Script voor divs te doen verschijnen doormiddel van het klikken van één van de FAQ vragen in FAQ.html
+    var faqButtons = document.querySelectorAll(".items");
+    console.log(faqButtons);
+    faqButtons.forEach(button => {
+   
+    button.addEventListener("click",function(){
+        var showEvent = button.classList[1];
+        let childs = [].slice.call(button.parentNode.children);
+        childs.forEach(child => {
+            if(child.classList[1] != showEvent) {
+                child.classList.remove("active");
+                button.classList.add("active");
+            }
+        });
+           let siblings = document.querySelectorAll(".results");
+        siblings.forEach(sibling => {
+            if(sibling.classList[1] != showEvent) {
 
+                sibling.style.display ='none';
+            }
+            else {
+                sibling.style.display ='block';
+            }
+        });
+        
+    })
+  });
+  }
+
+  initFunctionTimetable() {
+    //Script voor divs te doen verschijnen doormiddel van het klikken van één van de timetable evenementen in timetable.html
+    var timetablebuttons = document.querySelectorAll(".item");
+    timetablebuttons.forEach(button => {
+    button.addEventListener("click",function(){
+        var showEvent = button.classList[1];
+
+        var children = [].slice.call(button.parentNode.children);
+        children.forEach(child => {
+            if(child.classList[0] != showEvent) {
+                child.classList.remove("active");
+                button.classList.add("active");
+            }
+        });
+
+        var siblings = document.querySelectorAll(".timetableevent");
+        siblings.forEach(sibling => {
+            if(sibling.classList[0] != showEvent) {
+                sibling.style.display ='none';
+                
+            }
+            else {
+                sibling.style.display ='block';
+            }
+        });
+        
+    })
+
+  })
+  }
+
+  initFunctionShowroom() {
+    var menubuttons = document.querySelectorAll("button");
+    var menucluster = "web";
+    menubuttons.forEach(button => {
+      button.addEventListener("click", function(){
+          menucluster = button.classList[0];
+          console.log(menucluster);
+          localStorage.setItem("cluster", menucluster);
+          window.location.href = "/no-webgl"
+      })
+    })
+
+  
+    //API call
+
+    const api_url = "https://finalshowcase.herokuapp.com/final-work/get-all";
+
+    var buttons = document.querySelectorAll(".bottom-menu a");
+    var cluster = localStorage.getItem("cluster")||"web";
+    document.querySelector(`a.${cluster}`).classList.add("active");
+    buttons.forEach(button => {
+        button.addEventListener("click", function(){
+            cluster = button.classList[0];
+            button.classList.add("active");
+            var children = [].slice.call(button.parentNode.children);
+            children.forEach(child => {
+                if(child.classList[0] != cluster) {
+                    child.classList.remove("active");
+                }
+            });
+            getapi(api_url);
+        })
+    });
+
+
+
+    async function getapi(url) {
+        const response = await fetch(url);
+    
+        var data = await response.json();
+
+        show(data);
+
+    }
+
+    getapi(api_url);
+
+    //Na API Call alle projecten inladen, rangschikken per cluster en deze printen adhv keuze gebruiker
+
+    function show(data) {
+        var started = false;
+        var projecten = data.filter(p => p.cluster == cluster);
+        Array.prototype.next = function() {
+
+            return this[++this.current];
+
+        };
+        Array.prototype.prev = function() {
+            return this[--this.current];
+        };
+        Array.prototype.current = 0;
+        document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
+        var project = projecten[0];
+        var nextProject = document.querySelector(".right");
+        var previousProject = document.querySelector(".left");
+        nextProject.addEventListener("click", function(){
+        
+            if (projecten.length-1 == projecten.current){
+                projecten.current = -1;
+            }
+            project = projecten.next();
+
+
+            document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
+            console.log("text");
+            document.querySelector(".projecten").innerHTML = `
+            <img class="coverphoto" src="${project.images}">
+            <h2>${project.name}</h2>
+            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
+            <h4>Beschrijving</h4>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            `;
+        });
+        previousProject.addEventListener("click", function(){
+            if (projecten.current == 0){
+                projecten.current = projecten.length;
+            }
+            project = projecten.prev();
+            document.querySelector(".hoeveelheid").innerHTML = `${projecten.current+1}/${projecten.length}`;
+            console.log("text");
+            document.querySelector(".projecten").innerHTML = `
+            <img class="coverphoto" src="${project.images}">
+            <h2>${project.name}</h2>
+            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
+            <h4>Beschrijving</h4>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            `;
+
+        });
+      
+      
+        if(!started) {
+            document.querySelector(".projecten").innerHTML = `
+            <img class="coverphoto" src="${project.images}">
+            <h2>${project.name}</h2>
+            <a href="mailto:${project.email}"><h3>${project.username}</h3></a>
+            <h4>Beschrijving</h4>
+            <p>${project.description}<br><br><a id="projectvideo" target="_blank" href="${project.url}">Bekijk de projectvideo</a></p>
+            `;
+            started = true;
+        }
+    }
+  }
+
+  removeInnerhtml(controls:any, renderer:any, cssrenderer:any){
+    document.getElementById("back")?.addEventListener('click', function(){
+        document.getElementById('showPopup')?.style.display = 'none';
+        renderer.domElement.style.filter="blur(0px)";
+        cssrenderer.domElement.style.filter="blur(0px)";
+        controls.enabled=true;
+    })
+  }
 
   ngOnInit(): void {
   }

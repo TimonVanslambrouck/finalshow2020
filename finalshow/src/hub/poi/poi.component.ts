@@ -37,7 +37,7 @@ export class PoiComponent implements OnInit {
         popupComponent.showPopup(renderer,cssrenderer,controls,intersect.object.name);
       }
       if(intersect.object.name ==="Bureau"){
-        window.open("https://www.instagram.com/multimedia.ehb/");
+        window.open("https://linktr.ee/ehbmultimedia");
       }
       if(intersect.object.name ==="Seads"){
         window.open("https://seads.network/");
